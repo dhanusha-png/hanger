@@ -538,3 +538,129 @@
     font-size: 12px;
   }
 }
+
+/* Tabs & Filter Bars */
+.admin-tabs-bar {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid rgba(232, 192, 112, 0.16);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+}
+.admin-tab-btn {
+  background: none;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  color: #95a8a0;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.admin-tab-btn.active, .admin-tab-btn:hover {
+  background: rgba(232, 192, 112, 0.14);
+  color: #e8c070;
+}
+
+/* Modals & Dialogs */
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 8, 6, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.admin-modal-window {
+  background: #061813;
+  border: 1px solid rgba(232, 192, 112, 0.35);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 780px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  padding: 28px;
+  position: relative;
+  color: #f7f3ec;
+}
+.admin-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f7f3ec;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.admin-modal-close:hover {
+  background: rgba(248, 113, 113, 0.2);
+  color: #f87171;
+}
+
+/* Category Tree Nodes */
+.admin-cat-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.admin-cat-node {
+  background: rgba(11, 33, 26, 0.5);
+  border: 1px solid rgba(232, 192, 112, 0.16);
+  border-radius: 12px;
+  padding: 14px 18px;
+  transition: all 0.2s ease;
+}
+.admin-cat-node.level-1 { border-left: 4px solid #e8c070; }
+.admin-cat-node.level-2 { margin-left: 24px; border-left: 4px solid #4ade80; }
+.admin-cat-node.level-3 { margin-left: 48px; border-left: 4px solid #60a5fa; }
+
+/* Status Badges */
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.admin-badge.paid, .admin-badge.delivered, .admin-badge.active, .admin-badge.resolved {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+.admin-badge.pending, .admin-badge.processing, .admin-badge.scheduled {
+  background: rgba(250, 204, 21, 0.15);
+  color: #facc15;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+.admin-badge.cancelled, .admin-badge.rejected, .admin-badge.archived, .admin-badge.failed {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+.admin-badge.new, .admin-badge.confirmed, .admin-badge.shipped {
+  background: rgba(232, 192, 112, 0.15);
+  color: #e8c070;
+  border: 1px solid rgba(232, 192, 112, 0.3);
+}
+
+/* Printable Invoice */
+@media print {
+  body * { visibility: hidden; }
+  .admin-printable-invoice, .admin-printable-invoice * { visibility: visible; }
+  .admin-printable-invoice { position: absolute; left: 0; top: 0; width: 100%; color: #000 !important; background: #fff !important; }
+}
+
