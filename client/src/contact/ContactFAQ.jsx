@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, HelpCircle, X } from 'lucide-react';
+import { api } from '../lib/api';
 
 const FAQS_DATA = [
   {
@@ -28,12 +29,22 @@ const FAQS_DATA = [
 export function ContactFAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [faqList, setFaqList] = useState(FAQS_DATA);
+
+  useEffect(() => {
+    let active = true;
+    api('/faqs?group=contact').then(data => {
+      if (!active || !Array.isArray(data) || !data.length) return;
+      setFaqList(data.map((f, i) => ({ id: f._id || `faq-${i}`, q: f.question, a: f.answer })));
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   const toggle = (idx) => {
     setOpenIdx(prev => (prev === idx ? null : idx));
   };
 
-  const filteredFaqs = FAQS_DATA.filter(faq => {
+  const filteredFaqs = faqList.filter(faq => {
     const qLower = faq.q.toLowerCase();
     const aLower = faq.a.toLowerCase();
     const query = searchQuery.trim().toLowerCase();

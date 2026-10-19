@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { api } from '../lib/api';
 import {
   Search,
   ChevronDown,
@@ -389,6 +390,55 @@ export function ProductCatalogSidebar({
     return selectedCat !== 'all' ? selectedCat : 'ceiling-hangers';
   });
   const [expandedSubCat, setExpandedSubCat] = useState(null);
+  const [treeData, setTreeData] = useState(CATALOG_TREE_STRUCTURE);
+
+  useEffect(() => {
+    let active = true;
+    api('/categories').then(cats => {
+      if (!active || !Array.isArray(cats) || !cats.length) return;
+      const iconMap = {
+        'all': HangerIcon,
+        'ceiling-hangers': CeilingPulleyIcon,
+        'wall-hangers': WallHangerIcon,
+        'shoe-racks': ShoeIcon,
+        'storage-solutions': StorageBoxIcon,
+        'custom-solutions': RulerTriangleIcon,
+      };
+
+      const level1 = cats.filter(c => c.level === 1 || !c.parent);
+      if (level1.length) {
+        const dynamicTree = [
+          { id: 'all', name: 'All Products', icon: HangerIcon, subCategories: [] },
+          ...level1.map(l1 => {
+            const subs = cats.filter(c => {
+              const pId = c.parent?._id || c.parent;
+              return String(pId) === String(l1._id);
+            });
+            return {
+              id: l1.slug,
+              name: l1.name,
+              icon: iconMap[l1.slug] || HangerIcon,
+              subCategories: subs.map(sub => {
+                const types = cats.filter(c => {
+                  const pId = c.parent?._id || c.parent;
+                  return String(pId) === String(sub._id);
+                });
+                return {
+                  id: sub.slug,
+                  name: sub.name,
+                  items: types.map(t => ({ id: t.slug, name: t.name }))
+                };
+              })
+            };
+          })
+        ];
+        if (dynamicTree.length > 1) {
+          setTreeData(dynamicTree);
+        }
+      }
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   // Compute live counts derived from real catalog data
   const countsMap = useMemo(() => {
@@ -398,7 +448,7 @@ export function ProductCatalogSidebar({
       level3: {},
     };
 
-    CATALOG_TREE_STRUCTURE.forEach(cat => {
+    treeData.forEach(cat => {
       const catCount = products.filter(p => matchProductLevel(p, cat.id, null, null)).length;
       map.level1[cat.id] = catCount;
 
@@ -414,14 +464,14 @@ export function ProductCatalogSidebar({
     });
 
     return map;
-  }, [products]);
+  }, [products, treeData]);
 
   // Filter category tree items with the small catalog search box
   const filteredTree = useMemo(() => {
     const term = catalogSearch.trim().toLowerCase();
-    if (!term) return CATALOG_TREE_STRUCTURE;
+    if (!term) return treeData;
 
-    return CATALOG_TREE_STRUCTURE.map(cat => {
+    return treeData.map(cat => {
       const catMatch = cat.name.toLowerCase().includes(term);
       const filteredSubs = (cat.subCategories || []).map(sub => {
         const subMatch = sub.name.toLowerCase().includes(term);
@@ -440,7 +490,7 @@ export function ProductCatalogSidebar({
       }
       return null;
     }).filter(Boolean);
-  }, [catalogSearch]);
+  }, [catalogSearch, treeData]);
 
   const handleCategoryClick = (catId) => {
     if (expandedCat === catId) {

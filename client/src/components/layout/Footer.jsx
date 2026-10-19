@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -11,14 +11,45 @@ import {
   Facebook,
   Youtube,
   Share2,
-  ChevronDown
+  ChevronDown,
+  Mail,
+  Check
 } from 'lucide-react';
 import { GoldDivider } from '../../design-system/GoldDivider';
 import { Logo } from '../Logo';
+import { api } from '../../lib/api';
 import './footer.css';
 
 export function Footer() {
   const [openSection, setOpenSection] = useState(null);
+  const [settings, setSettings] = useState(null);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [submittingSub, setSubmittingSub] = useState(false);
+  const [subMsg, setSubMsg] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    api('/settings').then(s => {
+      if (active && s) setSettings(s);
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail || !newsletterEmail.includes('@')) return;
+    setSubmittingSub(true);
+    setSubMsg('');
+    try {
+      await api('/subscribers', { method: 'POST', body: JSON.stringify({ email: newsletterEmail }) });
+      setSubMsg('Subscribed! Thank you for joining.');
+      setNewsletterEmail('');
+    } catch (err) {
+      setSubMsg(err.message || 'Already subscribed or invalid email.');
+    } finally {
+      setSubmittingSub(false);
+    }
+  };
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
@@ -137,41 +168,72 @@ export function Footer() {
               <div className="hh-footer-tagline-dash" />
             </div>
 
-            {/* Social Icons (Refined, no fake accounts) */}
+            {/* Newsletter Subscription */}
+            <form className="hh-footer-newsletter-wrap" onSubmit={handleSubscribe} style={{ margin: '14px 0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(5, 18, 14, 0.7)', border: '1px solid rgba(232, 192, 112, 0.25)', borderRadius: '10px', padding: '4px 6px', maxWidth: '280px' }}>
+                <input
+                  type="email"
+                  placeholder="Enter email for newsletter..."
+                  value={newsletterEmail}
+                  onChange={e => setNewsletterEmail(e.target.value)}
+                  required
+                  style={{ background: 'transparent', border: 'none', color: '#fff', fontSize: '12px', padding: '6px 8px', outline: 'none', width: '100%' }}
+                />
+                <button
+                  type="submit"
+                  disabled={submittingSub}
+                  style={{ background: '#e8c070', color: '#04120e', border: 'none', borderRadius: '6px', padding: '6px 10px', cursor: 'pointer', display: 'grid', placeItems: 'center' }}
+                  aria-label="Subscribe"
+                >
+                  <ArrowRight size={13} />
+                </button>
+              </div>
+              {subMsg && <small style={{ color: '#e8c070', fontSize: '11px', display: 'block', marginTop: '5px' }}>{subMsg}</small>}
+            </form>
+
+            {/* Social Icons (Dynamic from Settings) */}
             <div className="hh-footer-socials" aria-label="Social connections">
               <a
-                href="#instagram"
+                href={settings?.socialLinks?.instagram || '#instagram'}
+                target={settings?.socialLinks?.instagram ? '_blank' : '_self'}
+                rel="noreferrer"
                 className="hh-social-link"
                 aria-label="HangerHome on Instagram"
                 title="Instagram"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => { if (!settings?.socialLinks?.instagram) e.preventDefault(); }}
               >
                 <Instagram size={15} />
               </a>
               <a
-                href="#facebook"
+                href={settings?.socialLinks?.facebook || '#facebook'}
+                target={settings?.socialLinks?.facebook ? '_blank' : '_self'}
+                rel="noreferrer"
                 className="hh-social-link"
                 aria-label="HangerHome on Facebook"
                 title="Facebook"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => { if (!settings?.socialLinks?.facebook) e.preventDefault(); }}
               >
                 <Facebook size={15} />
               </a>
               <a
-                href="#youtube"
+                href={settings?.socialLinks?.youtube || '#youtube'}
+                target={settings?.socialLinks?.youtube ? '_blank' : '_self'}
+                rel="noreferrer"
                 className="hh-social-link"
                 aria-label="HangerHome on YouTube"
                 title="YouTube"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => { if (!settings?.socialLinks?.youtube) e.preventDefault(); }}
               >
                 <Youtube size={15} />
               </a>
               <a
-                href="#share"
+                href={settings?.whatsapp ? `https://wa.me/${settings.whatsapp.replace(/\D/g, '')}` : '#share'}
+                target={settings?.whatsapp ? '_blank' : '_self'}
+                rel="noreferrer"
                 className="hh-social-link"
-                aria-label="Share HangerHome"
-                title="Share"
-                onClick={(e) => e.preventDefault()}
+                aria-label="Share or Chat on WhatsApp"
+                title="WhatsApp"
+                onClick={(e) => { if (!settings?.whatsapp) e.preventDefault(); }}
               >
                 <Share2 size={15} />
               </a>

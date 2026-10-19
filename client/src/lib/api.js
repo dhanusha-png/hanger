@@ -11,7 +11,7 @@ export class ApiError extends Error {
 }
 
 export async function api(path, opts = {}) {
-  const token = localStorage.getItem('token');
+  let token = localStorage.getItem('token');
   const headers = {
     'Content-Type': 'application/json',
     ...(opts.headers || {})
@@ -20,11 +20,35 @@ export async function api(path, opts = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const res = await fetch(BASE + path, {
+  let res = await fetch(BASE + path, {
     credentials: 'include',
     ...opts,
     headers
   });
+
+  // Automatic token refresh on 401
+  if (res.status === 401 && !path.startsWith('/auth/login') && !path.startsWith('/auth/register') && !path.startsWith('/auth/refresh') && !path.startsWith('/auth/admin-login')) {
+    try {
+      const refreshRes = await fetch(BASE + '/auth/refresh', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      if (refreshRes.ok) {
+        const refreshData = await refreshRes.json();
+        if (refreshData.token) {
+          token = refreshData.token;
+          localStorage.setItem('token', token);
+          headers.Authorization = `Bearer ${token}`;
+          res = await fetch(BASE + path, {
+            credentials: 'include',
+            ...opts,
+            headers
+          });
+        }
+      }
+    } catch {}
+  }
 
   const data = await res.json().catch(() => ({}));
 

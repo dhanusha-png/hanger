@@ -12,6 +12,7 @@ import {
   Archive,
   Wrench
 } from 'lucide-react';
+import { api } from '../lib/api';
 import './about-hero.css';
 
 // Custom SVG Clothes Hanger Icon
@@ -56,7 +57,22 @@ export function AboutHero() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [counts, setCounts] = useState({ homes: 0, years: 0, products: 0, satisfaction: 0 });
   const [counted, setCounted] = useState(false);
+  const [targetStats, setTargetStats] = useState({ homes: 1000, years: 5, products: 20, satisfaction: 99 });
   const statsRef = useRef(null);
+
+  useEffect(() => {
+    let active = true;
+    api('/settings').then(s => {
+      if (!active || !s?.stats) return;
+      setTargetStats({
+        homes: Number(s.stats.homes) || 1000,
+        years: Number(s.stats.years) || 5,
+        products: Number(s.stats.products) || 20,
+        satisfaction: Number(s.stats.satisfaction) || 99
+      });
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   // Animated Count-up for Stats Bar
   useEffect(() => {
@@ -74,16 +90,16 @@ export function AboutHero() {
             const ease = 1 - Math.pow(1 - progress, 3);
 
             setCounts({
-              homes: Math.floor(ease * 1000),
-              years: Math.floor(ease * 5),
-              products: Math.floor(ease * 20),
-              satisfaction: Math.floor(ease * 99)
+              homes: Math.floor(ease * targetStats.homes),
+              years: Math.floor(ease * targetStats.years),
+              products: Math.floor(ease * targetStats.products),
+              satisfaction: Math.floor(ease * targetStats.satisfaction)
             });
 
             if (progress < 1) {
               requestAnimationFrame(animate);
             } else {
-              setCounts({ homes: 1000, years: 5, products: 20, satisfaction: 99 });
+              setCounts({ ...targetStats });
             }
           };
 
@@ -98,7 +114,7 @@ export function AboutHero() {
     }
 
     return () => observer.disconnect();
-  }, [counted]);
+  }, [counted, targetStats]);
 
   const signCategories = [
     {

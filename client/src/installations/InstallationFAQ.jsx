@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { api } from '../lib/api';
 
 const faqs = [
   {
@@ -39,6 +40,16 @@ const faqs = [
 
 export function InstallationFAQ() {
   const [openIdx, setOpenIdx] = useState(0);
+  const [faqList, setFaqList] = useState(faqs);
+
+  useEffect(() => {
+    let active = true;
+    api('/faqs?group=installation').then(data => {
+      if (!active || !Array.isArray(data) || !data.length) return;
+      setFaqList(data.map(f => ({ q: f.question, a: f.answer })));
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   const toggle = (idx) => setOpenIdx(openIdx === idx ? null : idx);
 
@@ -56,7 +67,7 @@ export function InstallationFAQ() {
       </div>
 
       <div className="install-faq-grid">
-        {faqs.map((faq, idx) => {
+        {faqList.map((faq, idx) => {
           const isOpen = openIdx === idx;
           return (
             <div className="install-faq-item" key={idx}>
