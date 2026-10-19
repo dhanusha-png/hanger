@@ -2059,13 +2059,13 @@
    -------------------------------------------------------------------------- */
 .home-floating-stack {
   position: fixed;
-  right: 24px;
-  bottom: clamp(96px, 11vh, 120px);
+  right: 22px;
+  bottom: 24px;
   z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 12px;
+  gap: 10px;
   pointer-events: none;
 }
 
@@ -2183,11 +2183,11 @@
 
 .home-float-ai-pill {
   position: absolute;
-  right: 54px;
-  background: rgba(6, 18, 14, 0.92);
+  right: 52px;
+  background: rgba(6, 18, 14, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(232, 192, 112, 0.28);
   color: #ffffff;
   padding: 6px 14px;
   border-radius: 9999px;
@@ -2197,6 +2197,26 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.50);
   white-space: nowrap;
   pointer-events: none;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.home-float-ai:hover .home-float-ai-pill,
+.home-float-ai:focus-visible .home-float-ai-pill {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .home-floating-stack {
+    right: 14px;
+    bottom: 18px;
+    gap: 8px;
+  }
+  .home-float-ai-pill {
+    display: none !important;
+  }
 }
 
 /* Mini-Cart Slide-out Drawer (Dark Smoked Glass) */
@@ -2573,3 +2593,74 @@
     right: 20px;
   }
 }
+
+/* ==========================================================================
+   Home Page: Calm Tonal Dark Rhythm
+   Even Sections (2, 4, 6, 8): Deep Forest #0B211A + Corner Glow + Thin Gold Line
+   Odd Sections (1, 3, 5, 7): Current Dark #04120e
+   Category Shortcuts: Merged with Hero bottom edge (same dark tone, 60px soft fade)
+   All Dark Cards, Text and Button Styles Kept Intact
+   ========================================================================== */
+
+/* Full-width section backing wrappers */
+.home-tonal-cat-shortcuts,
+.home-tonal-even,
+.home-tonal-odd {
+  width: 100%;
+  position: relative;
+}
+
+/* Clear hard-coded inner section backgrounds so the full-width rhythm displays cleanly */
+.home-tonal-cat-shortcuts .home-categories-section,
+.home-tonal-odd .home-featured-section,
+.home-tonal-even .home-installation-section,
+.home-tonal-odd .home-services-section,
+.home-tonal-even .home-how-section,
+.home-tonal-odd .home-gallery-preview,
+.home-tonal-even .home-cta-section {
+  background-color: transparent !important;
+}
+
+/* Section 2 (Even): Category Shortcuts
+   Merged into the hero's bottom edge (same dark tone #04120e, soft fade of ~60px into #0B211A) */
+.home-tonal-cat-shortcuts {
+  background: radial-gradient(ellipse 65% 75% at 92% 10%, rgba(20, 85, 64, 0.22) 0%, transparent 60%),
+              linear-gradient(180deg, #04120e 0%, #04120e 15px, #0B211A 60px, #0B211A 100%);
+  position: relative;
+  z-index: 2;
+}
+
+/* Odd Sections (3, 5, 7): Keep the current #04120e */
+.home-tonal-odd {
+  background-color: #04120e;
+  position: relative;
+  z-index: 2;
+}
+
+/* Even Sections (4, 6, 8): Slightly lighter deep forest tone #0B211A
+   with subtle radial glow in the corner */
+.home-tonal-even {
+  background-color: #0B211A;
+  background-image: radial-gradient(ellipse 65% 75% at 92% 8%, rgba(20, 85, 64, 0.28) 0%, transparent 65%);
+  position: relative;
+  z-index: 2;
+}
+
+/* Alternating corner glow for visual balance across even sections */
+.home-tonal-even:nth-of-type(even) {
+  background-image: radial-gradient(ellipse 65% 75% at 8% 12%, rgba(20, 85, 64, 0.26) 0%, transparent 65%);
+}
+
+/* Thin gold-to-transparent line along the top edge of even sections (4, 6, 8) */
+.home-tonal-even::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(232, 192, 112, 0.42) 20%, rgba(232, 192, 112, 0.25) 50%, transparent 85%);
+  pointer-events: none;
+  z-index: 3;
+}
+

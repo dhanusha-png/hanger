@@ -59,13 +59,13 @@ export function HomePage({
       {/* 2. Benefit Bar (Overlapping Hero) */}
       <BenefitBar />
 
-      {/* 3. Category Shortcuts */}
-      <div className="home-reveal">
+      {/* Section 2 (Even): Category Shortcuts (Merged with Hero bottom edge) */}
+      <div className="home-reveal home-tonal-cat-shortcuts">
         <CategoryShortcuts />
       </div>
 
-      {/* 4. Featured Solutions (5 Compact Cards) */}
-      <div className="home-reveal">
+      {/* Section 3 (Odd): Featured Solutions (Dark #04120e) */}
+      <div className="home-reveal home-tonal-odd">
         <FeaturedSolutions
           products={products}
           loading={productsLoading}
@@ -76,28 +76,28 @@ export function HomePage({
         />
       </div>
 
-      {/* 5. Installation Showcase (Collage & Video) */}
-      <div className="home-reveal">
+      {/* Section 4 (Even): Installation Showcase (Deep Forest #0B211A) */}
+      <div className="home-reveal home-tonal-even">
         <InstallationShowcase />
       </div>
 
-      {/* 6. Our Services Section */}
-      <div className="home-reveal">
+      {/* Section 5 (Odd): Our Services Section (Dark #04120e) */}
+      <div className="home-reveal home-tonal-odd">
         <ServicesSection />
       </div>
 
-      {/* 7. How It Works (Timeline) */}
-      <div className="home-reveal">
+      {/* Section 6 (Even): How It Works (Deep Forest #0B211A) */}
+      <div className="home-reveal home-tonal-even">
         <HowItWorks />
       </div>
 
-      {/* 8. Gallery Preview */}
-      <div className="home-reveal">
+      {/* Section 7 (Odd): Gallery Preview (Dark #04120e) */}
+      <div className="home-reveal home-tonal-odd">
         <GalleryPreview />
       </div>
 
-      {/* 9. Final Premium Call to Action */}
-      <div className="home-reveal">
+      {/* Section 8 (Even): Final Premium Call to Action (Deep Forest #0B211A) */}
+      <div className="home-reveal home-tonal-even">
         <HomeCTA />
       </div>
 
