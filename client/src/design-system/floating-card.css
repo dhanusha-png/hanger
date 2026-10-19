@@ -1,0 +1,41 @@
+@keyframes hhFloatBobVertical {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(calc(-1 * var(--hh-float-distance, 6px)));
+  }
+}
+
+@keyframes hhFloatBobDiagonal {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(calc(-0.5 * var(--hh-float-distance, 6px)), calc(-1 * var(--hh-float-distance, 6px))) rotate(0.4deg);
+  }
+}
+
+.hh-floating-card-wrapper {
+  display: inline-block;
+  will-change: transform;
+  animation-duration: var(--hh-float-duration, 6s);
+  animation-delay: var(--hh-float-delay, 0s);
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.hh-floating-card-wrapper.dir-vertical {
+  animation-name: hhFloatBobVertical;
+}
+
+.hh-floating-card-wrapper.dir-diagonal {
+  animation-name: hhFloatBobDiagonal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-floating-card-wrapper {
+    animation: none !important;
+    transform: none !important;
+  }
+}

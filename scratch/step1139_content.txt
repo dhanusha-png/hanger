@@ -1,0 +1,140 @@
+<USER_REQUEST>
+I'm attaching:
+- Image A = screenshot of my current Installations page (localhost:5173/installations)
+- Image B = the NEW hero background photo (two technicians installing: one on
+  a ladder fitting a ceiling hanger with shirts, one fitting a lit shoe rack;
+  tools and rods on the floor; city view through a big window)
+
+GOAL: turn the Installations page into ONE combined "Installation & Service"
+page with the new background photo, equal importance for installation and
+service, and a new Service section. Do the steps in this order. If any
+instruction conflicts with how the page currently looks or with older
+instructions, THE FINAL STATE DESCRIBED HERE WINS. Keep everything not
+mentioned (look and feel, fonts, colors, glass cards, gold glow borders,
+floating-card motion, goo effects, other pages' content) exactly as it is.
+
+STEP 1 — NEW HERO BACKGROUND
+- Save Image B into the project (src/assets/installations/installations-hero-bg.jpg
+  plus a .webp copy) and use it as the hero background in place of the current
+  blurred brown-ceiling photo. Remove the old image from the code.
+- Full-bleed, object-fit: cover, object-position: center. Keep the slow Ken
+  Burns zoom (1 → 1.05).
+- The photo is bright and busy, so add a dark green overlay: left-to-right
+  gradient (#04120e ~92% at the far left, ~55% at 45% of the width,
+  transparent by ~75%) plus soft top and bottom vignettes, so the navbar,
+  headline, paragraph, buttons and trust row are clearly readable. The
+  ceiling hanger and the right shoe rack must stay visible and bright.
+- The photo is about 1672x941. Upscale it to at least 2560px wide first if
+  possible.
+- Hero fills one clean screen (min-height about 100vh on desktop), with the
+  trust row near the bottom-left.
+
+STEP 2 — REMOVE THE "INSTALLATION VS SERVICE" BLOCK
+Delete the whole comparison section: the two cards, the "VS" badge, the
+checklists, the goo bridge between them, and all related components, styles,
+animations, data and unused imports. Leave a clean 64–96px gap between the
+hero and the next section, with no empty hole.
+
+STEP 3 — ONE PAGE, ONE NAV LINK
+- Keep the route /installations as the combined page. In the navbar, footer,
+  mobile menu and every button or link across the site, replace the separate
+  "Installations" and "Services" links with ONE link: "Installation &
+  Service". Final navbar order: Home, Products, Gallery, Installation &
+  Service, About, Contact. (This replaces any earlier "Installations before
+  Services" instruction.)
+- Make /services redirect to /installations#service-solutions. Update every
+  internal link that pointed to the old Services page.
+- Before deleting the old Services page, check it for unique content
+  (service list, booking form, FAQ, process steps) and move it into this
+  page. Then delete the old page and its unused code. Tell me what you moved.
+- Update the page <title> and meta to "Installation & Service | HangerHome".
+
+STEP 4 — BANNER TEXT (same layout, equal weight for both)
+- Eyebrow: "PROFESSIONAL INSTALLATION & SERVICE".
+- Headline: "Expert Installation & Service" in cream-white (two lines if
+  needed) and "for a Perfect Space" in gold.
+- Paragraph: "From first-time installation to repair, maintenance and custom
+  fixes, our trained team keeps your hangers, shoe racks and storage
+  solutions safe, precise and working beautifully for years."
+- Buttons, equal size and glow: "Request an Installation" (gold gradient)
+  and "Book a Service" (same size, gold-outlined, calendar icon). Turn
+  "Watch Installation Process" into a small text link with a play icon:
+  "Watch our process".
+- Trust row (4 items): Trained Technicians (Skilled & reliable), Precise
+  Installation (Proper alignment), Repair & Maintenance (Like-new
+  performance), Quality Assurance (Built to last).
+- Script text: "Installed right. Serviced for life." placed at the bottom
+  center over the floor area, or removed if it clutters the scene.
+
+STEP 5 — COMBINED FLOATING INFO CARDS (placed to fit the new photo)
+- Top pill card: "Installation & Service" with subtitle "Install • Repair •
+  Maintain" and the gold arrow button (scrolls to the sections below). Place
+  it at the top center-right, just above the ceiling hanger rods.
+- A compact column of 3 cards, about 250px wide, on the far right edge,
+  vertically centered and slightly staggered. Each has a small gold tag
+  chip ("INSTALL" or "SERVICE"), thumbnail, title and subtitle:
+  1. Professional Installation — Safe & precise [INSTALL]
+  2. Repair & Maintenance — Keep it working like new [SERVICE]
+  3. After-Sales Support — Fast response, lasting results [SERVICE]
+- Keep their glow borders, bobbing motion and hover effects.
+- They must NOT cover the ladder technician on the left or the kneeling
+  technician at the shoe rack. If they do, shift them up or show only 2.
+- Thumbnails: use matching generated showcase images (technician installing,
+  technician repairing, support). If missing, use a gold line icon on a glass
+  tile and tell me which images are missing.
+
+STEP 6 — PAGE SECTIONS AFTER THE HERO (in this order)
+a) Sticky pill tab bar: "All · Installation · Service" (equal style, gooey
+   sliding highlight). Clicking scrolls to the matching section.
+b) "Installation Categories" section (id "installation-categories"): keep
+   the existing title, "View All Installations →" and 5 cards, restyled only
+   as needed so it matches the Service section below.
+c) NEW "Service Solutions" section (id "service-solutions"), same design as
+   the categories section (same title style, "Book a Service →" link in gold
+   on the right, same card style with thumbnail, title, subtitle and round
+   gold arrow, glow border, stagger reveal). 6 cards: Repair & Fixing (Quick
+   and reliable repairs), Maintenance & Tune-up (Long-lasting performance),
+   Part Replacement (Genuine spares), Adjustment & Troubleshooting (Smooth,
+   safe operation), Annual Service Plan (Care all year), Custom Solutions
+   (Made for your space). Use my existing service data where it exists.
+d) NEW compact "How It Works" strip: 4 steps with a travelling gold light
+   between them: Book → Inspect / Measure → Install or Repair → Ongoing
+   Support. One line each.
+e) Closing CTA band with BOTH buttons equal: "Request an Installation" and
+   "Book a Service". If a request/booking form exists, add a segmented toggle
+   at the top, "Installation | Service", and send the chosen type with the
+   request (keep existing form logic and validation).
+Installation and Service must have the same visual weight (same font sizes,
+card sizes and spacing). Neither should look like an add-on.
+
+STEP 7 — CONSISTENCY AND CLEAN-UP
+- Use the shared GlowBorder, GooBlobs, FloatingCard, SectionHeader and
+  GooButton components, with the same motion as the other sections.
+- No horizontal scrollbars. Floating chat / WhatsApp buttons must not
+  overlap the cards.
+- Responsive: on tablet/mobile, hide the right-side cards or show them as a
+  row under the trust row; tabs become a 3-button row; service cards 1–2
+  columns; shift the photo with object-position so the technician and hanger
+  stay in view.
+
+STEP 8 — VERIFY
+Check 1920x1080, 1366x768, 1024px, tablet and mobile. Confirm: new photo fills
+the hero, text is readable, both technicians, the ceiling hanger and shoe
+rack are visible, the VS block and its code are gone, one navbar link appears
+everywhere, /services redirects, no broken links, the hero shows installation
+and service equally, the floating cards are combined, the Service Solutions
+section follows the Installation Categories, the form passes the type,
+nothing else changed, and no console errors. Report what you moved from the
+old Services page and any missing images.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-18T16:49:20+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\adhan\Downloads\HangerHome_Premium_FullStack_FULLY_UPDATED\HangerHome_Premium_FullStack\hanger-commerce\server\.env (LANGUAGE_UNSPECIFIED)
+Cursor is on line: 4
+Other open documents:
+- c:\Users\adhan\Downloads\HangerHome_Premium_FullStack_FULLY_UPDATED\HangerHome_Premium_FullStack\hanger-commerce\server\.env (LANGUAGE_UNSPECIFIED)
+Running terminal commands:
+- npm run dev (in c:\Users\adhan\Downloads\HangerHome_Premium_FullStack_FULLY_UPDATED\HangerHome_Premium_FullStack\hanger-commerce, running for 3h48m15s)
+</ADDITIONAL_METADATA>

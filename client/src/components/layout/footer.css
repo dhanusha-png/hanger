@@ -1,0 +1,695 @@
+/* ==========================================================================
+   HangerHome Footer - Premium Dark Glassmorphism Stylesheet
+   Deep Forest Green Background (#071C18) + Semi-Transparent Glass Layers
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Root Container & Background
+   -------------------------------------------------------------------------- */
+.hh-footer-root {
+  background-color: var(--hh-bg-main, #04120e);
+  color: #FFFFFF;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin-top: 60px;
+  border-top: 1px solid rgba(232, 192, 112, 0.22);
+}
+
+/* Subtle ambient background glow and gold separator */
+.hh-footer-root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(232, 192, 112, 0.45) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   1. Premium CTA Section (Dark Glass + Metallic Highlights)
+   -------------------------------------------------------------------------- */
+.hh-footer-cta-container {
+  padding-top: 48px;
+  padding-bottom: 30px;
+}
+
+.hh-footer-cta-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 61, 46, 0.75) 50%, rgba(4, 18, 14, 0.95) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(232, 192, 112, 0.25);
+  border-radius: 28px;
+  padding: clamp(32px, 4vw, 52px) clamp(28px, 4.5vw, 64px);
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 30px rgba(232, 192, 112, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  align-items: center;
+  gap: clamp(24px, 3.5vw, 48px);
+}
+
+/* Subtle top sheen on CTA card */
+.hh-footer-cta-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3) 25%, rgba(200, 178, 130, 0.55) 50%, rgba(255, 255, 255, 0.3) 75%, transparent);
+  pointer-events: none;
+}
+
+/* Atmospheric lighting on CTA card */
+.hh-footer-cta-glow {
+  position: absolute;
+  top: -40%;
+  left: 15%;
+  width: 50%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(200, 178, 130, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Lifestyle Image on right with gradient mask */
+.hh-footer-cta-image-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  background-image: 
+    linear-gradient(to right, #071C18 0%, rgba(7, 28, 24, 0.88) 20%, rgba(7, 28, 24, 0.4) 60%, rgba(7, 28, 24, 0.08) 100%),
+    url('/media/hanger-1.jpg');
+  background-size: cover;
+  background-position: center right;
+  opacity: 0.72;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hh-footer-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+}
+
+/* Eyebrow Label with Gold Accent Dash */
+.hh-footer-cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--color-accent-light, #DFCEAA);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hh-footer-cta-eyebrow-line {
+  display: inline-block;
+  width: 38px;
+  height: 1px;
+  background: var(--color-accent, #C8B282);
+  opacity: 0.75;
+}
+
+/* Main CTA Headline */
+.hh-footer-cta-headline {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  margin: 0 0 16px 0;
+}
+
+.hh-footer-cta-em {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-accent-light, #DFCEAA);
+}
+
+/* Supporting description */
+.hh-footer-cta-desc {
+  font-size: clamp(14px, 1.2vw, 15px);
+  line-height: 1.65;
+  color: #D8D0C0;
+  margin: 0 0 28px 0;
+  max-width: 500px;
+}
+
+/* CTA Action Buttons */
+.hh-footer-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hh-footer-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #c9a24b 0%, #e8c070 50%, #f7deb0 100%);
+  border: none;
+  color: #04120e;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 8px 24px rgba(232, 192, 112, 0.35);
+}
+
+.hh-footer-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(232, 192, 112, 0.5);
+}
+
+.hh-footer-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(232, 192, 112, 0.35);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.hh-footer-btn-secondary:hover {
+  background: rgba(232, 192, 112, 0.14);
+  border-color: #e8c070;
+  color: #e8c070;
+  transform: translateY(-2px);
+}
+
+/* 4 Feature Pillars */
+.hh-footer-cta-features {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.8vw, 24px);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hh-cta-feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.hh-cta-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 192, 112, 0.3);
+  background: rgba(232, 192, 112, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e8c070;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hh-cta-feature-item:hover .hh-cta-feature-icon {
+  transform: translateY(-3px);
+  border-color: #e8c070;
+  color: #04120e;
+  background: #e8c070;
+  box-shadow: 0 0 20px rgba(232, 192, 112, 0.45);
+}
+
+.hh-cta-feature-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #D8D0C0;
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   2. Main Dark Footer Grid (Brand, Shop, Services, Company, Support, Contact)
+   -------------------------------------------------------------------------- */
+.hh-footer-main {
+  position: relative;
+  padding: 56px 0 32px;
+}
+
+/* Architectural silhouette background lines */
+.hh-footer-arch-lines {
+  position: absolute;
+  right: 3%;
+  bottom: 10%;
+  width: 380px;
+  height: 280px;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hh-footer-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 2.1fr 1fr 1.15fr 1.05fr 1fr 1.9fr;
+  gap: clamp(20px, 2.6vw, 42px);
+  align-items: start;
+}
+
+/* Brand Column */
+.hh-footer-brand-col {
+  padding-right: 12px;
+}
+
+.hh-footer-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 19px;
+  margin-bottom: 18px;
+}
+
+.hh-footer-brand-logo .brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(200, 178, 130, 0.4);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.hh-gold-text {
+  color: var(--color-accent-light, #DFCEAA);
+}
+
+.hh-footer-brand-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #D8D0C0;
+  margin: 0 0 16px 0;
+  max-width: 320px;
+}
+
+.hh-footer-tagline-wrap {
+  margin: 14px 0 20px 0;
+}
+
+.hh-footer-tagline {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-accent-light, #DFCEAA);
+  margin: 0;
+}
+
+.hh-footer-tagline em {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.hh-footer-tagline strong {
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.hh-footer-tagline-dash {
+  width: 28px;
+  height: 2px;
+  background: var(--color-accent, #C8B282);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Social icons row */
+.hh-footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hh-social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #D8D0C0;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.hh-social-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent-light, #DFCEAA);
+  background: rgba(200, 178, 130, 0.18);
+  color: #FFFFFF;
+}
+
+/* Links Columns (Shop, Services, Company, Support) */
+.hh-footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.hh-footer-col-header {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #FFFFFF;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: default;
+}
+
+.hh-col-gold-line {
+  width: 22px;
+  height: 2px;
+  background: linear-gradient(90deg, #C8B282 0%, rgba(200, 178, 130, 0.2) 100%);
+  margin: 8px 0 16px 0;
+  border-radius: 2px;
+}
+
+.hh-mobile-chevron {
+  display: none;
+  color: rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s ease;
+}
+
+.hh-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.hh-footer-links a {
+  color: #D8D0C0;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  width: max-content;
+}
+
+.hh-footer-links a:hover {
+  color: #FFFFFF;
+  transform: translateX(4px);
+}
+
+/* Distinct Contact Dark Glass Card */
+.hh-footer-contact-col {
+  padding-left: 6px;
+}
+
+.hh-contact-glass-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(15, 61, 46, 0.85) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(232, 192, 112, 0.28);
+  border-radius: 22px;
+  padding: 24px 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  position: relative;
+  z-index: 3;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hh-contact-glass-card:hover {
+  border-color: rgba(232, 192, 112, 0.5);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 24px rgba(232, 192, 112, 0.15);
+  transform: translateY(-2px);
+}
+
+.hh-contact-card-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9a24b 0%, #e8c070 100%);
+  color: #04120e;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(232, 192, 112, 0.35);
+}
+
+.hh-contact-card-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.hh-contact-card-text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #D8D0C0;
+  margin: 0 0 18px 0;
+}
+
+.hh-contact-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0f3d2e 0%, #165640 100%);
+  border: 1px solid rgba(232, 192, 112, 0.45);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.hh-contact-card-btn:hover {
+  background: #e8c070;
+  color: #04120e;
+  border-color: #e8c070;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 192, 112, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   3. Bottom Legal Bar
+   -------------------------------------------------------------------------- */
+.hh-footer-bottom-container {
+  margin-top: 45px;
+}
+
+.hh-footer-divider,
+.hh-footer-gold-divider {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.hh-footer-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 12.5px;
+  color: #B8C1BC;
+  flex-wrap: wrap;
+}
+
+.hh-footer-copyright {
+  color: #B8C1BC;
+}
+
+.hh-footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hh-footer-legal-links a {
+  color: #B8C1BC;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hh-footer-legal-links a:hover {
+  color: #FFFFFF;
+}
+
+.hh-footer-dot {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.hh-footer-checkout-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #B8C1BC;
+}
+
+.hh-checkout-shield-icon {
+  color: var(--color-accent-light, #DFCEAA);
+}
+
+/* --------------------------------------------------------------------------
+   4. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .hh-footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  }
+  .hh-footer-contact-col {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+  }
+  .hh-contact-glass-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .hh-contact-card-btn {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 992px) {
+  .hh-footer-cta-card {
+    grid-template-columns: 1fr;
+    padding: 36px 30px;
+  }
+  .hh-footer-cta-image-backdrop {
+    display: none;
+  }
+  .hh-footer-cta-features {
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+  .hh-footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px 20px;
+  }
+  .hh-footer-brand-col {
+    grid-column: 1 / -1;
+  }
+  .hh-footer-bottom-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hh-footer-cta-headline {
+    font-size: 28px;
+  }
+  .hh-footer-cta-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .hh-cta-feature-item {
+    flex-direction: row;
+    text-align: left;
+  }
+  .hh-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .hh-footer-col-header {
+    cursor: pointer;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .hh-col-gold-line {
+    display: none;
+  }
+  .hh-mobile-chevron {
+    display: block;
+  }
+  .hh-footer-links {
+    display: none;
+    padding-top: 12px;
+    padding-bottom: 8px;
+  }
+  .hh-footer-links.open {
+    display: flex;
+  }
+  .hh-footer-col-header[aria-expanded="true"] .hh-mobile-chevron {
+    transform: rotate(180deg);
+  }
+  .hh-contact-glass-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hh-contact-card-btn {
+    width: 100%;
+  }
+  .hh-desktop-br {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hh-footer-cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hh-footer-btn-primary,
+  .hh-footer-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .hh-footer-legal-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hh-footer-dot {
+    display: none;
+  }
+}

@@ -1,0 +1,109 @@
+.hh-section-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(28px, 4vw, 44px);
+  max-width: 1200px;
+}
+
+.hh-section-header.align-center {
+  align-items: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hh-section-header.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hh-section-header.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Eyebrow with pulsing gold dot */
+.hh-section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--hh-font-sans, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hh-gold-400, #e8c070);
+  margin-bottom: 10px;
+}
+
+.hh-eyebrow-sparkle {
+  color: var(--hh-gold-300, #f4d078);
+  font-size: 9px;
+  animation: goldPulseGlow 3s ease-in-out infinite;
+}
+
+/* Heading with Serif & Gold Highlighting */
+.hh-section-title {
+  font-family: var(--hh-font-serif, 'Playfair Display', serif);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--hh-text-white, #ffffff);
+  margin: 0;
+}
+
+.hh-section-title-gold {
+  background: var(--hh-gold-text-gradient, linear-gradient(135deg, #fae29f 0%, #e8c070 60%, #c49438 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 2px 10px rgba(232, 192, 112, 0.35));
+}
+
+/* Self-drawing Gold SVG Underline */
+.hh-section-underline-svg {
+  margin-top: 8px;
+  height: 8px;
+  width: 140px;
+  overflow: visible;
+}
+
+.hh-section-underline-path {
+  stroke: url(#hh-underline-gold-grad);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 0;
+  animation: hhDrawUnderline 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hhDrawUnderline {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Description paragraph */
+.hh-section-desc {
+  font-family: var(--hh-font-sans, system-ui, sans-serif);
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.6;
+  color: var(--hh-text-body, #c4d3cd);
+  max-width: 620px;
+  margin: 12px 0 0;
+}
+
+/* Top bar with action link row */
+.hh-section-header-top-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}

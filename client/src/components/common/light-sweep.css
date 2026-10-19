@@ -1,0 +1,377 @@
+/* ==========================================================================
+   HangerHome — Premium Animated Light Sweep / Changing Edge Glow
+   Luxury Product Lighting • Automotive UI Grade • High-End Interactive Rim
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Typed CSS Custom Properties for Continuous GPU-Accelerated Angle Rotation
+   -------------------------------------------------------------------------- */
+@property --sweep-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --sweep-color {
+  syntax: '<color>';
+  initial-value: #D6B86A;
+  inherits: false;
+}
+
+@property --sweep-core {
+  syntax: '<color>';
+  initial-value: #FFF1C7;
+  inherits: false;
+}
+
+@property --sweep-glow {
+  syntax: '<color>';
+  initial-value: rgba(214, 184, 106, 0.35);
+  inherits: false;
+}
+
+:root {
+  --sweep-angle: 0deg;
+  --sweep-color: #D6B86A;
+  --sweep-core: #FFF1C7;
+  --sweep-glow: rgba(214, 184, 106, 0.35);
+
+  /* Sophisticated Palette: Section 2
+     Primary: Champagne Gold #D6B86A
+     Secondary: Emerald #1FA37A
+     Accent: Soft Teal #55C9B0
+     Highlight: Warm Ivory #FFF1C7
+     Deep Green: #0F6B54
+  */
+  --glow-color-gold: #D6B86A;
+  --glow-color-emerald: #1FA37A;
+  --glow-color-teal: #55C9B0;
+  --glow-color-ivory: #FFF1C7;
+  --glow-color-deep-green: #0F6B54;
+}
+
+/* --------------------------------------------------------------------------
+   2. Keyframe Animations
+   -------------------------------------------------------------------------- */
+
+/* Continuous perimeter travel: top-left -> top-right -> bottom-right -> bottom-left */
+@keyframes sweepRotate {
+  0% {
+    --sweep-angle: 0deg;
+  }
+  100% {
+    --sweep-angle: 360deg;
+  }
+}
+
+/* Product Cards: Gold -> Emerald -> Soft Teal -> Gold */
+@keyframes sweepColorProduct {
+  0%, 100% {
+    --sweep-color: #D6B86A;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(214, 184, 106, 0.38);
+  }
+  33% {
+    --sweep-color: #1FA37A;
+    --sweep-core: #55C9B0;
+    --sweep-glow: rgba(31, 163, 122, 0.38);
+  }
+  66% {
+    --sweep-color: #55C9B0;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(85, 201, 176, 0.38);
+  }
+}
+
+/* Service Cards: Softer Gold -> Emerald -> Gold */
+@keyframes sweepColorService {
+  0%, 100% {
+    --sweep-color: #D6B86A;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(214, 184, 106, 0.28);
+  }
+  50% {
+    --sweep-color: #1FA37A;
+    --sweep-core: #55C9B0;
+    --sweep-glow: rgba(31, 163, 122, 0.28);
+  }
+}
+
+/* Hero Feature Card: Gold -> Soft Emerald -> Gold (Cinematic) */
+@keyframes sweepColorFeatured {
+  0%, 100% {
+    --sweep-color: #D6B86A;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(214, 184, 106, 0.36);
+  }
+  50% {
+    --sweep-color: #1FA37A;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(31, 163, 122, 0.36);
+  }
+}
+
+/* Hero & CTA Buttons: Champagne Gold & Warm Ivory */
+@keyframes sweepColorButton {
+  0%, 100% {
+    --sweep-color: #D6B86A;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(214, 184, 106, 0.45);
+  }
+  50% {
+    --sweep-color: #E3C98A;
+    --sweep-core: #FFFFFF;
+    --sweep-glow: rgba(227, 201, 138, 0.45);
+  }
+}
+
+/* Final Homepage CTA: Strongest luxury Gold / Emerald beam */
+@keyframes sweepColorFinalCTA {
+  0%, 100% {
+    --sweep-color: #D6B86A;
+    --sweep-core: #FFF1C7;
+    --sweep-glow: rgba(214, 184, 106, 0.52);
+  }
+  50% {
+    --sweep-color: #1FA37A;
+    --sweep-core: #55C9B0;
+    --sweep-glow: rgba(31, 163, 122, 0.52);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Base Reusable Animated Border Classes
+   -------------------------------------------------------------------------- */
+
+/* Standard Animated Card Border */
+.animated-light-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.animated-light-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px; /* Border rim thickness */
+  box-sizing: border-box;
+  background: conic-gradient(
+    from var(--sweep-angle, 0deg),
+    transparent 0deg,
+    transparent 295deg,
+    var(--sweep-glow, rgba(214, 184, 106, 0.25)) 320deg,
+    var(--sweep-color, #D6B86A) 345deg,
+    var(--sweep-core, #FFF1C7) 354deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.65;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+/* Hover: light intensity increases smoothly without restarting animation */
+.animated-light-border:hover::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px var(--sweep-color, #D6B86A));
+}
+
+/* Active / Click state: brief stronger highlight */
+.animated-light-border:active::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px var(--sweep-core, #FFF1C7));
+}
+
+/* Standard Animated Button Border */
+.animated-light-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.animated-light-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  box-sizing: border-box;
+  background: conic-gradient(
+    from var(--sweep-angle, 0deg),
+    transparent 0deg,
+    transparent 295deg,
+    var(--sweep-glow, rgba(214, 184, 106, 0.35)) 320deg,
+    var(--sweep-color, #D6B86A) 345deg,
+    var(--sweep-core, #FFF1C7) 354deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.75;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.animated-light-button:hover::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px var(--sweep-color, #D6B86A));
+}
+
+.animated-light-button:active::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px var(--sweep-core, #FFF1C7));
+}
+
+.animated-light-button:hover {
+  transform: translateY(-2px);
+}
+
+.animated-light-button:hover svg {
+  transform: translateX(3px);
+  transition: transform 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   4. Component Speed & Color Presets (Section 5)
+   -------------------------------------------------------------------------- */
+
+/* Product Cards: 9 seconds loop */
+.light-product::after {
+  animation: sweepRotate 9s linear infinite, sweepColorProduct 9s ease-in-out infinite;
+}
+
+/* Service Cards: 10 seconds loop, softer */
+.light-service::after {
+  animation: sweepRotate 10s linear infinite, sweepColorService 10s ease-in-out infinite;
+  opacity: 0.52;
+}
+
+.light-service:hover::after {
+  opacity: 0.92;
+  filter: drop-shadow(0 0 5px var(--sweep-color, #D6B86A));
+}
+
+/* Hero & CTA Buttons: 6 seconds loop */
+.light-hero-btn::after {
+  animation: sweepRotate 6s linear infinite, sweepColorButton 6s ease-in-out infinite;
+}
+
+/* Hero Featured Card: 8 seconds loop */
+.light-featured::after {
+  animation: sweepRotate 8s linear infinite, sweepColorFeatured 8s ease-in-out infinite;
+}
+
+/* Final Homepage CTA Button: 7 seconds loop */
+.light-final-cta::after {
+  animation: sweepRotate 7s linear infinite, sweepColorFinalCTA 7s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+.light-final-cta:hover::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px var(--sweep-color, #D6B86A));
+}
+
+/* --------------------------------------------------------------------------
+   5. Organic Staggered Animation Phases (Section 13)
+   Card 1: 0s, Card 2: -2s, Card 3: -4s, Card 4: -6s, Card 5: -1s, Card 6: -3s
+   -------------------------------------------------------------------------- */
+.light-phase-1::after,
+[data-light-phase="1"]::after {
+  animation-delay: 0s, 0s !important;
+}
+
+.light-phase-2::after,
+[data-light-phase="2"]::after {
+  animation-delay: -2s, -2s !important;
+}
+
+.light-phase-3::after,
+[data-light-phase="3"]::after {
+  animation-delay: -4s, -4s !important;
+}
+
+.light-phase-4::after,
+[data-light-phase="4"]::after {
+  animation-delay: -6s, -6s !important;
+}
+
+.light-phase-5::after,
+[data-light-phase="5"]::after {
+  animation-delay: -1s, -1s !important;
+}
+
+.light-phase-6::after,
+[data-light-phase="6"]::after {
+  animation-delay: -3s, -3s !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Micro-Interactions on Enhanced Cards (Section 6)
+   -------------------------------------------------------------------------- */
+.catalog-card.animated-light-border {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.catalog-card.animated-light-border:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 16px rgba(214, 184, 106, 0.12);
+}
+
+.catalog-card.animated-light-border:hover .catalog-card-media > img {
+  transform: scale(1.03);
+}
+
+/* Compact Product Cards on Homepage */
+.home-compact-card.animated-light-border:hover {
+  transform: translateY(-4px);
+}
+
+.home-compact-card.animated-light-border:hover .home-compact-img {
+  transform: scale(1.03);
+}
+
+/* Service Card Hover Micro-Elevation */
+.service-card-item.animated-light-border:hover,
+.home-service-card.animated-light-border:hover {
+  transform: translateY(-4px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Accessibility: prefers-reduced-motion (Section 17)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .animated-light-border::after,
+  .animated-light-button::after {
+    animation: none !important;
+    background: rgba(214, 184, 106, 0.28) !important;
+    opacity: 0.5 !important;
+    filter: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Behavior (Section 16)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .animated-light-border::after,
+  .animated-light-button::after {
+    padding: 1.25px;
+  }
+
+  .animated-light-border:hover::after,
+  .animated-light-button:hover::after {
+    filter: drop-shadow(0 0 3px var(--sweep-color, #D6B86A));
+  }
+}

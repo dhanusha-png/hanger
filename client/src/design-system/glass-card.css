@@ -1,0 +1,52 @@
+.hh-glass-card {
+  position: relative;
+  background: var(--hh-glass-bg, rgba(8, 22, 17, 0.76));
+  backdrop-filter: blur(var(--hh-glass-blur, 16px));
+  -webkit-backdrop-filter: blur(var(--hh-glass-blur, 16px));
+  border: 1px solid var(--hh-glass-border, rgba(232, 192, 112, 0.26));
+  border-radius: var(--hh-radius-md, 18px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 0 16px rgba(232, 192, 112, 0.08);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s ease,
+              border-color 0.28s ease,
+              background 0.28s ease;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Padding variants */
+.hh-glass-card.pad-none {
+  padding: 0;
+}
+
+.hh-glass-card.pad-sm {
+  padding: 14px 18px;
+}
+
+.hh-glass-card.pad-md {
+  padding: 22px 26px;
+}
+
+.hh-glass-card.pad-lg {
+  padding: 30px 36px;
+}
+
+/* Hoverable micro-interaction (6px lift + warm gold glow) */
+.hh-glass-card.is-hoverable:hover {
+  transform: translateY(-5px);
+  border-color: rgba(232, 192, 112, 0.6);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.7), 0 0 24px rgba(232, 192, 112, 0.28);
+  background: var(--hh-glass-bg-hover, rgba(12, 32, 24, 0.88));
+}
+
+/* Subtle architectural top-edge highlight */
+.hh-glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 230, 160, 0.45), transparent);
+  pointer-events: none;
+}

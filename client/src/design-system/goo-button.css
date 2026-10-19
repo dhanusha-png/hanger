@@ -1,0 +1,150 @@
+.hh-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--hh-font-sans, system-ui, sans-serif);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--hh-radius-pill, 9999px);
+  border: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.25s ease,
+              border-color 0.25s ease,
+              color 0.25s ease;
+  overflow: hidden;
+  user-select: none;
+  vertical-align: middle;
+  outline: none;
+}
+
+.hh-btn:active {
+  transform: scale(0.97);
+}
+
+.hh-btn:disabled,
+.hh-btn.is-loading {
+  opacity: 0.65;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* --- Sizes --- */
+.hh-btn.size-sm {
+  padding: 8px 18px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.hh-btn.size-md {
+  padding: 12px 24px;
+  font-size: 14.5px;
+  gap: 9px;
+}
+
+.hh-btn.size-lg {
+  padding: 15px 32px;
+  font-size: 16px;
+  gap: 12px;
+}
+
+/* --- Primary Variant (Gold Luxury Gradient) --- */
+.hh-btn-primary {
+  color: #04140f;
+  background: var(--hh-gold-gradient, linear-gradient(135deg, #fae29f 0%, #e8c070 50%, #c9a24b 100%));
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35), 0 0 16px rgba(232, 192, 112, 0.3);
+}
+
+.hh-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.5), 0 0 24px rgba(232, 192, 112, 0.55);
+  background: var(--hh-gold-gradient-hover, linear-gradient(135deg, #fff2c4 0%, #fae29f 50%, #d4a745 100%));
+}
+
+.hh-btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--conic-angle),
+    transparent 0deg,
+    #ffffff 50deg,
+    #e8c070 110deg,
+    transparent 180deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: conicBorderRotate 4s linear infinite;
+  pointer-events: none;
+}
+
+/* --- Outline Variant (Dark Glass + Gold Border) --- */
+.hh-btn-outline {
+  color: #f7f3ec;
+  background: rgba(8, 24, 18, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 192, 112, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.hh-btn-outline:hover {
+  transform: translateY(-2px);
+  background: rgba(14, 34, 25, 0.88);
+  border-color: rgba(232, 192, 112, 0.65);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(232, 192, 112, 0.25);
+  color: #ffffff;
+}
+
+/* --- Soft Variant (Emerald Tint) --- */
+.hh-btn-soft {
+  color: #fae29f;
+  background: rgba(16, 52, 38, 0.55);
+  border: 1px solid rgba(232, 192, 112, 0.2);
+}
+
+.hh-btn-soft:hover {
+  transform: translateY(-2px);
+  background: rgba(22, 68, 50, 0.75);
+  border-color: rgba(232, 192, 112, 0.45);
+  color: #ffffff;
+}
+
+/* Icon Nudge Animation */
+.hh-btn-icon-right {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hh-btn:hover .hh-btn-icon-right {
+  transform: translateX(4px);
+}
+
+.hh-btn-icon-left {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hh-btn:hover .hh-btn-icon-left {
+  transform: translateX(-3px);
+}
+
+/* Spinner */
+.hh-btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: hhSpin 0.7s linear infinite;
+}
+
+@keyframes hhSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

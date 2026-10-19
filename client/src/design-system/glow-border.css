@@ -1,0 +1,47 @@
+.hh-glow-border-wrapper {
+  position: relative;
+  border-radius: var(--hh-border-radius, 20px);
+  padding: var(--hh-border-width, 1.5px);
+  background: transparent;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hh-glow-border-conic {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: inherit;
+  background: conic-gradient(
+    from var(--conic-angle),
+    transparent 0deg,
+    var(--hh-glow-color-light, #ffd88a) 45deg,
+    var(--hh-glow-color-mid, #e8c070) 90deg,
+    transparent 150deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: conicBorderRotate var(--hh-glow-duration, 4.5s) linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hh-glow-border-emerald .hh-glow-border-conic {
+  background: conic-gradient(
+    from var(--conic-angle),
+    transparent 0deg,
+    #38d99c 45deg,
+    #1b6d53 90deg,
+    transparent 150deg
+  );
+}
+
+.hh-glow-border-inner {
+  position: relative;
+  z-index: 2;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+}

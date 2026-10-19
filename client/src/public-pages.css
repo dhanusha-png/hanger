@@ -1,0 +1,362 @@
+/* ==========================================================================
+   HangerHome Public Pages - Dark Luxury Glassmorphism Stylesheet
+   ========================================================================== */
+
+:root {
+  --color-gold: var(--hh-gold-primary, #e8c070);
+  --color-gold-light: var(--hh-gold-light, #f5d799);
+  --color-gold-dark: var(--hh-gold-dark, #c9a24b);
+  --color-emerald: var(--hh-emerald-deep, #0f3d2e);
+  --color-bg: var(--hh-bg-main, #04120e);
+  --color-bg-secondary: var(--hh-bg-surface, #081a14);
+  --color-text-primary: var(--hh-text-primary, #faf8f5);
+  --color-text-secondary: var(--hh-text-secondary, #c5cec9);
+  --font-serif: var(--hh-font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
+  --font-sans: var(--hh-font-sans, 'Plus Jakarta Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+.public-state {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  padding: clamp(26px, 4vw, 44px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.40);
+}
+
+.public-state h2,
+.public-contact-actions h2,
+.public-form-notice h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.public-state p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.public-section-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.hero-trust {
+  flex-wrap: wrap;
+}
+
+.public-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.public-service-grid .service-large {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.40);
+  transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.public-service-grid .service-large:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(198, 169, 107, 0.45);
+}
+
+.public-service-grid .service-large h3 {
+  color: var(--color-text-primary);
+  margin: 12px 0 8px;
+}
+
+.public-service-grid .service-large p {
+  flex: 1;
+  color: var(--color-text-secondary);
+}
+
+.public-inline-cta {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding-top: 0;
+}
+
+.public-inline-cta h2,
+.installation-intro h2,
+.public-contact-actions h2,
+.public-form-notice h2 {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.public-inline-cta p,
+.installation-intro p,
+.public-contact-actions p,
+.public-form-notice p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.installation-intro {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  margin-bottom: 36px;
+  padding: clamp(24px, 4vw, 38px);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.40);
+}
+
+.installation-intro > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.installation-intro > div svg {
+  flex: 0 0 auto;
+  color: var(--color-gold);
+}
+
+.installation-intro > p {
+  max-width: 680px;
+  color: var(--color-text-secondary);
+}
+
+.public-installation-gallery {
+  margin-bottom: 0;
+}
+
+.public-installation-gallery figure {
+  margin: 0;
+}
+
+.public-about {
+  align-items: center;
+}
+
+.public-about > img {
+  width: 100%;
+  min-height: 360px;
+  max-height: 560px;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.50);
+}
+
+.public-about h2 {
+  margin: 10px 0;
+  color: var(--color-text-primary);
+}
+
+.public-about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.public-contact {
+  display: grid;
+  gap: 30px;
+}
+
+.public-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 18px;
+}
+
+.public-contact-grid .contact-card {
+  min-width: 0;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  padding: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.public-contact-grid a.contact-card:hover,
+.public-contact-grid a.contact-card:focus-visible {
+  border-color: var(--color-gold);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.public-contact-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(24px, 4vw, 38px);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.40);
+}
+
+.public-contact-actions > div:first-child {
+  display: grid;
+  gap: 10px;
+}
+
+.public-form-notice {
+  display: grid;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.public-empty-page {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 15px;
+  min-height: 420px;
+  padding: 60px 20px;
+}
+
+.public-empty-page h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 5vw, 48px);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.public-empty-page h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(21px, 3vw, 28px);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.public-empty-page p {
+  max-width: 520px;
+  margin: 0 0 8px;
+  color: var(--color-text-secondary);
+}
+
+.public-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: var(--color-gold);
+  background: rgba(198, 169, 107, 0.10);
+  border: 1px solid rgba(198, 169, 107, 0.25);
+}
+
+.public-empty-icon svg {
+  width: 28px;
+}
+
+.public-search-form {
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+
+.public-search-form label {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.public-search-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.public-search-controls input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(4, 18, 14, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.public-search-controls input:focus {
+  border-color: var(--color-gold, #e8c070);
+  background: rgba(4, 18, 14, 0.95);
+  box-shadow: 0 0 0 3px rgba(232, 192, 112, 0.2), 0 0 20px rgba(232, 192, 112, 0.12);
+  outline: none;
+}
+
+.public-search-controls input::placeholder {
+  color: rgba(197, 206, 201, 0.55);
+}
+
+.public-search-results > p {
+  margin: 0 0 18px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .public-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .public-service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .public-contact-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .public-about > img {
+    min-height: 260px;
+  }
+
+  .public-search-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .public-search-controls .btn {
+    width: 100%;
+  }
+}

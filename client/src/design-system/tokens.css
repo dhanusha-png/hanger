@@ -1,0 +1,150 @@
+/* ==========================================================================
+   HangerHome Design System — Master Tokens (Phase 2)
+   Dark Luxury Palette: #04120e, #0f3d2e, #e8c070 → #c9a24b, Cream Text
+   Glassmorphism, Conic Glows, Gooey Ambience & Micro-interactions
+   ========================================================================== */
+
+@property --conic-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  /* --- Core Colors --- */
+  --hh-bg-main: #04120e;
+  --hh-bg-surface: #061813;
+  --hh-bg-card: rgba(8, 24, 18, 0.78);
+  --hh-bg-card-hover: rgba(12, 32, 24, 0.88);
+  --hh-bg-overlay: rgba(3, 10, 8, 0.88);
+
+  /* --- Emerald Accents --- */
+  --hh-emerald-900: #041a13;
+  --hh-emerald-800: #08281d;
+  --hh-emerald-700: #0d3829;
+  --hh-emerald-600: #0f3d2e;
+  --hh-emerald-500: #145540;
+  --hh-emerald-400: #1b6d53;
+  --hh-emerald-300: #299b77;
+
+  /* --- Gold Palette --- */
+  --hh-gold-100: #fff6da;
+  --hh-gold-200: #fae29f;
+  --hh-gold-300: #f4d078;
+  --hh-gold-400: #e8c070;
+  --hh-gold-500: #d4a745;
+  --hh-gold-600: #c9a24b;
+  --hh-gold-700: #a87d2a;
+  --hh-gold-800: #855f1a;
+
+  /* --- Gold Gradients --- */
+  --hh-gold-gradient: linear-gradient(135deg, #fae29f 0%, #e8c070 50%, #c9a24b 100%);
+  --hh-gold-gradient-hover: linear-gradient(135deg, #fff2c4 0%, #fae29f 50%, #d4a745 100%);
+  --hh-gold-text-gradient: linear-gradient(135deg, #fae29f 0%, #e8c070 60%, #c49438 100%);
+  --hh-emerald-gradient: linear-gradient(135deg, #0f3d2e 0%, #08281d 100%);
+
+  /* --- Typography Colors --- */
+  --hh-text-white: #ffffff;
+  --hh-text-cream: #f7f3ec;
+  --hh-text-cream-dim: #ebdcc3;
+  --hh-text-body: #c4d3cd;
+  --hh-text-muted: #95a8a0;
+  --hh-text-dim: #6c7f78;
+  --hh-text-gold: #e8c070;
+
+  /* --- Typography Families --- */
+  --hh-font-serif: 'Playfair Display', Cormorant Garamond, Georgia, serif;
+  --hh-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- Glassmorphism --- */
+  --hh-glass-bg: rgba(8, 22, 17, 0.72);
+  --hh-glass-bg-hover: rgba(12, 30, 23, 0.85);
+  --hh-glass-border: rgba(232, 192, 112, 0.28);
+  --hh-glass-border-subtle: rgba(232, 192, 112, 0.16);
+  --hh-glass-border-hover: rgba(232, 192, 112, 0.65);
+  --hh-glass-blur: 16px;
+  --hh-glass-blur-lg: 24px;
+
+  /* --- Shadows & Glows --- */
+  --hh-shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --hh-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --hh-shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.75);
+  --hh-glow-gold-sm: 0 0 14px rgba(232, 192, 112, 0.25);
+  --hh-glow-gold-md: 0 0 24px rgba(232, 192, 112, 0.45);
+  --hh-glow-gold-lg: 0 0 40px rgba(232, 192, 112, 0.65);
+  --hh-glow-emerald: 0 0 25px rgba(20, 85, 64, 0.4);
+
+  /* --- Border Radii --- */
+  --hh-radius-xs: 6px;
+  --hh-radius-sm: 10px;
+  --hh-radius-md: 16px;
+  --hh-radius-lg: 22px;
+  --hh-radius-xl: 28px;
+  --hh-radius-pill: 9999px;
+
+  /* --- Motion Timings & Easings --- */
+  --hh-dur-fast: 180ms;
+  --hh-dur-base: 320ms;
+  --hh-dur-slow: 600ms;
+  --hh-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --hh-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Global Keyframe Animations
+   ========================================================================== */
+@keyframes conicBorderRotate {
+  0% {
+    --conic-angle: 0deg;
+  }
+  100% {
+    --conic-angle: 360deg;
+  }
+}
+
+@keyframes floatBobSubtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes goldPulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(232, 192, 112, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(232, 192, 112, 0.7));
+  }
+}
+
+@keyframes shimmerTravel {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes skeletonPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Accessible reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

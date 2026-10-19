@@ -1,0 +1,81 @@
+.hh-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--hh-bg-overlay, rgba(3, 10, 8, 0.85));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hh-drawer-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--hh-drawer-width, 420px);
+  background: rgba(8, 24, 18, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.85), 0 0 24px rgba(232, 192, 112, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+  box-sizing: border-box;
+}
+
+.hh-drawer-container.side-right {
+  right: 0;
+  border-left: 1px solid rgba(232, 192, 112, 0.35);
+}
+
+.hh-drawer-container.side-left {
+  left: 0;
+  border-right: 1px solid rgba(232, 192, 112, 0.35);
+}
+
+.hh-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(232, 192, 112, 0.2);
+  background: rgba(12, 32, 24, 0.65);
+}
+
+.hh-drawer-title {
+  margin: 0;
+  font-family: var(--hh-font-serif, 'Playfair Display', serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--hh-text-white, #ffffff);
+}
+
+.hh-drawer-close-btn {
+  background: transparent;
+  border: none;
+  color: #9cb0a8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hh-drawer-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.hh-drawer-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.hh-drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(232, 192, 112, 0.2);
+  background: rgba(6, 18, 14, 0.7);
+}

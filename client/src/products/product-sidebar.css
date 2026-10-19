@@ -1,0 +1,991 @@
+/* ==========================================================================
+   HangerHome Professional Side Catalog & Filters Stylesheet
+   Apple-Grade Glassmorphism + Champagne Gold Highlights #e8c070
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Main Two-Column Layout for the Products Page
+   -------------------------------------------------------------------------- */
+.products-catalog-layout {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: clamp(24px, 3.2vw, 42px);
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   2. Sticky Left Sidebar & Glass Card Styling
+   -------------------------------------------------------------------------- */
+.product-catalog-sidebar.sticky-sidebar {
+  position: sticky;
+  top: 96px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232, 192, 112, 0.3) transparent;
+  z-index: 20;
+}
+
+.product-catalog-sidebar.sticky-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.product-catalog-sidebar.sticky-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(232, 192, 112, 0.3);
+  border-radius: 4px;
+}
+
+.sidebar-glass-panel {
+  position: relative;
+  background: rgba(6, 18, 14, 0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(232, 192, 112, 0.24);
+  border-radius: 20px;
+  padding: 22px 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+}
+
+.sidebar-conic-glow-border {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--conic-angle, 0deg),
+    transparent 0%,
+    transparent 72%,
+    rgba(232, 192, 112, 0.25) 82%,
+    #e8c070 90%,
+    #ffffff 94%,
+    #e8c070 98%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: conicBorderRotate 6s linear infinite;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   3. Sidebar Header & Search Box
+   -------------------------------------------------------------------------- */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.sidebar-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-header-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(232, 192, 112, 0.12);
+  border: 1px solid rgba(232, 192, 112, 0.35);
+  color: #e8c070;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sidebar-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-clear-link {
+  background: none;
+  border: none;
+  color: #e8c070;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.sidebar-clear-link:hover {
+  color: #ffd88a;
+}
+
+.sidebar-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(232, 192, 112, 0.2);
+  border-color: #e8c070;
+  color: #e8c070;
+}
+
+/* Small Search Box for Filtering Category Tree */
+.sidebar-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0 12px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-search-box:focus-within {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(232, 192, 112, 0.5);
+  box-shadow: 0 0 14px rgba(232, 192, 112, 0.15);
+}
+
+.sidebar-search-icon {
+  color: rgba(232, 192, 112, 0.7);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.sidebar-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 9px 0;
+}
+
+.sidebar-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.sidebar-search-clear {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+/* --------------------------------------------------------------------------
+   4. 3-Level Animated Accordion Category Tree
+   -------------------------------------------------------------------------- */
+.catalog-tree-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* LEVEL 1 */
+.tree-level-1-item {
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.tree-level-1-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.tree-level-1-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(232, 192, 112, 0.2);
+}
+
+.tree-level-1-icon {
+  color: #e8c070;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(232, 192, 112, 0.25));
+}
+
+.tree-level-1-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.tree-level-1-header:hover .tree-level-1-name {
+  color: #ffffff;
+}
+
+.active-level-1 > .tree-level-1-header {
+  background: rgba(232, 192, 112, 0.12);
+  border-color: rgba(232, 192, 112, 0.45);
+  box-shadow: 0 0 16px rgba(232, 192, 112, 0.2);
+}
+
+.active-level-1 > .tree-level-1-header .tree-level-1-name {
+  color: #e8c070;
+  font-weight: 700;
+}
+
+/* Count Badge */
+.tree-count-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e8c070;
+  background: rgba(232, 192, 112, 0.12);
+  border: 1px solid rgba(232, 192, 112, 0.25);
+  padding: 1px 7px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.tree-count-badge.subtle {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  padding: 1px 6px;
+}
+
+.tree-count-badge.micro {
+  font-size: 9.5px;
+  color: rgba(232, 192, 112, 0.85);
+  background: rgba(232, 192, 112, 0.08);
+  border-color: rgba(232, 192, 112, 0.2);
+  padding: 0 5px;
+}
+
+/* Chevrons with Rotation Animation */
+.tree-chevron,
+.tree-chevron-sub {
+  color: rgba(255, 255, 255, 0.5);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.tree-chevron.expanded {
+  transform: rotate(180deg);
+  color: #e8c070;
+}
+
+.tree-chevron-sub.expanded {
+  transform: rotate(90deg);
+  color: #e8c070;
+}
+
+/* LEVEL 2 — SUB CATALOG */
+.tree-level-2-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-left: 28px;
+  padding-right: 4px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  animation: categoryCardStagger 0.25s ease-out backwards;
+}
+
+.tree-level-2-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.tree-level-2-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tree-bullet {
+  color: rgba(232, 192, 112, 0.6);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tree-level-2-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.tree-level-2-header:hover .tree-level-2-name {
+  color: #ffffff;
+}
+
+.active-level-2 > .tree-level-2-header {
+  background: rgba(232, 192, 112, 0.1);
+  border: 1px solid rgba(232, 192, 112, 0.35);
+}
+
+.active-level-2 > .tree-level-2-header .tree-level-2-name {
+  color: #e8c070;
+  font-weight: 700;
+}
+
+/* LEVEL 3 — TYPES / ITEMS */
+.tree-level-3-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 18px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  animation: categoryCardStagger 0.2s ease-out backwards;
+}
+
+.tree-level-3-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.tree-level-3-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tree-dash {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+}
+
+.tree-level-3-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-level-3-item:hover .tree-level-3-name {
+  color: #e8c070;
+}
+
+.tree-level-3-item.active-level-3 {
+  background: rgba(232, 192, 112, 0.12);
+  border: 1px solid rgba(232, 192, 112, 0.3);
+}
+
+.tree-level-3-item.active-level-3 .tree-level-3-name {
+  color: #e8c070;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   5. Divider & Professional Filters (Price Slider, In Stock, Rating)
+   -------------------------------------------------------------------------- */
+.sidebar-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(232, 192, 112, 0.25) 50%, transparent 100%);
+  margin: 18px 0;
+}
+
+.sidebar-filters-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.filters-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.filters-heading-icon {
+  color: #e8c070;
+}
+
+.filter-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.filter-value-highlight {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #e8c070;
+}
+
+/* Custom Price Range Slider */
+.price-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.price-slider-control {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  cursor: pointer;
+}
+
+.price-slider-control::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd88a 0%, #e8c070 100%);
+  border: 2px solid #04120e;
+  box-shadow: 0 0 10px rgba(232, 192, 112, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.price-slider-control::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+}
+
+.price-slider-control::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e8c070;
+  border: 2px solid #04120e;
+  cursor: pointer;
+}
+
+.price-range-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Availability Toggle Switch */
+.filter-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch-wrapper {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggle-checkbox:checked + .toggle-slider {
+  background: linear-gradient(135deg, #c9a24b 0%, #e8c070 100%);
+  border-color: #e8c070;
+  box-shadow: 0 0 12px rgba(232, 192, 112, 0.45);
+}
+
+.toggle-checkbox:checked + .toggle-slider::before {
+  transform: translateX(18px);
+  background-color: #04120e;
+}
+
+.toggle-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.toggle-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Rating Filter Pills */
+.rating-options-row {
+  display: flex;
+  gap: 8px;
+}
+
+.rating-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rating-pill-btn:hover {
+  background: rgba(232, 192, 112, 0.1);
+  border-color: rgba(232, 192, 112, 0.3);
+  color: #ffffff;
+}
+
+.rating-pill-btn.active {
+  background: rgba(232, 192, 112, 0.18);
+  border-color: #e8c070;
+  color: #e8c070;
+  box-shadow: 0 0 12px rgba(232, 192, 112, 0.25);
+}
+
+/* Reset Filters Button */
+.sidebar-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(232, 192, 112, 0.3);
+  border-radius: 10px;
+  color: rgba(232, 192, 112, 0.9);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.sidebar-reset-btn:hover {
+  background: rgba(232, 192, 112, 0.1);
+  border-style: solid;
+  border-color: #e8c070;
+  color: #ffd88a;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   6. Sidebar Bottom Promo Card ("Need help choosing? Talk to an expert")
+   -------------------------------------------------------------------------- */
+.sidebar-promo-card {
+  position: relative;
+  background: rgba(15, 61, 46, 0.38);
+  border: 1px solid rgba(232, 192, 112, 0.28);
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 22px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.sidebar-promo-card:hover {
+  background: rgba(15, 61, 46, 0.55);
+  border-color: #e8c070;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(232, 192, 112, 0.25);
+}
+
+.promo-conic-glow-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--conic-angle, 0deg),
+    transparent 0%,
+    transparent 70%,
+    rgba(232, 192, 112, 0.3) 80%,
+    #e8c070 90%,
+    #ffffff 95%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: conicBorderRotate 5s linear infinite;
+  z-index: 2;
+}
+
+.promo-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.promo-icon-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(232, 192, 112, 0.15);
+  border: 1px solid rgba(232, 192, 112, 0.4);
+  color: #e8c070;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.promo-text-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.promo-title {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.promo-desc {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 3px 0 6px;
+  line-height: 1.35;
+}
+
+.promo-cta-link {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e8c070;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-promo-card:hover .promo-cta-link {
+  transform: translateX(3px);
+  color: #ffd88a;
+}
+
+/* --------------------------------------------------------------------------
+   7. Top Bar Above Product Grid (Breadcrumb, Result Count, View Toggle)
+   -------------------------------------------------------------------------- */
+.catalog-content-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.catalog-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(6, 18, 14, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(232, 192, 112, 0.2);
+  border-radius: 14px;
+  padding: 12px 18px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+/* Breadcrumb Navigation */
+.catalog-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-link {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: #e8c070;
+}
+
+.breadcrumb-separator {
+  color: rgba(232, 192, 112, 0.5);
+  font-size: 11px;
+}
+
+.breadcrumb-current {
+  color: #e8c070;
+  font-weight: 600;
+}
+
+/* Right Controls in Header Bar */
+.catalog-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.catalog-results-badge {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.catalog-results-badge strong {
+  color: #ffffff;
+}
+
+/* View Mode Toggle: Grid vs List */
+.view-mode-toggle {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.view-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+  color: #ffffff;
+}
+
+.view-btn.active {
+  background: rgba(232, 192, 112, 0.2);
+  color: #e8c070;
+}
+
+/* Mobile "Filters & Catalog" Drawer Toggle Button */
+.mobile-drawer-toggle-btn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 61, 46, 0.6);
+  border: 1px solid rgba(232, 192, 112, 0.35);
+  border-radius: 10px;
+  color: #e8c070;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-toggle-btn:hover {
+  background: rgba(15, 61, 46, 0.85);
+  border-color: #e8c070;
+}
+
+/* --------------------------------------------------------------------------
+   8. Mobile Drawer (Slide in from Left)
+   -------------------------------------------------------------------------- */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  justify-content: flex-start;
+  animation: fadeInBackdrop 0.25s ease-out;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobile-drawer-panel {
+  width: min(340px, 86vw);
+  height: 100%;
+  background: #04120e;
+  overflow-y: auto;
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.9);
+  animation: slideDrawerIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+@keyframes slideDrawerIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* --------------------------------------------------------------------------
+   9. List View Layout for Product Grid
+   -------------------------------------------------------------------------- */
+.catalog-product-grid.list-view-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.catalog-product-grid.list-view-mode .catalog-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  max-width: 100%;
+}
+
+.catalog-product-grid.list-view-mode .catalog-card-media-wrap {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.catalog-product-grid.list-view-mode .catalog-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .products-catalog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .product-catalog-sidebar.sticky-sidebar {
+    display: none;
+  }
+
+  .mobile-drawer-toggle-btn {
+    display: inline-flex;
+  }
+
+  .catalog-product-grid.list-view-mode .catalog-card {
+    flex-direction: column;
+  }
+
+  .catalog-product-grid.list-view-mode .catalog-card-media-wrap {
+    width: 100%;
+  }
+}

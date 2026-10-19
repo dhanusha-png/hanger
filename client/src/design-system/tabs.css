@@ -1,0 +1,50 @@
+.hh-tabs-container {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(8, 24, 18, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 192, 112, 0.28);
+  border-radius: var(--hh-radius-pill, 9999px);
+  padding: 4px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.hh-tab-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: var(--hh-radius-pill, 9999px);
+  border: none;
+  background: transparent;
+  color: var(--hh-text-muted, #95a8a0);
+  font-family: var(--hh-font-sans, system-ui, sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.hh-tab-button:hover {
+  color: var(--hh-text-cream, #f7f3ec);
+}
+
+.hh-tab-button.is-active {
+  color: #04120e;
+  font-weight: 700;
+}
+
+/* Sliding active indicator */
+.hh-tab-active-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--hh-radius-pill, 9999px);
+  background: var(--hh-gold-gradient, linear-gradient(135deg, #fae29f 0%, #e8c070 50%, #c9a24b 100%));
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+  z-index: -1;
+}

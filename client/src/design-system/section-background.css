@@ -1,0 +1,31 @@
+.hh-section-bg-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--hh-bg-main, #04120e);
+}
+
+.hh-section-bg-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hh-section-bg-radial {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 68, 48, 0.28) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.hh-section-bg-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}

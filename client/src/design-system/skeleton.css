@@ -1,0 +1,43 @@
+@keyframes hhSkeletonShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.hh-skeleton {
+  position: relative;
+  background: rgba(14, 38, 28, 0.45);
+  border: 1px solid rgba(232, 192, 112, 0.12);
+  overflow: hidden;
+  display: block;
+}
+
+.hh-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 230, 160, 0.12) 50%,
+    transparent 100%
+  );
+  animation: hhSkeletonShimmer 1.8s ease-in-out infinite;
+}
+
+.hh-skeleton.variant-text {
+  height: 14px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.hh-skeleton.variant-circle {
+  border-radius: 50%;
+}
+
+.hh-skeleton.variant-rect {
+  border-radius: var(--hh-radius-md, 16px);
+}
