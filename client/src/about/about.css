@@ -18,7 +18,7 @@
 }
 
 .about-page {
-  padding-bottom: clamp(60px, 8vw, 100px);
+  padding-bottom: 0;
   background: var(--color-bg, #04120e);
   color: var(--color-warm-white, #faf8f5);
 }
@@ -231,11 +231,11 @@
 .about-approach-section,
 .about-showcase-section {
   padding: clamp(52px, 7vw, 92px) 0;
+  background: transparent !important;
 }
 
-.about-who-section,
-.about-approach-section {
-  background: var(--color-bg-secondary, #081410);
+.about-cta-tonal-wrap {
+  padding: clamp(52px, 7vw, 92px) 0 clamp(40px, 6vw, 70px);
 }
 
 .about-who-grid {

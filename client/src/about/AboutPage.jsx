@@ -11,12 +11,34 @@ import './about.css';
 export function AboutPage({ cart = [], total = 0, remove, updateQty, chat, setChat }) {
   return (
     <div className="about-page">
+      {/* Section 1: Hero (unchanged) */}
       <AboutHero />
-      <AboutWhoWeAre />
-      <AboutWhatWeOffer />
-      <AboutApproach />
-      <AboutShowcase />
-      <AboutCTA />
+
+      {/* Section 2 (Even): Who We Are (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <AboutWhoWeAre />
+      </div>
+
+      {/* Section 3 (Odd): What We Offer (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <AboutWhatWeOffer />
+      </div>
+
+      {/* Section 4 (Even): Approach / phases (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <AboutApproach />
+      </div>
+
+      {/* Section 5 (Odd): On-Site Showcase (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <AboutShowcase />
+      </div>
+
+      {/* Section 6 (Even): Closing CTA (Deep Forest #0B211A) */}
+      <div className="home-tonal-even about-cta-tonal-wrap">
+        <AboutCTA />
+      </div>
+
       <FloatingWidgets
         cart={cart}
         total={total}

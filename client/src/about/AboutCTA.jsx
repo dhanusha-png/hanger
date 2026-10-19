@@ -4,7 +4,7 @@ import { ArrowRight, Wrench } from 'lucide-react';
 
 export function AboutCTA() {
   return (
-    <div className="container" style={{ paddingBottom: '30px' }}>
+    <div className="container">
       <div className="about-cta-banner">
         <div className="about-cta-content">
           <h2>Let's create a solution for your space.</h2>
