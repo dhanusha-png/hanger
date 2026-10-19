@@ -15,6 +15,7 @@ import {
   Search,
   X,
   Wrench,
+  Star,
   LayoutGrid,
   List,
   SlidersHorizontal,
