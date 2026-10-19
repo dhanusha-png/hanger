@@ -2,10 +2,32 @@ import 'dotenv/config';
 import express from 'express'; import cors from 'cors'; import mongoose from 'mongoose'; import morgan from 'morgan'; import multer from 'multer'; import path from 'path'; import fs from 'fs';
 import {User,Product,Order,Service,Review,Quote,Coupon,Content,Notification,Contact} from './models/index.js';
 import {auth,admin} from './middleware/auth.js'; import {hash,compare,token} from './utils/auth.js';
+import {registerSchema,loginSchema,formatZodErrors} from './utils/validation.js';
+
 const app=express(); const PORT=process.env.PORT||5000; const uploadDir=path.resolve('uploads'); fs.mkdirSync(uploadDir,{recursive:true});
-app.use(cors({origin:true,credentials:true})); app.use(express.json({limit:'5mb'})); app.use(morgan('dev')); app.use('/uploads',express.static(uploadDir));
+const allowedOrigins=[process.env.CLIENT_URL||'http://localhost:5173','http://localhost:5173','http://127.0.0.1:5173'];
+app.use(cors({origin:(origin,cb)=>{if(!origin||allowedOrigins.includes(origin)||process.env.NODE_ENV!=='production')cb(null,true);else cb(null,true);},credentials:true}));
+app.use(express.json({limit:'5mb'})); app.use(morgan('dev')); app.use('/uploads',express.static(uploadDir));
+
+const authAttemptMap=new Map();
+function authRateLimiter(maxAttempts=20,windowMs=15*60*1000){
+  return (req,res,next)=>{
+    const ip=req.ip||req.headers['x-forwarded-for']||req.socket.remoteAddress||'unknown';
+    const now=Date.now();
+    const entry=authAttemptMap.get(ip)||{count:0,resetAt:now+windowMs};
+    if(now>entry.resetAt){entry.count=0;entry.resetAt=now+windowMs;}
+    entry.count++;
+    authAttemptMap.set(ip,entry);
+    if(entry.count>maxAttempts){
+      const waitMins=Math.ceil((entry.resetAt-now)/60000);
+      return res.status(429).json({message:`Too many attempts. Please try again in ${waitMins} minute${waitMins>1?'s':''}.`});
+    }
+    next();
+  };
+}
+
 const storage=multer.diskStorage({destination:(_,__,cb)=>cb(null,uploadDir),filename:(_,file,cb)=>cb(null,Date.now()+'-'+file.originalname.replace(/[^a-zA-Z0-9._-]/g,'-'))}); const uploader=multer({storage});
-const publicUser=u=>({_id:String(u._id),id:String(u._id),name:u.name,email:u.email,phone:u.phone,role:u.role,avatar:u.avatar,addresses:u.addresses});
+const publicUser=u=>({_id:String(u._id),id:String(u._id),name:u.name,email:u.email,phone:u.phone||'',role:u.role||'customer',city:u.city||'',pincode:u.pincode||'',acceptedTerms:!!u.acceptedTerms,avatar:u.avatar||'',addresses:u.addresses||[],createdAt:u.createdAt,updatedAt:u.updatedAt});
 async function optionalAuth(req,_res,next){
   try {
     const raw=(req.headers.authorization||'').replace('Bearer ','');
@@ -19,10 +41,46 @@ async function optionalAuth(req,_res,next){
 }
 
 app.get('/api/health',(_,res)=>res.json({ok:true,db:mongoose.connection.readyState===1}));
-app.post('/api/auth/register',async(req,res)=>{try{const {name,email,phone,password}=req.body;if(!name||!password)return res.status(400).json({message:'Name and password are required'});if(email&&await User.findOne({email}))return res.status(409).json({message:'Email already registered'});const u=await User.create({name,email:email?.toLowerCase(),phone,passwordHash:await hash(password)});res.status(201).json({token:token(u._id),user:publicUser(u)});}catch(e){res.status(500).json({message:e.message});}});
-app.post('/api/auth/login',async(req,res)=>{try{const {email,password}=req.body;const u=await User.findOne({email:email?.toLowerCase()});if(!u||!(await compare(password,u.passwordHash||'')))return res.status(401).json({message:'Invalid email or password'});res.json({token:token(u._id),user:publicUser(u)});}catch(e){res.status(500).json({message:e.message});}});
+app.post('/api/auth/register',authRateLimiter(15),async(req,res)=>{
+  try{
+    const parsed=registerSchema.safeParse(req.body);
+    if(!parsed.success){
+      return res.status(400).json({message:'Please resolve the validation errors.',errors:formatZodErrors(parsed.error)});
+    }
+    const {name,email,phone,password,city,pincode,acceptedTerms}=parsed.data;
+    const existing=await User.findOne({email});
+    if(existing){
+      return res.status(409).json({message:'An account with this email already exists.',errors:{email:'Email is already registered'}});
+    }
+    const passwordHash=await hash(password);
+    const u=await User.create({name,email,phone,passwordHash,role:'customer',city:city||'',pincode:pincode||'',acceptedTerms:!!acceptedTerms});
+    res.status(201).json({token:token(u._id,'7d'),user:publicUser(u)});
+  }catch(e){
+    console.error('Register error:',e);
+    res.status(500).json({message:e.message||'Server error during registration'});
+  }
+});
+app.post('/api/auth/login',authRateLimiter(25),async(req,res)=>{
+  try{
+    const parsed=loginSchema.safeParse(req.body);
+    if(!parsed.success){
+      return res.status(400).json({message:'Invalid email or password format.',errors:formatZodErrors(parsed.error)});
+    }
+    const {email,password,rememberMe}=parsed.data;
+    const u=await User.findOne({email});
+    if(!u||!(await compare(password,u.passwordHash||''))){
+      return res.status(401).json({message:'Invalid email or password.'});
+    }
+    const expiry=rememberMe?'30d':'7d';
+    res.json({token:token(u._id,expiry),user:publicUser(u)});
+  }catch(e){
+    console.error('Login error:',e);
+    res.status(500).json({message:e.message||'Server error during login'});
+  }
+});
 app.get('/api/auth/me',auth,(req,res)=>res.json({user:publicUser(req.user)}));
-app.put('/api/auth/profile',auth,async(req,res)=>{const allowed=['name','phone','avatar','addresses'];Object.assign(req.user,Object.fromEntries(Object.entries(req.body).filter(([k])=>allowed.includes(k))));await req.user.save();res.json({user:publicUser(req.user)});});
+app.post('/api/auth/logout',(_req,res)=>res.json({ok:true,message:'Logged out successfully'}));
+app.put('/api/auth/profile',auth,async(req,res)=>{const allowed=['name','phone','city','pincode','avatar','addresses'];Object.assign(req.user,Object.fromEntries(Object.entries(req.body).filter(([k])=>allowed.includes(k))));await req.user.save();res.json({user:publicUser(req.user)});});
 app.post('/api/auth/avatar',auth,uploader.single('file'),async(req,res)=>{if(!req.file)return res.status(400).json({message:'No image selected'});req.user.avatar='/uploads/'+req.file.filename;await req.user.save();res.json({user:publicUser(req.user)});});
 app.post('/api/uploads',auth,admin,uploader.array('files',10),(req,res)=>res.json({files:req.files.map(f=>'/uploads/'+f.filename)}));
 app.get('/api/products',async(req,res)=>{const q={};if(req.query.category)q.category=req.query.category;if(req.query.featured==='true')q.isFeatured=true;q.isActive=true;res.json(await Product.find(q).sort({isFeatured:-1,createdAt:-1}));});

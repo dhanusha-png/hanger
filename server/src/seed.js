@@ -10,13 +10,13 @@ async function run() {
 
   await User.updateOne(
     { email: 'admin@example.com' },
-    { $set: { name: 'Super Admin', email: 'admin@example.com', passwordHash: await hash('Admin@123'), role: 'admin' } },
+    { $set: { name: 'Super Admin', email: 'admin@example.com', passwordHash: await hash('Admin@123'), role: 'admin', phone: '+919876543210', city: 'Mumbai', pincode: '400001', acceptedTerms: true } },
     { upsert: true }
   );
 
   await User.updateOne(
     { email: 'customer@example.com' },
-    { $set: { name: 'Demo Customer', email: 'customer@example.com', passwordHash: await hash('Customer@123'), role: 'customer' } },
+    { $set: { name: 'Demo Customer', email: 'customer@example.com', passwordHash: await hash('Customer@123'), role: 'customer', phone: '+919876543211', city: 'Bengaluru', pincode: '560001', acceptedTerms: true } },
     { upsert: true }
   );
 

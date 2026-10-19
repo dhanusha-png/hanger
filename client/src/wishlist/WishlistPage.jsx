@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, ArrowRight, Trash2, ArrowUpRight } from 'lucide-react';
+import { Heart, ShoppingCart, ShoppingBag, ArrowRight, Trash2, ArrowUpRight } from 'lucide-react';
 import { img } from '../lib/api';
+import { Logo } from '../components/Logo';
 import './wishlist.css';
 
 export function WishlistPage({ wishlist = [], removeFromWishlist, moveToCart, clearWishlist }) {
@@ -59,23 +60,25 @@ export function WishlistPage({ wishlist = [], removeFromWishlist, moveToCart, cl
                 </div>
 
                 <div className="wishlist-card-body">
-                  <span className="wishlist-card-cat">{p.category || 'Product'}</span>
-                  <Link to={`/products/${p.slug}`} className="wishlist-card-title">
+                  <span className="wishlist-category">{p.category || 'Product'}</span>
+                  <Link to={`/products/${p.slug}`} className="wishlist-title">
                     {p.name}
                   </Link>
-                  <div className="wishlist-card-price">
-                    <strong>₹{price.toLocaleString('en-IN')}</strong>
+                  <div className="wishlist-price-row">
+                    <span className="wishlist-price">₹{price.toLocaleString('en-IN')}</span>
                     {compareAt > price && (
-                      <del>₹{compareAt.toLocaleString('en-IN')}</del>
+                      <span className="wishlist-compare">₹{compareAt.toLocaleString('en-IN')}</span>
                     )}
                   </div>
                   <div className="wishlist-card-actions">
                     <button
                       type="button"
-                      className="wishlist-move-btn"
+                      className="wishlist-btn-move"
                       onClick={() => moveToCart(p)}
+                      aria-label={`Move ${p.name} to Cart`}
                     >
-                      <ShoppingBag size={15} /> Move to Cart
+                      <ShoppingCart size={15} />
+                      <span>Move to Cart</span>
                     </button>
                   </div>
                 </div>
@@ -83,10 +86,11 @@ export function WishlistPage({ wishlist = [], removeFromWishlist, moveToCart, cl
             );
           })}
         </div>
+
       ) : (
         <div className="wishlist-empty">
-          <div className="wishlist-empty-icon">
-            <Heart size={32} />
+          <div className="wishlist-empty-logo-wrap" style={{ marginBottom: '18px' }}>
+            <Logo variant="stacked" height={60} />
           </div>
           <h2>Your wishlist is currently empty</h2>
           <p>

@@ -14,6 +14,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { GoldDivider } from '../../design-system/GoldDivider';
+import { Logo } from '../Logo';
 import './footer.css';
 
 export function Footer() {
@@ -121,12 +122,9 @@ export function Footer() {
         <div className="container hh-footer-grid">
           {/* Column 1: Brand Column */}
           <div className="hh-footer-col hh-footer-brand-col">
-            <Link to="/" className="hh-footer-brand-logo" aria-label="HangerHome home">
-              <span className="brand-mark">H</span>
-              <span className="hh-footer-brand-text">
-                HANGER<span className="hh-gold-text">HOME</span>
-              </span>
-            </Link>
+            <div className="hh-footer-brand-logo-wrap">
+              <Logo variant="stacked" height={60} className="hh-footer-logo" />
+            </div>
 
             <p className="hh-footer-brand-desc">
               Premium hanger, shoe-rack and home space solutions with professional installation and local service.

@@ -28,23 +28,33 @@ export function InstallationsPage({ cart = [], total = 0, remove, updateQty, cha
 
   return (
     <div className="install-page">
-      {/* 1. Cinematic Hero with New Dual-Technician Scene */}
+      {/* 1. Cinematic Hero with New Dual-Technician Scene (unchanged) */}
       <InstallationsHero onSelectType={setSelectedType} />
 
-      {/* 2. Page Sections: Sticky Tabs, Installation Categories, Service Solutions, How It Works Strip */}
-      <InstallationSolutions onSelectType={setSelectedType} />
+      {/* Section 2 (Even): Solutions with tabs (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <InstallationSolutions onSelectType={setSelectedType} />
+      </div>
 
-      {/* 3. Real Installations Projects Showcase with Lightbox */}
-      <InstallationProjects />
+      {/* Section 3 (Odd): Real Installations Projects Showcase (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <InstallationProjects />
+      </div>
 
-      {/* 4. Demonstration Video & Design Pillars */}
-      <InstallationVideoAction />
+      {/* Section 4 (Even): Demonstration Video & Design Pillars (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <InstallationVideoAction />
+      </div>
 
-      {/* 5. Comprehensive FAQs */}
-      <InstallationFAQ />
+      {/* Section 5 (Odd): Comprehensive FAQs (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <InstallationFAQ />
+      </div>
 
-      {/* 6. Closing CTA Band with Segmented Toggle & Quick Booking Form */}
-      <InstallationCTA initialType={selectedType} />
+      {/* Section 6 (Even): Closing CTA Band with Segmented Toggle & Quick Booking Form (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <InstallationCTA initialType={selectedType} />
+      </div>
 
       {/* Floating Action Buttons */}
       <FloatingWidgets

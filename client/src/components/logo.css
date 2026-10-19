@@ -1,0 +1,118 @@
+/* HangerHome Brand Logo Component Stylesheet */
+
+.hh-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.hh-logo:hover {
+  transform: scale(1.02);
+}
+
+.hh-logo:active {
+  transform: scale(0.99);
+}
+
+.hh-logo-icon-only {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh-logo-lockup {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.hh-logo-stacked {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.hh-logo-img {
+  display: block;
+  object-fit: contain;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.hh-logo-text {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 15px;
+}
+
+.hh-logo-stacked .hh-logo-text {
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  justify-content: center;
+}
+
+.hh-logo-hanger {
+  color: #FFFFFF;
+}
+
+.hh-logo-home {
+  color: #E8C070;
+}
+
+/* Mobile logo text scaling - keep full HANGERHOME text visible and sharp without clipping */
+@media (max-width: 768px) {
+  .hh-navbar-logo.hh-logo-lockup {
+    gap: 8px;
+  }
+  .hh-navbar-logo.hh-logo-lockup .hh-logo-text {
+    font-size: 13.5px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Navbar scroll shrink support */
+.header.scrolled .hh-navbar-logo .hh-logo-img {
+  transform: scale(0.92);
+}
+
+/* Loading screen, splash & page transition loader */
+.hh-logo-loader {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+}
+
+.hh-logo-loader .hh-logo-img {
+  animation: hhLogoFadeScale 2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+}
+
+@keyframes hhLogoFadeScale {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}

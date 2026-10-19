@@ -3,7 +3,11 @@ node_modules/
 dist/
 **/dist/
 server/.env
+client/.env
+.env
 server/uploads/*
 !server/uploads/.gitkeep
+scratch/
+scratch_render/
 .DS_Store
 *.log

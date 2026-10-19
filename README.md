@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="client/public/og-image.png" alt="HangerHome" width="540" />
+</p>
+
 # HangerHome Premium Full-Stack
 
 A premium HangerHome e-commerce/service demo with a dark luxury glassmorphism UI, animated light-sweep interactions, product catalog, gallery, customer accounts, checkout demo, service/quote requests, AI-style website assistant, and protected admin controls.

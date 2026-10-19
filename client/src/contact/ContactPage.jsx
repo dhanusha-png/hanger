@@ -53,42 +53,56 @@ export function ContactPage({ cart = [], total = 0, remove, updateQty, chat, set
         email={email}
       />
 
-      <div className="container contact-main-container">
-        {/* 2. TWO-COLUMN SPLIT: Sticky Details (40%) + Enquiry Form (60%) */}
-        <div className="contact-two-column-split">
-          {/* Left Details Column */}
-          <div className="contact-col-details">
-            <ContactInfoCards
-              phone={phone}
-              whatsapp={whatsapp}
-              email={email}
-              address={address}
-              serviceAreas={serviceAreas}
-            />
-          </div>
+      {/* Section 2 (Even): Two-Column Block (Sticky Details + Form) (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <div className="container contact-main-container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
+          <div className="contact-two-column-split">
+            {/* Left Details Column */}
+            <div className="contact-col-details">
+              <ContactInfoCards
+                phone={phone}
+                whatsapp={whatsapp}
+                email={email}
+                address={address}
+                serviceAreas={serviceAreas}
+              />
+            </div>
 
-          {/* Right Form Column */}
-          <div className="contact-col-form">
-            <ContactForm
-              preselectedRequirement={selectedReq}
-            />
+            {/* Right Form Column */}
+            <div className="contact-col-form">
+              <ContactForm
+                preselectedRequirement={selectedReq}
+              />
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* 3. THREE ACTION CARDS */}
-        <ContactActionCards
-          productCount={productCount}
-          onRequestQuote={(req) => setSelectedReq(req)}
-        />
+      {/* Section 3 (Odd): Three Action Cards (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <div className="container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
+          <ContactActionCards
+            productCount={productCount}
+            onRequestQuote={(req) => setSelectedReq(req)}
+          />
+        </div>
+      </div>
 
-        {/* 4. FREQUENTLY ASKED QUESTIONS */}
-        <ContactFAQ />
+      {/* Section 4 (Even): Frequently Asked Questions (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <div className="container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
+          <ContactFAQ />
+        </div>
+      </div>
 
-        {/* 5. CLOSING CTA BAND */}
-        <ContactClosingCTA
-          phone={phone}
-          whatsapp={whatsapp}
-        />
+      {/* Section 5 (Odd): Closing CTA Band (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <div className="container" style={{ paddingTop: '50px', paddingBottom: '80px' }}>
+          <ContactClosingCTA
+            phone={phone}
+            whatsapp={whatsapp}
+          />
+        </div>
       </div>
 
       {/* Floating Action Buttons (Cart, WhatsApp, Chatbot) */}

@@ -18,7 +18,7 @@
 }
 
 .install-page {
-  padding-bottom: clamp(60px, 8vw, 100px);
+  padding-bottom: 0;
   background: var(--color-bg, #04120e);
   color: var(--color-warm-white, #faf8f5);
 }

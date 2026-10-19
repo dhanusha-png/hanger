@@ -288,8 +288,9 @@ export function ProductsPage({
         setTag={setTag}
       />
 
-      {/* 2. Professional Two-Column Catalog Section: Sticky Sidebar + Product Grid */}
-      <section className="section container catalog-section" style={{ paddingTop: 0 }}>
+      {/* 2. Professional Two-Column Catalog Section: Sticky Sidebar + Product Grid (Even: Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <section className="section container catalog-section" style={{ paddingTop: '36px', paddingBottom: '64px' }}>
         <div className="products-catalog-layout">
           {/* Desktop Sticky Left Glass Sidebar */}
           <ProductCatalogSidebar
@@ -453,6 +454,7 @@ export function ProductsPage({
           </div>
         </div>
       </section>
+      </div>
 
       {/* Mobile Slide-in Drawer from Left */}
       {mobileDrawerOpen && (
@@ -554,119 +556,138 @@ export function CatalogProductDetail({ slug, products, onAdd, toggleWishlist, is
 
   return (
     <>
-      <div className="section container">
-        <Link className="catalog-back-link" to="/products"><ArrowRight aria-hidden="true" /> Back to Products</Link>
-        <section className="catalog-detail">
-          <div className="catalog-detail-gallery">
-            <div className="catalog-detail-main">
-              {images.length ? <img src={img(images[selectedImage]?.url)} alt={images[selectedImage]?.alt || product.name} /> : (
-                <div className="catalog-concept-media detail">
-                  <Boxes aria-hidden="true" />
-                  <span>{product.category}</span>
-                  <small>HangerHome Solution</small>
-                </div>
-              )}
-            </div>
-            {images.length > 1 && <div className="catalog-thumbnails" aria-label="Product photo views">
-              {images.map((image, index) => (
-                <button className={index === selectedImage ? 'active' : ''} key={image.url} onClick={() => setSelectedImage(index)} aria-label={`Show photo ${index + 1}`}>
-                  <img src={img(image.url)} alt="" loading="lazy" />
-                </button>
-              ))}
-            </div>}
-            {product.video && <div className="catalog-detail-video">
-              <h2>Product video</h2>
-              <video controls preload="metadata" poster={images[0] ? img(images[0].url) : undefined}>
-                <source src={product.video} type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-            </div>}
-          </div>
-          <div className="catalog-detail-info">
-            <span className="eyebrow">{product.category}</span>
-            <h1>{product.name}</h1>
-            <div className="catalog-model-line">
-              <span>Model:</span><strong>{product.modelName}</strong>
-              <span>SKU:</span><strong>{product.sku}</strong>
-            </div>
-            <div className="catalog-detail-price">
-              <strong>₹{Number(product.price || 0).toLocaleString('en-IN')}</strong>
-              {product.compareAtPrice > product.price && (
-                <>
-                  <del>₹{Number(product.compareAtPrice).toLocaleString('en-IN')}</del>
-                  <span className="catalog-save-badge">Save ₹{(product.compareAtPrice - product.price).toLocaleString('en-IN')}</span>
-                </>
-              )}
-            </div>
-            <p className="catalog-detail-summary">{product.shortDescription}</p>
-            <p className="catalog-stock-detail">Availability: {stock > 0 ? `${stock} units in stock` : 'Out of stock'}</p>
-            <label className="catalog-quantity">Quantity
-              <span><button type="button" onClick={() => setQuantity(value => Math.max(1, value - 1))} aria-label="Decrease quantity">−</button><input type="number" min="1" max={Math.max(1, stock)} value={quantity} onChange={event => setQuantity(Math.max(1, Math.min(stock || 1, Number(event.target.value) || 1)))} /><button type="button" onClick={() => setQuantity(value => Math.min(stock || value + 1, value + 1))} aria-label="Increase quantity">+</button></span>
-            </label>
-            <div className="catalog-detail-actions">
-              <button className="btn btn-soft btn-lg animated-light-button light-hero-btn light-phase-2" type="button" disabled={stock <= 0} onClick={() => onAdd(product, quantity)}>Add to Cart</button>
-              <Link className="btn btn-primary btn-lg animated-light-button light-hero-btn light-phase-1" to={`/checkout?buy=${product._id}`}>Buy Now</Link>
-              {toggleWishlist && (
-                <button
-                  className={`btn btn-soft btn-lg ${isSaved ? 'liked' : ''}`}
-                  type="button"
-                  onClick={() => toggleWishlist(product)}
-                  aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
-                  title={isSaved ? "Remove from wishlist" : "Add to wishlist"}
-                >
-                  <Heart fill={isSaved ? "#b54b42" : "none"} color={isSaved ? "#b54b42" : "currentColor"} size={17} />
-                  <span>{isSaved ? 'Saved' : 'Wishlist'}</span>
-                </button>
-              )}
-            </div>
-            <div className="catalog-detail-features">
-              <h2>Key Features</h2>
-              <ul>{(product.features || []).map(feature => <li key={feature}><Check aria-hidden="true" />{feature}</li>)}</ul>
-            </div>
-          </div>
-        </section>
-        <section className="catalog-detail-sections">
-          <div><span className="eyebrow">OVERVIEW</span><h2>Description</h2><p>{product.description}</p></div>
-          <div><span className="eyebrow">DETAILS</span><h2>Specifications</h2>
-            {product.specifications?.length ? <dl>{product.specifications.map(spec => <div key={spec.label}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}</dl> : <p>Detailed specifications available upon request.</p>}
-          </div>
-        </section>
-
-        {/* Customer Reviews Section */}
-        <section className="section" style={{ borderTop: '1px solid var(--line)', marginTop: '48px', paddingTop: '48px' }}>
-          <div className="section-title">
-            <small>CUSTOMER REVIEWS</small>
-            <h2>Verified Feedback</h2>
-          </div>
-          {reviews.length === 0 ? (
-            <div className="empty review-empty">
-              <Star size={30} style={{ color: '#C8A86B', margin: '0 auto 10px' }} />
-              <h3 style={{ fontSize: '18px', margin: '0 0 6px' }}>No reviews yet</h3>
-              <p style={{ margin: 0, fontSize: '14px' }}>Be the first customer to share feedback on this product after installation.</p>
-            </div>
-          ) : (
-            <div className="review-grid">
-              {reviews.map(r => (
-                <div className="review-card" key={r._id}>
-                  <div className="review-head">
-                    <div className="avatar">{r.name?.[0] || 'U'}</div>
-                    <div>
-                      <b>{r.name}</b>
-                      {r.verified && <small style={{ color: '#0e5b4b', fontWeight: 700 }}>✓ Verified Purchase</small>}
-                    </div>
+      {/* Section 1 (Odd): Product Showcase (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <div className="section container" style={{ paddingBottom: '40px' }}>
+          <Link className="catalog-back-link" to="/products"><ArrowRight aria-hidden="true" /> Back to Products</Link>
+          <section className="catalog-detail">
+            <div className="catalog-detail-gallery">
+              <div className="catalog-detail-main">
+                {images.length ? <img src={img(images[selectedImage]?.url)} alt={images[selectedImage]?.alt || product.name} /> : (
+                  <div className="catalog-concept-media detail">
+                    <Boxes aria-hidden="true" />
+                    <span>{product.category}</span>
+                    <small>HangerHome Solution</small>
                   </div>
-                  {r.title && <h4 style={{ margin: '12px 0 6px' }}>{r.title}</h4>}
-                  <p>{r.body}</p>
-                </div>
-              ))}
+                )}
+              </div>
+              {images.length > 1 && <div className="catalog-thumbnails" aria-label="Product photo views">
+                {images.map((image, index) => (
+                  <button className={index === selectedImage ? 'active' : ''} key={image.url} onClick={() => setSelectedImage(index)} aria-label={`Show photo ${index + 1}`}>
+                    <img src={img(image.url)} alt="" loading="lazy" />
+                  </button>
+                ))}
+              </div>}
+              {product.video && <div className="catalog-detail-video">
+                <h2>Product video</h2>
+                <video controls preload="metadata" poster={images[0] ? img(images[0].url) : undefined}>
+                  <source src={product.video} type="video/mp4" />
+                  Your browser does not support the video element.
+                </video>
+              </div>}
             </div>
-          )}
-        </section>
+            <div className="catalog-detail-info">
+              <span className="eyebrow">{product.category}</span>
+              <h1>{product.name}</h1>
+              <div className="catalog-model-line">
+                <span>Model:</span><strong>{product.modelName}</strong>
+                <span>SKU:</span><strong>{product.sku}</strong>
+              </div>
+              <div className="catalog-detail-price">
+                <strong>₹{Number(product.price || 0).toLocaleString('en-IN')}</strong>
+                {product.compareAtPrice > product.price && (
+                  <>
+                    <del>₹{Number(product.compareAtPrice).toLocaleString('en-IN')}</del>
+                    <span className="catalog-save-badge">Save ₹{(product.compareAtPrice - product.price).toLocaleString('en-IN')}</span>
+                  </>
+                )}
+              </div>
+              <p className="catalog-detail-summary">{product.shortDescription}</p>
+              <p className="catalog-stock-detail">Availability: {stock > 0 ? `${stock} units in stock` : 'Out of stock'}</p>
+              <label className="catalog-quantity">Quantity
+                <span><button type="button" onClick={() => setQuantity(value => Math.max(1, value - 1))} aria-label="Decrease quantity">−</button><input type="number" min="1" max={Math.max(1, stock)} value={quantity} onChange={event => setQuantity(Math.max(1, Math.min(stock || 1, Number(event.target.value) || 1)))} /><button type="button" onClick={() => setQuantity(value => Math.min(stock || value + 1, value + 1))} aria-label="Increase quantity">+</button></span>
+              </label>
+              <div className="catalog-detail-actions">
+                <button className="btn btn-soft btn-lg animated-light-button light-hero-btn light-phase-2" type="button" disabled={stock <= 0} onClick={() => onAdd(product, quantity)}>Add to Cart</button>
+                <Link className="btn btn-primary btn-lg animated-light-button light-hero-btn light-phase-1" to={`/checkout?buy=${product._id}`}>Buy Now</Link>
+                {toggleWishlist && (
+                  <button
+                    className={`btn btn-soft btn-lg ${isSaved ? 'liked' : ''}`}
+                    type="button"
+                    onClick={() => toggleWishlist(product)}
+                    aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
+                    title={isSaved ? "Remove from wishlist" : "Add to wishlist"}
+                  >
+                    <Heart fill={isSaved ? "#b54b42" : "none"} color={isSaved ? "#b54b42" : "currentColor"} size={17} />
+                    <span>{isSaved ? 'Saved' : 'Wishlist'}</span>
+                  </button>
+                )}
+              </div>
+              <div className="catalog-detail-features">
+                <h2>Key Features</h2>
+                <ul>{(product.features || []).map(feature => <li key={feature}><Check aria-hidden="true" />{feature}</li>)}</ul>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-      {relatedProducts.length > 0 && <section className="section container catalog-related">
-        <div className="section-title"><small>EXPLORE MORE</small><h2>Related Products</h2><p>Discover more designs from our {product.category} collection.</p></div>
-        <div className="catalog-product-grid">{relatedProducts.map(item => <ProductCard key={item._id} p={item} />)}</div>
-      </section>}
+
+      {/* Section 2 (Even): Specifications & Overview (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <div className="section container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
+          <section className="catalog-detail-sections" style={{ marginTop: 0 }}>
+            <div><span className="eyebrow">OVERVIEW</span><h2>Description</h2><p>{product.description}</p></div>
+            <div><span className="eyebrow">DETAILS</span><h2>Specifications</h2>
+              {product.specifications?.length ? <dl>{product.specifications.map(spec => <div key={spec.label}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}</dl> : <p>Detailed specifications available upon request.</p>}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Section 3 (Odd): Customer Reviews (Dark #04120e) */}
+      <div className="home-tonal-odd">
+        <div className="section container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
+          <section className="section" style={{ padding: 0, margin: 0, border: 'none' }}>
+            <div className="section-title">
+              <small>CUSTOMER REVIEWS</small>
+              <h2>Verified Feedback</h2>
+            </div>
+            {reviews.length === 0 ? (
+              <div className="empty review-empty">
+                <Star size={30} style={{ color: '#C8A86B', margin: '0 auto 10px' }} />
+                <h3 style={{ fontSize: '18px', margin: '0 0 6px' }}>No reviews yet</h3>
+                <p style={{ margin: 0, fontSize: '14px' }}>Be the first customer to share feedback on this product after installation.</p>
+              </div>
+            ) : (
+              <div className="review-grid">
+                {reviews.map(r => (
+                  <div className="review-card" key={r._id}>
+                    <div className="review-head">
+                      <div className="avatar">{r.name?.[0] || 'U'}</div>
+                      <div>
+                        <b>{r.name}</b>
+                        {r.verified && <small style={{ color: '#0e5b4b', fontWeight: 700 }}>✓ Verified Purchase</small>}
+                      </div>
+                    </div>
+                    {r.title && <h4 style={{ margin: '12px 0 6px' }}>{r.title}</h4>}
+                    <p>{r.body}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
+
+      {/* Section 4 (Even): Related Products (Deep Forest #0B211A) */}
+      {relatedProducts.length > 0 && (
+        <div className="home-tonal-even">
+          <section className="section container catalog-related" style={{ paddingTop: '50px', paddingBottom: '70px' }}>
+            <div className="section-title"><small>EXPLORE MORE</small><h2>Related Products</h2><p>Discover more designs from our {product.category} collection.</p></div>
+            <div className="catalog-product-grid">{relatedProducts.map(item => <ProductCard key={item._id} p={item} />)}</div>
+          </section>
+        </div>
+      )}
     </>
   );
 }
@@ -745,40 +766,49 @@ export function GalleryPage({
         totalPhotos={visibleImages.length}
       />
 
-      <section className="section container catalog-gallery-page" style={{ paddingTop: '10px' }}>
-        {visibleImages.length ? (
-          <div className="catalog-gallery-grid">
-            {visibleImages.map((image, index) => (
-              <button className="catalog-gallery-item" type="button" key={image.src} onClick={() => setActiveIndex(index)} aria-label={`Open ${image.title}, photo ${index + 1}`}>
-                <img src={img(image.src)} alt={`${image.title}, reference photo ${index + 1}`} loading="lazy" />
-                <span>{image.title}</span>
-              </button>
-            ))}
-          </div>
-        ) : (
-          <PublicState title="Shoe Rack Installations">
-            On-site photography for our shoe rack installations is currently being updated. You can view our ceiling hanger installations above or explore our products catalog.
-          </PublicState>
-        )}
-        {category !== 'Shoe Racks' && (
-          <section className="catalog-video-section">
-            <div className="catalog-gallery-heading">
-              <div>
-                <span className="eyebrow">PRODUCT VIDEOS</span>
-                <h2>Installation in motion</h2>
-              </div>
+      {/* Section 2 (Even): Photo Grid (Deep Forest #0B211A) */}
+      <div className="home-tonal-even">
+        <section className="section container catalog-gallery-page" style={{ paddingTop: '36px', paddingBottom: '60px' }}>
+          {visibleImages.length ? (
+            <div className="catalog-gallery-grid">
+              {visibleImages.map((image, index) => (
+                <button className="catalog-gallery-item" type="button" key={image.src} onClick={() => setActiveIndex(index)} aria-label={`Open ${image.title}, photo ${index + 1}`}>
+                  <img src={img(image.src)} alt={`${image.title}, reference photo ${index + 1}`} loading="lazy" />
+                  <span>{image.title}</span>
+                </button>
+              ))}
             </div>
-            <button className="catalog-video-card" type="button" onClick={() => setVideoOpen(true)}>
-              <img src="/media/hanger-1.jpg" alt="" loading="lazy" />
-              <span className="catalog-video-play"><Play fill="currentColor" aria-hidden="true" /></span>
-              <span className="catalog-video-caption">
-                <strong>Ceiling Hanger System in Action</strong>
-                <small>Smooth pulley mechanism &amp; installation video · Hangers</small>
-              </span>
-            </button>
+          ) : (
+            <PublicState title="Shoe Rack Installations">
+              On-site photography for our shoe rack installations is currently being updated. You can view our ceiling hanger installations above or explore our products catalog.
+            </PublicState>
+          )}
+        </section>
+      </div>
+
+      {/* Section 3 (Odd): Installation in Motion video card (Dark #04120e) */}
+      {category !== 'Shoe Racks' && (
+        <div className="home-tonal-odd">
+          <section className="section container" style={{ paddingTop: '50px', paddingBottom: '70px' }}>
+            <div className="catalog-video-section" style={{ marginTop: 0 }}>
+              <div className="catalog-gallery-heading">
+                <div>
+                  <span className="eyebrow">PRODUCT VIDEOS</span>
+                  <h2>Installation in motion</h2>
+                </div>
+              </div>
+              <button className="catalog-video-card" type="button" onClick={() => setVideoOpen(true)}>
+                <img src="/media/hanger-1.jpg" alt="" loading="lazy" />
+                <span className="catalog-video-play"><Play fill="currentColor" aria-hidden="true" /></span>
+                <span className="catalog-video-caption">
+                  <strong>Ceiling Hanger System in Action</strong>
+                  <small>Smooth pulley mechanism &amp; installation video · Hangers</small>
+                </span>
+              </button>
+            </div>
           </section>
-        )}
-      </section>
+        </div>
+      )}
 
       {/* Lightbox Viewer */}
       {(activeIndex !== null || customLightbox !== null) && (

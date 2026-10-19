@@ -126,7 +126,7 @@
 .contact-main-container {
   position: relative;
   z-index: 5;
-  padding-bottom: clamp(60px, 8vw, 110px);
+  padding-bottom: 0;
 }
 
 /* ==========================================================================
@@ -1510,7 +1510,7 @@
    ========================================================================== */
 .contact-actions-section {
   position: relative;
-  margin-bottom: clamp(64px, 7vw, 96px);
+  margin-bottom: 0;
 }
 
 .contact-actions-grid {
@@ -1641,7 +1641,7 @@
 .contact-faq-section {
   position: relative;
   max-width: 860px;
-  margin: 0 auto clamp(64px, 7vw, 96px);
+  margin: 0 auto;
 }
 
 .contact-faq-header-wrap {
@@ -1854,7 +1854,7 @@
 .contact-closing-cta-section {
   position: relative;
   width: 100%;
-  margin-top: clamp(48px, 6vw, 80px);
+  margin-top: 0;
 }
 
 .contact-cta-bg-layer {
