@@ -59,12 +59,12 @@ export function HomePage({
       {/* 2. Benefit Bar (Overlapping Hero) */}
       <BenefitBar />
 
-      {/* 3. Category Shortcuts */}
-      <div className="home-reveal">
+      {/* Section 2 (Even): Category Shortcuts (Light Cream) */}
+      <div className="home-reveal" data-theme="warm">
         <CategoryShortcuts />
       </div>
 
-      {/* 4. Featured Solutions (5 Compact Cards) */}
+      {/* Section 3 (Odd): Featured Solutions (Unchanged Old Dark) */}
       <div className="home-reveal">
         <FeaturedSolutions
           products={products}
@@ -76,28 +76,28 @@ export function HomePage({
         />
       </div>
 
-      {/* 5. Installation Showcase (Collage & Video) */}
-      <div className="home-reveal">
+      {/* Section 4 (Even): Installation Showcase (Light Cream) */}
+      <div className="home-reveal" data-theme="warm">
         <InstallationShowcase />
       </div>
 
-      {/* 6. Our Services Section */}
+      {/* Section 5 (Odd): Our Services (Unchanged Old Dark) */}
       <div className="home-reveal">
         <ServicesSection />
       </div>
 
-      {/* 7. How It Works (Timeline) */}
-      <div className="home-reveal">
+      {/* Section 6 (Even): How It Works (Light Cream) */}
+      <div className="home-reveal" data-theme="warm">
         <HowItWorks />
       </div>
 
-      {/* 8. Gallery Preview */}
+      {/* Section 7 (Odd): Gallery Preview (Unchanged Old Dark) */}
       <div className="home-reveal">
         <GalleryPreview />
       </div>
 
-      {/* 9. Final Premium Call to Action */}
-      <div className="home-reveal">
+      {/* Section 8 (Even): Final Premium Call to Action (Light Cream) */}
+      <div className="home-reveal" data-theme="warm">
         <HomeCTA />
       </div>
 
