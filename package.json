@@ -1,6 +1,15 @@
 {
   "name":"premium-hanger-commerce",
   "private":true,
-  "scripts":{"install:all":"npm --prefix server install && npm --prefix client install","dev":"concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"","seed":"npm --prefix server run seed","seed:demo-catalog":"npm --prefix server run seed:demo-catalog","build":"npm --prefix client run build"},
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "start": "npm --prefix server run start",
+    "seed": "npm --prefix server run seed",
+    "seed:demo-catalog": "npm --prefix server run seed:demo-catalog",
+    "backup": "npm --prefix server run backup",
+    "restore": "npm --prefix server run restore",
+    "build": "npm --prefix client run build"
+  },
   "devDependencies":{"concurrently":"^9.1.2"}
 }

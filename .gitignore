@@ -7,6 +7,8 @@ client/.env
 .env
 server/uploads/*
 !server/uploads/.gitkeep
+server/backups/
+backups/
 scratch/
 scratch_render/
 .DS_Store

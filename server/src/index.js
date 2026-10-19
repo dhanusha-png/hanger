@@ -21,11 +21,17 @@ import adminRoutes from './routes/adminRoutes.js';
 import publicRoutes from './routes/publicRoutes.js';
 
 // Verify critical environment variables
-const requiredEnv = ['JWT_SECRET'];
-for (const envKey of requiredEnv) {
-  if (!process.env[envKey] && process.env.NODE_ENV === 'production') {
-    console.error(`FATAL: Environment variable ${envKey} is missing!`);
+const criticalEnv = ['JWT_SECRET', 'MONGODB_URI'];
+const missingCritical = criticalEnv.filter((k) => !process.env[k]);
+
+if (missingCritical.length > 0) {
+  if (process.env.NODE_ENV === 'production') {
+    console.error(`\n❌ [FATAL CONFIG ERROR] Missing required environment variable(s): ${missingCritical.join(', ')}`);
+    console.error('Please configure them in your production environment or .env file before starting the server.\n');
     process.exit(1);
+  } else {
+    console.warn(`\n⚠️  [Config Notice] Missing recommended environment variable(s): ${missingCritical.join(', ')}`);
+    console.warn('Using local fallback defaults for development.\n');
   }
 }
 
