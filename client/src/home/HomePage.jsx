@@ -96,8 +96,8 @@ export function HomePage({
         <GalleryPreview />
       </div>
 
-      {/* Promotional CTA Banner (Dark Emerald & Gold Treatment) - Preserved */}
-      <div className="home-reveal home-tonal-odd home-cta-wrap">
+      {/* Section 7: Smarter Space CTA (Warm Cream #F5F0E5 - Alternating Palette) */}
+      <div className="home-reveal home-tonal-even home-cta-wrap">
         <HomeCTA />
       </div>
 

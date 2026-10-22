@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, MessageCircle, Phone } from 'lucide-react';
 import { MiniCartDrawer } from '../components/layout/MiniCartDrawer';
@@ -13,7 +13,60 @@ export function FloatingWidgets({
   onOpenCart
 }) {
   const [localDrawerOpen, setLocalDrawerOpen] = useState(false);
+  const [bottomOffset, setBottomOffset] = useState(() => (typeof window !== 'undefined' && window.innerWidth <= 768 ? 18 : 24));
+  const stackRef = useRef(null);
   const itemCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const updateStackPosition = () => {
+      const footer = document.querySelector('.hh-footer-root, footer, .site-footer');
+      const stack = stackRef.current;
+      const isMobile = window.innerWidth <= 768;
+      const defaultBottom = isMobile ? 18 : 24;
+
+      if (!footer || !stack) {
+        setBottomOffset(defaultBottom);
+        ticking = false;
+        return;
+      }
+
+      const footerRect = footer.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const stackHeight = stack.offsetHeight || 160;
+
+      // When the footer enters the viewport from below
+      if (footerRect.top < viewportHeight) {
+        const overlap = viewportHeight - footerRect.top;
+        const targetBottom = defaultBottom + overlap;
+        // Keep stack visible within safe viewport boundaries (below navigation header)
+        const topSafeMargin = isMobile ? 75 : 90;
+        const maxBottom = Math.max(defaultBottom, viewportHeight - stackHeight - topSafeMargin);
+        const finalBottom = Math.max(defaultBottom, Math.min(targetBottom, maxBottom));
+        setBottomOffset(finalBottom);
+      } else {
+        setBottomOffset(defaultBottom);
+      }
+      ticking = false;
+    };
+
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateStackPosition);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
+    updateStackPosition();
+
+    return () => {
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
+    };
+  }, []);
 
   const handleCartClick = () => {
     if (onOpenCart) {
@@ -26,7 +79,14 @@ export function FloatingWidgets({
 
   return (
     <>
-      <aside className="home-floating-stack" aria-label="Quick Actions">
+      <aside
+        ref={stackRef}
+        className="home-floating-stack"
+        aria-label="Quick Actions"
+        style={{
+          bottom: `calc(${bottomOffset}px + env(safe-area-inset-bottom, 0px))`
+        }}
+      >
         {/* 1. Direct WhatsApp / Contact Action with pulsing aura */}
         <Link
           to="/contact"

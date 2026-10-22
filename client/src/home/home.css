@@ -1937,20 +1937,24 @@
    9. Call to Action Section (Smoked Glass Card)
    Transition to #0D1D18
    -------------------------------------------------------------------------- */
+.home-cta-wrap {
+  background-color: #F5F0E5 !important;
+}
+
 .home-cta-section {
   padding: clamp(40px, 6vw, 80px) 0;
-  background-color: var(--color-surface);
+  background-color: transparent !important;
 }
 
 .home-cta-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(6, 28, 20, 0.96) 0%, rgba(8, 40, 29, 0.94) 50%, rgba(4, 18, 14, 0.98) 100%) !important;
+  background: #FFF9EF !important;
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(201, 162, 72, 0.35) !important;
+  border: 1.5px solid rgba(201, 162, 72, 0.45) !important;
   border-radius: 28px;
   padding: clamp(36px, 5vw, 64px);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), 0 0 24px rgba(201, 162, 72, 0.12) !important;
+  box-shadow: 0 16px 44px rgba(18, 60, 50, 0.08), 0 2px 8px rgba(18, 60, 50, 0.04) !important;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(28px, 4vw, 56px);
@@ -1964,7 +1968,7 @@
   left: 0;
   width: 180px;
   transform: translateY(-50%);
-  opacity: 0.7;
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -1985,7 +1989,7 @@
   font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
   font-size: clamp(30px, 3.6vw, 44px);
   font-weight: 700;
-  color: #FFFFFF !important;
+  color: #123C32 !important;
   margin: 0 0 16px;
   letter-spacing: -0.02em;
 }
@@ -1993,17 +1997,18 @@
 .home-cta-content p,
 .home-cta-desc {
   font-size: clamp(15px, 1.2vw, 17px);
-  color: #C5CEC9 !important;
+  color: #123C32 !important;
   margin: 0;
   max-width: 540px;
+  line-height: 1.6;
 }
 
 .home-cta-btn-white {
   background: linear-gradient(135deg, #e8c070 0%, #c9a24b 100%) !important;
   color: #04120e !important;
   font-weight: 700;
-  border: 1px solid rgba(232, 192, 112, 0.5) !important;
-  box-shadow: 0 4px 18px rgba(232, 192, 112, 0.35);
+  border: 1px solid rgba(201, 162, 72, 0.5) !important;
+  box-shadow: 0 4px 18px rgba(201, 162, 72, 0.35);
   position: relative;
   overflow: hidden;
   transition: all 0.25s ease;
@@ -2024,7 +2029,7 @@
 
 .home-cta-btn-white:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(232, 192, 112, 0.45);
+  box-shadow: 0 8px 24px rgba(201, 162, 72, 0.45);
 }
 
 .home-cta-btn-white:hover::after {
@@ -2032,25 +2037,20 @@
 }
 
 .home-cta-btn-outline {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(232, 192, 112, 0.3) !important;
-  color: var(--color-warm-white, #faf8f5) !important;
+  background: #123C32 !important;
+  border: 1.5px solid #123C32 !important;
+  color: #FFF9EF !important;
   font-weight: 700;
+  box-shadow: 0 4px 14px rgba(18, 60, 50, 0.18);
   transition: all 0.25s ease;
 }
 
 .home-cta-btn-outline:hover {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: var(--color-gold, #e8c070) !important;
-  color: var(--color-gold, #e8c070) !important;
+  background: #1F5A48 !important;
+  border-color: #C9A248 !important;
+  color: #FFFFFF !important;
   transform: translateY(-2px);
-}
-
-.home-cta-content p {
-  font-size: clamp(15px, 1.2vw, 17px);
-  color: var(--color-text-secondary);
-  margin: 0;
-  max-width: 540px;
+  box-shadow: 0 8px 20px rgba(18, 60, 50, 0.26);
 }
 
 .home-cta-actions {
@@ -2067,7 +2067,7 @@
    -------------------------------------------------------------------------- */
 .home-floating-stack {
   position: fixed;
-  right: 22px;
+  right: max(22px, env(safe-area-inset-right, 22px));
   bottom: 24px;
   z-index: 100;
   display: flex;
@@ -2075,6 +2075,9 @@
   align-items: flex-end;
   gap: 10px;
   pointer-events: none;
+  max-width: calc(100vw - 28px);
+  overflow: visible;
+  transition: bottom 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .home-float-btn {
@@ -2218,7 +2221,7 @@
 
 @media (max-width: 768px) {
   .home-floating-stack {
-    right: 14px;
+    right: max(14px, env(safe-area-inset-right, 14px));
     bottom: 18px;
     gap: 8px;
   }
