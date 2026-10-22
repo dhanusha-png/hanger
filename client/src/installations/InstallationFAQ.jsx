@@ -66,26 +66,28 @@ export function InstallationFAQ() {
         </Link>
       </div>
 
-      <div className="install-faq-grid">
-        {faqList.map((faq, idx) => {
-          const isOpen = openIdx === idx;
-          return (
-            <div className="install-faq-item" key={idx}>
-              <div
-                className="install-faq-q"
-                onClick={() => toggle(idx)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && toggle(idx)}
-                aria-expanded={isOpen}
-              >
-                <span>{faq.q}</span>
-                {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+      <div className="install-faq-scroll-box" tabIndex={0} role="region" aria-label="Frequently asked questions list">
+        <div className="install-faq-grid">
+          {faqList.map((faq, idx) => {
+            const isOpen = openIdx === idx;
+            return (
+              <div className="install-faq-item" key={idx}>
+                <div
+                  className="install-faq-q"
+                  onClick={() => toggle(idx)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && toggle(idx)}
+                  aria-expanded={isOpen}
+                >
+                  <span>{faq.q}</span>
+                  {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                </div>
+                {isOpen && <div className="install-faq-a"><p>{faq.a}</p></div>}
               </div>
-              {isOpen && <div className="install-faq-a"><p>{faq.a}</p></div>}
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </section>
   );

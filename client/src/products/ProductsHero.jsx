@@ -452,7 +452,7 @@ export function ProductsHero({
         </div>
       </section>
 
-      {/* Section 1 (Odd): Search & Sort Bar + Shop by Category (Warm Ivory #F5F0E5) */}
+      {/* Section 1 (Odd): Search & Sort Bar + Shop by Category (Dark Emerald #061C14) */}
       <div className="home-tonal-odd" style={{ paddingTop: '32px', paddingBottom: '16px' }}>
         {/* Target Search & Sort Bar (Wide Glass Bar Below Hero) */}
         <div className="products-search-bar-wrapper" style={{ marginTop: 0 }}>

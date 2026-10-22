@@ -14,27 +14,27 @@ export function AboutPage({ cart = [], total = 0, remove, updateQty, chat, setCh
       {/* Section 1: Hero (unchanged) */}
       <AboutHero />
 
-      {/* Section 1 (Odd): Who We Are (Warm Ivory #F5F0E5) */}
+      {/* Section 1 (Odd): Who We Are (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <AboutWhoWeAre />
       </div>
 
-      {/* Section 2 (Even): What We Offer (Warm Sand #E5DAC6) */}
+      {/* Section 2 (Even): What We Offer (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <AboutWhatWeOffer />
       </div>
 
-      {/* Section 3 (Odd): Approach / phases (Warm Ivory #F5F0E5) */}
+      {/* Section 3 (Odd): Approach / phases (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <AboutApproach />
       </div>
 
-      {/* Section 4 (Even): On-Site Showcase (Warm Sand #E5DAC6) */}
+      {/* Section 4 (Even): On-Site Showcase (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <AboutShowcase />
       </div>
 
-      {/* Section 5 (Odd): Closing CTA (Warm Ivory #F5F0E5) */}
+      {/* Section 5 (Odd): Closing CTA (Dark Emerald #061C14) */}
       <div className="home-tonal-odd about-cta-tonal-wrap">
         <AboutCTA />
       </div>

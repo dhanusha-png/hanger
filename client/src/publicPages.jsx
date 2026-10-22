@@ -288,7 +288,7 @@ export function ProductsPage({
         setTag={setTag}
       />
 
-      {/* 2. Professional Two-Column Catalog Section: Sticky Sidebar + Product Grid (Even: Deep Forest #0B211A) */}
+      {/* Section 2 (Even): Professional Two-Column Catalog Section: Sticky Sidebar + Product Grid (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <section className="section container catalog-section" style={{ paddingTop: '36px', paddingBottom: '64px' }}>
         <div className="products-catalog-layout">
@@ -783,7 +783,7 @@ export function GalleryPage({
         onCardClick={handleHeroCardClick}
       />
 
-      {/* Section 1 (Odd): Exhibition Gallery Heading, Filter Chips & Photo Grid (Warm Ivory #F5F0E5) */}
+      {/* Section 1 (Odd): Exhibition Gallery Heading, Filter Chips & Photo Grid (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <section className="section container catalog-gallery-page" style={{ paddingTop: '44px', paddingBottom: '70px' }}>
           {/* Upper row: Small gold eyebrow label and clear Gallery heading, photo count on right */}
@@ -853,7 +853,7 @@ export function GalleryPage({
         </section>
       </div>
 
-      {/* Section 2 (Even): Installation in Motion video card (Warm Sand #E5DAC6) */}
+      {/* Section 2 (Even): Installation in Motion video card (Warm Cream #F5F0E5) */}
       {category !== 'Shoe Racks' && (
         <div className="home-tonal-even">
           <section className="section container" style={{ paddingTop: '50px', paddingBottom: '70px' }}>

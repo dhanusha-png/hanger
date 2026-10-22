@@ -3,11 +3,14 @@
    ========================================================================== */
 
 :root {
-  /* Master HangerHome Alternating Palette (Requirement 1) */
-  --hh-warm-ivory: #F5F0E5;
-  --hh-warm-sand: #E5DAC6;
-  --hh-soft-sage: #E5DAC6; /* Backward-compatibility alias mapped to Warm Sand */
+  /* Master HangerHome Alternating Section Color System */
+  --hh-dark-emerald: #061C14;
+  --hh-warm-cream: #F5F0E5;
+  --hh-warm-ivory: #F5F0E5; /* alias */
+  --hh-warm-sand: #F5F0E5; /* alias mapped to Warm Cream */
+  --hh-soft-sage: #F5F0E5; /* alias */
   --hh-cream-white: #FFF9EF;
+  --hh-deep-forest-green: #123C32;
   --hh-deep-emerald: #123C32;
   --hh-medium-emerald: #1F5A48;
   --hh-footer-dark: #041711;
@@ -395,31 +398,35 @@
 }
 
 /* ==========================================================================
-   Alternating Regular Sections (Requirements 1, 4, 6, 10)
-   Odd: Warm Ivory #F5F0E5 • Even: Warm Sand #E5DAC6
-   Cards: Cream White #FFF9EF • Borders: Soft Border #D8C9A8
-   Headings: Deep Emerald #123C32 • Text: Dark #18352D / Muted #647168
+   Alternating Regular Sections (Consistent Section Color System)
+   Section 1, 3, 5, ... (Odd in Sequence): Dark Emerald #061C14
+   Section 2, 4, 6, ... (Even in Sequence): Warm Cream #F5F0E5
+   Cards in light sections: Cream White #FFF9EF • Borders: Soft Border #D8C9A8
+   Headings in light sections: Deep Forest Green #123C32
+   Headings in dark sections: Warm White #FFFFFF • Eyebrows/Accents: Champagne Gold #C9A248
    ========================================================================== */
 
-/* Odd Sections: Warm Ivory #F5F0E5 */
+/* Section 1, 3, 5, ... (Odd in Sequence): Dark Emerald #061C14 */
 .home-tonal-odd,
-.tonal-odd {
+.tonal-odd,
+.hh-section-dark-emerald {
+  background-color: #061C14 !important;
+  color: #FFFFFF;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section 2, 4, 6, ... (Even in Sequence): Warm Cream #F5F0E5 */
+.home-tonal-even,
+.tonal-even,
+.hh-section-warm-cream {
   background-color: #F5F0E5 !important;
   color: #18352D;
   position: relative;
   z-index: 2;
 }
 
-/* Even Sections: Warm Sand #E5DAC6 */
-.home-tonal-even,
-.tonal-even {
-  background-color: #E5DAC6 !important;
-  color: #18352D;
-  position: relative;
-  z-index: 2;
-}
-
-/* Thin soft-border hairline along the top edge of even sections */
+/* Hairline borders between alternating sections */
 .home-tonal-even::before,
 .tonal-even::before {
   content: '';
@@ -428,7 +435,20 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(216, 201, 168, 0.7) 20%, rgba(201, 162, 72, 0.45) 50%, rgba(216, 201, 168, 0.7) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 72, 0.3) 20%, rgba(201, 162, 72, 0.5) 50%, rgba(201, 162, 72, 0.3) 80%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.home-tonal-odd::before,
+.tonal-odd::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 72, 0.25) 20%, rgba(201, 162, 72, 0.45) 50%, rgba(201, 162, 72, 0.25) 80%, transparent 100%);
   pointer-events: none;
   z-index: 3;
 }
@@ -453,179 +473,6 @@
   z-index: 2;
 }
 
-/* Global Headings & Text within Alternating Light Sections */
-.home-tonal-odd h1, .home-tonal-even h1,
-.home-tonal-odd h2:not(.home-cta-title):not(.about-cta-title),
-.home-tonal-even h2:not(.home-cta-title):not(.about-cta-title),
-.home-tonal-odd h3:not(.home-cta-card *):not(.about-cta-banner *),
-.home-tonal-even h3:not(.home-cta-card *):not(.about-cta-banner *),
-.home-tonal-odd h4, .home-tonal-even h4,
-.home-tonal-odd .section-title h2,
-.home-tonal-even .section-title h2,
-.home-tonal-odd .home-featured-heading,
-.home-tonal-even .home-featured-heading,
-.home-tonal-odd .home-services-heading,
-.home-tonal-even .home-services-heading,
-.home-tonal-odd .home-how-heading,
-.home-tonal-even .home-how-heading,
-.home-tonal-odd .home-gallery-heading,
-.home-tonal-even .home-gallery-heading,
-.home-tonal-odd .catalog-gallery-heading h2,
-.home-tonal-even .catalog-gallery-heading h2,
-.home-tonal-odd .category-section-title,
-.home-tonal-even .category-section-title {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd p:not(.home-cta-desc):not(.about-cta-desc),
-.home-tonal-even p:not(.home-cta-desc):not(.about-cta-desc),
-.home-tonal-odd .home-featured-subtitle,
-.home-tonal-even .home-featured-subtitle,
-.home-tonal-odd .home-services-subtitle,
-.home-tonal-even .home-services-subtitle,
-.home-tonal-odd .home-how-subtitle,
-.home-tonal-even .home-how-subtitle,
-.home-tonal-odd .home-gallery-subtitle,
-.home-tonal-even .home-gallery-subtitle,
-.home-tonal-odd .section-title p,
-.home-tonal-even .section-title p {
-  color: #64756D !important;
-}
-
-.home-tonal-odd .eyebrow,
-.home-tonal-even .eyebrow,
-.home-tonal-odd small,
-.home-tonal-even small,
-.home-tonal-odd .section-title small,
-.home-tonal-even .section-title small {
-  color: #C9A248 !important;
-  font-weight: 700;
-}
-
-/* Cards within Light Sections */
-.home-tonal-odd .home-category-card,
-.home-tonal-even .home-category-card,
-.home-tonal-odd .home-compact-card,
-.home-tonal-even .home-compact-card,
-.home-tonal-odd .home-inst-benefit-item,
-.home-tonal-even .home-inst-benefit-item,
-.home-tonal-odd .home-service-card,
-.home-tonal-even .home-service-card,
-.home-tonal-odd .catalog-card,
-.home-tonal-even .catalog-card,
-.home-tonal-odd .products-search-bar-card,
-.home-tonal-even .products-search-bar-card,
-.home-tonal-odd .category-item-card,
-.home-tonal-even .category-item-card,
-.home-tonal-odd .sidebar-glass-panel,
-.home-tonal-even .sidebar-glass-panel,
-.home-tonal-odd .catalog-header-bar,
-.home-tonal-even .catalog-header-bar {
-  background: #FFF9EF !important;
-  border: 1px solid #D8C9A8 !important;
-  box-shadow: 0 10px 28px rgba(18, 60, 50, 0.07), 0 2px 6px rgba(18, 60, 50, 0.04) !important;
-  color: #18352D !important;
-}
-
-/* Card titles and text */
-.home-tonal-odd .home-category-title,
-.home-tonal-even .home-category-title,
-.home-tonal-odd .home-compact-title h3,
-.home-tonal-even .home-compact-title h3,
-.home-tonal-odd .home-service-title,
-.home-tonal-even .home-service-title,
-.home-tonal-odd .home-inst-benefit-title,
-.home-tonal-even .home-inst-benefit-title,
-.home-tonal-odd .category-card-name,
-.home-tonal-even .category-card-name,
-.home-tonal-odd .catalog-card-title h3,
-.home-tonal-even .catalog-card-title h3 {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .home-service-desc,
-.home-tonal-even .home-service-desc,
-.home-tonal-odd .home-inst-benefit-sub,
-.home-tonal-even .home-inst-benefit-sub,
-.home-tonal-odd .category-card-count,
-.home-tonal-even .category-card-count,
-.home-tonal-odd .catalog-card-meta,
-.home-tonal-even .catalog-card-meta,
-.home-tonal-odd .catalog-card-desc,
-.home-tonal-even .catalog-card-desc {
-  color: #64756D !important;
-}
-
-/* Accents & Links */
-.home-tonal-odd .home-category-link,
-.home-tonal-even .home-category-link,
-.home-tonal-odd .home-featured-view-all,
-.home-tonal-even .home-featured-view-all,
-.home-tonal-odd .home-services-view-all,
-.home-tonal-even .home-services-view-all,
-.home-tonal-odd .home-gallery-view-all,
-.home-tonal-even .home-gallery-view-all,
-.home-tonal-odd .category-view-all-link,
-.home-tonal-even .category-view-all-link {
-  color: #C9A248 !important;
-}
-
-.home-tonal-odd .home-compact-price,
-.home-tonal-even .home-compact-price,
-.home-tonal-odd .catalog-price,
-.home-tonal-even .catalog-price {
-  color: #123C32 !important;
-}
-
-/* Tabs & Filter Pills */
-.home-tonal-odd .home-featured-tab,
-.home-tonal-even .home-featured-tab,
-.home-tonal-odd .home-filter-pill,
-.home-tonal-even .home-filter-pill {
-  background: #FFF9EF !important;
-  border: 1px solid #D8C9A8 !important;
-  color: #18352D !important;
-}
-
-.home-tonal-odd .home-featured-tab.active,
-.home-tonal-even .home-featured-tab.active,
-.home-tonal-odd .home-filter-pill.active,
-.home-tonal-even .home-filter-pill.active {
-  background: #123C32 !important;
-  color: #FFF9EF !important;
-  border-color: #123C32 !important;
-}
-
-/* Media backgrounds in cards */
-.home-tonal-odd .home-compact-media-wrap,
-.home-tonal-even .home-compact-media-wrap,
-.home-tonal-odd .catalog-card-media,
-.home-tonal-even .catalog-card-media {
-  background: #F5F0E5 !important;
-}
-
-/* Step Circles */
-.home-tonal-odd .home-how-icon-circle,
-.home-tonal-even .home-how-icon-circle {
-  background: #FFF9EF !important;
-  border: 1.5px solid #D8C9A8 !important;
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .home-how-num,
-.home-tonal-even .home-how-num {
-  color: #C9A248 !important;
-}
-
-.home-tonal-odd .home-how-line,
-.home-tonal-even .home-how-line {
-  background: #D8C9A8 !important;
-}
-
-/* ==========================================================================
-   Page-Specific Cards, Forms & Panels in Alternating Sections
-   ========================================================================== */
-
 /* Page root backgrounds transparent to let alternating colors show */
 .install-page,
 .about-page,
@@ -636,462 +483,500 @@
   background-color: transparent !important;
 }
 
-/* Installations & Service Page Components in Alternating Sections */
 .home-tonal-odd .install-section,
-.home-tonal-even .install-section {
-  background: transparent !important;
-}
-
-.home-tonal-odd .install-header h2,
-.home-tonal-even .install-header h2,
-.home-tonal-odd .install-header-title,
-.home-tonal-even .install-header-title {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .install-header p,
-.home-tonal-even .install-header p,
-.home-tonal-odd .install-header-desc,
-.home-tonal-even .install-header-desc {
-  color: #647168 !important;
-}
-
-.home-tonal-odd .install-sol-card,
-.home-tonal-even .install-sol-card,
-.home-tonal-odd .install-cat-card,
-.home-tonal-even .install-cat-card,
-.home-tonal-odd .install-designed-card,
-.home-tonal-even .install-designed-card,
-.home-tonal-odd .install-pillar-item,
-.home-tonal-even .install-pillar-item,
-.home-tonal-odd .install-project-card,
-.home-tonal-even .install-project-card,
-.home-tonal-odd .install-pillar-card,
-.home-tonal-even .install-pillar-card,
-.home-tonal-odd .install-faq-item,
-.home-tonal-even .install-faq-item,
-.home-tonal-odd .install-cta-form-card,
-.home-tonal-even .install-cta-form-card,
-.home-tonal-odd .install-booking-card,
-.home-tonal-even .install-booking-card,
-.home-tonal-odd .install-how-it-works-strip,
-.home-tonal-even .install-how-it-works-strip,
-.home-tonal-odd .install-step-card,
-.home-tonal-even .install-step-card {
-  background: #FFF9EF !important;
-  border: 1px solid #D8C9A8 !important;
-  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.06), 0 2px 6px rgba(18, 60, 50, 0.04) !important;
-  color: #18352D !important;
-}
-
-.home-tonal-odd .install-sol-body h3,
-.home-tonal-even .install-sol-body h3,
-.home-tonal-odd .install-project-body h3,
-.home-tonal-even .install-project-body h3,
-.home-tonal-odd .install-pillar-card h3,
-.home-tonal-even .install-pillar-card h3,
-.home-tonal-odd .install-designed-card h3,
-.home-tonal-even .install-designed-card h3,
-.home-tonal-odd .install-cat-info b,
-.home-tonal-even .install-cat-info b,
-.home-tonal-odd .install-pillar-item b,
-.home-tonal-even .install-pillar-item b,
-.home-tonal-odd .install-faq-q,
-.home-tonal-even .install-faq-q,
-.home-tonal-odd .install-faq-question,
-.home-tonal-even .install-faq-question,
-.home-tonal-odd .install-faq-title,
-.home-tonal-even .install-faq-title,
-.home-tonal-odd .install-how-header h3,
-.home-tonal-even .install-how-header h3,
-.home-tonal-odd .install-step-meta b,
-.home-tonal-even .install-step-meta b {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .install-sol-body p,
-.home-tonal-even .install-sol-body p,
-.home-tonal-odd .install-project-body p,
-.home-tonal-even .install-project-body p,
-.home-tonal-odd .install-pillar-card p,
-.home-tonal-even .install-pillar-card p,
-.home-tonal-odd .install-designed-card p,
-.home-tonal-even .install-designed-card p,
-.home-tonal-odd .install-cat-info small,
-.home-tonal-even .install-cat-info small,
-.home-tonal-odd .install-pillar-item small,
-.home-tonal-even .install-pillar-item small,
-.home-tonal-odd .install-faq-a,
-.home-tonal-even .install-faq-a,
-.home-tonal-odd .install-faq-answer,
-.home-tonal-even .install-faq-answer,
-.home-tonal-odd .install-faq-desc,
-.home-tonal-even .install-faq-desc,
-.home-tonal-odd .install-how-header p,
-.home-tonal-even .install-how-header p,
-.home-tonal-odd .install-step-meta p,
-.home-tonal-even .install-step-meta p {
-  color: #647168 !important;
-}
-
-.home-tonal-odd .install-sol-icon,
-.home-tonal-even .install-sol-icon {
-  background: #E5DAC6 !important;
-  border: 1px solid #D8C9A8 !important;
-  color: #C9A248 !important;
-}
-
-.home-tonal-odd .install-sol-media,
-.home-tonal-even .install-sol-media,
-.home-tonal-odd .install-project-media,
-.home-tonal-even .install-project-media {
-  background: #F5F0E5 !important;
-}
-
-/* About Page Components in Alternating Sections */
+.home-tonal-even .install-section,
 .home-tonal-odd .about-section,
-.home-tonal-even .about-section {
-  background: transparent !important;
-}
-
-.home-tonal-odd .about-header h2,
-.home-tonal-even .about-header h2,
-.home-tonal-odd .about-section-heading h2,
-.home-tonal-even .about-section-heading h2,
-.home-tonal-odd .about-who-text h2,
-.home-tonal-even .about-who-text h2 {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .about-header p,
-.home-tonal-even .about-header p,
-.home-tonal-odd .about-section-heading p,
-.home-tonal-even .about-section-heading p,
-.home-tonal-odd .about-who-text p,
-.home-tonal-even .about-who-text p {
-  color: #647168 !important;
-}
-
-.home-tonal-odd .about-who-card,
-.home-tonal-even .about-who-card,
-.home-tonal-odd .about-who-item,
-.home-tonal-even .about-who-item,
-.home-tonal-odd .about-offer-card,
-.home-tonal-even .about-offer-card,
-.home-tonal-odd .about-story-card,
-.home-tonal-even .about-story-card,
-.home-tonal-odd .about-stat-card,
-.home-tonal-even .about-stat-card,
-.home-tonal-odd .about-pillar-card,
-.home-tonal-even .about-pillar-card,
-.home-tonal-odd .about-approach-card,
-.home-tonal-even .about-approach-card,
-.home-tonal-odd .about-step-card,
-.home-tonal-even .about-step-card,
-.home-tonal-odd .about-showcase-card,
-.home-tonal-even .about-showcase-card {
-  background: #FFF9EF !important;
-  border: 1px solid #D8C9A8 !important;
-  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.06), 0 2px 6px rgba(18, 60, 50, 0.04) !important;
-  color: #18352D !important;
-}
-
-.home-tonal-odd .about-story-card h3,
-.home-tonal-even .about-story-card h3,
-.home-tonal-odd .about-pillar-card h3,
-.home-tonal-even .about-pillar-card h3,
-.home-tonal-odd .about-step-card h3,
-.home-tonal-even .about-step-card h3,
-.home-tonal-odd .about-offer-card h3,
-.home-tonal-even .about-offer-card h3,
-.home-tonal-odd .about-approach-card h3,
-.home-tonal-even .about-approach-card h3,
-.home-tonal-odd .about-who-item b,
-.home-tonal-even .about-who-item b {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .about-story-card p,
-.home-tonal-even .about-story-card p,
-.home-tonal-odd .about-pillar-card p,
-.home-tonal-even .about-pillar-card p,
-.home-tonal-odd .about-step-card p,
-.home-tonal-even .about-step-card p,
-.home-tonal-odd .about-offer-card p,
-.home-tonal-even .about-offer-card p,
-.home-tonal-odd .about-approach-card p,
-.home-tonal-even .about-approach-card p,
-.home-tonal-odd .about-who-item small,
-.home-tonal-even .about-who-item small {
-  color: #647168 !important;
-}
-
-.home-tonal-odd .about-step-num,
-.home-tonal-even .about-step-num {
-  color: #C9A248 !important;
-}
-
-/* Contact Page Components in Alternating Sections */
+.home-tonal-even .about-section,
 .home-tonal-odd .contact-section,
 .home-tonal-even .contact-section {
   background: transparent !important;
 }
 
+/* --------------------------------------------------------------------------
+   DARK EMERALD SECTIONS (Section 1, 3, 5, ...): Typography & Elements
+   -------------------------------------------------------------------------- */
+.home-tonal-odd h1,
+.home-tonal-odd h2:not(.home-cta-title):not(.about-cta-title),
+.home-tonal-odd h3:not(.home-cta-card *):not(.about-cta-banner *),
+.home-tonal-odd h4,
+.home-tonal-odd .section-title h2,
+.home-tonal-odd .home-installation-heading,
+.home-tonal-odd .home-how-heading,
+.home-tonal-odd .gallery-intro-heading,
+.home-tonal-odd .catalog-gallery-heading h2,
+.home-tonal-odd .category-section-title,
+.home-tonal-odd .install-header h2,
+.home-tonal-odd .install-header-title,
+.home-tonal-odd .about-header h2,
+.home-tonal-odd .about-section-heading h2,
+.home-tonal-odd .about-who-text h2,
 .home-tonal-odd .contact-section-header h2,
-.home-tonal-even .contact-section-header h2,
 .home-tonal-odd .contact-section-title,
-.home-tonal-even .contact-section-title,
 .home-tonal-odd .contact-section-heading,
-.home-tonal-even .contact-section-heading {
-  color: #123C32 !important;
+.home-tonal-odd .contact-form-title {
+  color: #FFFFFF !important;
 }
 
+.home-tonal-odd p:not(.home-cta-desc):not(.about-cta-desc),
+.home-tonal-odd .home-installation-desc,
+.home-tonal-odd .home-how-subtitle,
+.home-tonal-odd .section-title p,
+.home-tonal-odd .install-header p,
+.home-tonal-odd .install-header-desc,
+.home-tonal-odd .about-header p,
+.home-tonal-odd .about-section-heading p,
+.home-tonal-odd .about-who-text p,
 .home-tonal-odd .contact-section-header p,
-.home-tonal-even .contact-section-header p,
 .home-tonal-odd .contact-section-desc,
-.home-tonal-even .contact-section-desc,
 .home-tonal-odd .contact-section-sub,
-.home-tonal-even .contact-section-sub {
-  color: #647168 !important;
+.home-tonal-odd .contact-form-subtitle {
+  color: #C5CEC9 !important;
 }
 
+.home-tonal-odd .eyebrow,
+.home-tonal-odd small,
+.home-tonal-odd .section-title small,
+.home-tonal-odd .gallery-intro-eyebrow,
+.home-tonal-odd .contact-form-header-badge {
+  color: #C9A248 !important;
+  font-weight: 700;
+}
+
+/* Cards & Panels inside Dark Emerald Sections (Section 1, 3, 5, ...) */
+.home-tonal-odd .home-category-card,
+.home-tonal-odd .home-inst-benefit-item,
+.home-tonal-odd .products-search-bar-card,
+.home-tonal-odd .category-item-card,
+.home-tonal-odd .catalog-gallery-item,
+.home-tonal-odd .install-sol-card,
+.home-tonal-odd .install-cat-card,
+.home-tonal-odd .install-designed-card,
+.home-tonal-odd .install-pillar-item,
+.home-tonal-odd .install-pillar-card,
+.home-tonal-odd .install-cta-form-card,
+.home-tonal-odd .install-booking-card,
+.home-tonal-odd .about-who-card,
+.home-tonal-odd .about-who-item,
+.home-tonal-odd .about-approach-card,
+.home-tonal-odd .about-step-card,
 .home-tonal-odd .contact-glass-card,
-.home-tonal-even .contact-glass-card,
 .home-tonal-odd .contact-channels-card,
-.home-tonal-even .contact-channels-card,
 .home-tonal-odd .contact-meta-card,
-.home-tonal-even .contact-meta-card,
 .home-tonal-odd .contact-form-panel,
-.home-tonal-even .contact-form-panel,
-.home-tonal-odd .contact-action-card,
-.home-tonal-even .contact-action-card,
-.home-tonal-odd .action-card-inner,
-.home-tonal-even .action-card-inner,
-.home-tonal-odd .contact-faq-card,
-.home-tonal-even .contact-faq-card,
 .home-tonal-odd .contact-faq-item,
-.home-tonal-even .contact-faq-item,
-.home-tonal-odd .contact-closing-card,
-.home-tonal-even .contact-closing-card {
-  background: #FFF9EF !important;
-  border: 1px solid #D8C9A8 !important;
-  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.06), 0 2px 6px rgba(18, 60, 50, 0.04) !important;
-  color: #18352D !important;
+.home-tonal-odd .contact-faq-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.40) !important;
+  color: #FFFFFF !important;
 }
 
+/* Card Titles & Text inside Dark Emerald Sections */
+.home-tonal-odd .home-category-title,
+.home-tonal-odd .home-inst-benefit-title,
+.home-tonal-odd .category-card-name,
+.home-tonal-odd .gallery-card-title,
+.home-tonal-odd .install-sol-body h3,
+.home-tonal-odd .install-pillar-card h3,
+.home-tonal-odd .install-designed-card h3,
+.home-tonal-odd .install-cat-info b,
+.home-tonal-odd .install-pillar-item b,
+.home-tonal-odd .about-pillar-card h3,
+.home-tonal-odd .about-step-card h3,
+.home-tonal-odd .about-approach-card h3,
+.home-tonal-odd .about-who-item b,
 .home-tonal-odd .contact-card-title,
-.home-tonal-even .contact-card-title,
-.home-tonal-odd .contact-form-title,
-.home-tonal-even .contact-form-title,
-.home-tonal-odd .contact-action-title,
-.home-tonal-even .contact-action-title,
-.home-tonal-odd .action-card-title,
-.home-tonal-even .action-card-title,
 .home-tonal-odd .contact-faq-trigger,
-.home-tonal-even .contact-faq-trigger,
 .home-tonal-odd .faq-question-text,
-.home-tonal-even .faq-question-text,
-.home-tonal-odd .contact-faq-question,
-.home-tonal-even .contact-faq-question,
-.home-tonal-odd .contact-closing-title,
-.home-tonal-even .contact-closing-title {
-  color: #123C32 !important;
+.home-tonal-odd .contact-faq-question {
+  color: #FFFFFF !important;
 }
 
-.home-tonal-odd .contact-form-subtitle,
-.home-tonal-even .contact-form-subtitle,
-.home-tonal-odd .contact-action-desc,
-.home-tonal-even .contact-action-desc,
-.home-tonal-odd .action-card-desc,
-.home-tonal-even .action-card-desc,
-.home-tonal-odd .contact-faq-answer,
-.home-tonal-even .contact-faq-answer,
-.home-tonal-odd .faq-answer-inner p,
-.home-tonal-even .faq-answer-inner p,
-.home-tonal-odd .contact-closing-desc,
-.home-tonal-even .contact-closing-desc,
+.home-tonal-odd .home-inst-benefit-sub,
+.home-tonal-odd .category-card-count,
+.home-tonal-odd .install-sol-body p,
+.home-tonal-odd .install-pillar-card p,
+.home-tonal-odd .install-designed-card p,
+.home-tonal-odd .install-cat-info small,
+.home-tonal-odd .install-pillar-item small,
+.home-tonal-odd .about-pillar-card p,
+.home-tonal-odd .about-step-card p,
+.home-tonal-odd .about-approach-card p,
+.home-tonal-odd .about-who-item small,
 .home-tonal-odd .contact-channel-label,
-.home-tonal-even .contact-channel-label {
-  color: #647168 !important;
+.home-tonal-odd .contact-faq-answer,
+.home-tonal-odd .faq-answer-inner p {
+  color: #C5CEC9 !important;
 }
 
-.home-tonal-odd .contact-channel-val,
-.home-tonal-even .contact-channel-val {
-  color: #18352D !important;
-}
-
-.home-tonal-odd .contact-channel-val:hover,
-.home-tonal-even .contact-channel-val:hover {
+/* Gold Accents & Controls in Dark Emerald */
+.home-tonal-odd .home-category-link,
+.home-tonal-odd .category-view-all-link,
+.home-tonal-odd .gallery-card-category,
+.home-tonal-odd .home-inst-benefit-icon,
+.home-tonal-odd .category-gold-icon,
+.home-tonal-odd .category-card-arrow,
+.home-tonal-odd .about-step-num,
+.home-tonal-odd .contact-channel-icon-wrap,
+.home-tonal-odd .contact-faq-trigger svg,
+.home-tonal-odd .gallery-intro-count span {
   color: #C9A248 !important;
 }
 
-.home-tonal-odd .contact-channel-icon-wrap,
-.home-tonal-even .contact-channel-icon-wrap,
-.home-tonal-odd .contact-action-icon-box,
-.home-tonal-even .contact-action-icon-box {
-  background: #E5DAC6 !important;
-  border: 1px solid #D8C9A8 !important;
+.home-tonal-odd .category-item-card.active {
+  background: rgba(18, 60, 50, 0.75) !important;
+  border-color: #C9A248 !important;
+}
+
+.home-tonal-odd .gallery-filter-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
+}
+
+.home-tonal-odd .gallery-filter-btn.active {
+  background: #C9A248 !important;
+  color: #041711 !important;
+  border-color: #C9A248 !important;
+  font-weight: 700 !important;
+}
+
+.home-tonal-odd .install-sol-pill,
+.home-tonal-odd .install-tab-btn,
+.home-tonal-odd .install-type-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
+}
+
+.home-tonal-odd .install-sol-pill.active,
+.home-tonal-odd .install-tab-btn.active,
+.home-tonal-odd .install-type-btn.active {
+  background: #C9A248 !important;
+  color: #041711 !important;
+  border-color: #C9A248 !important;
+  font-weight: 700 !important;
+}
+
+/* Home Section 5 (How It Works) */
+.home-tonal-odd .home-how-icon-circle {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1.5px solid rgba(201, 162, 72, 0.4) !important;
+  color: #E2C46B !important;
+}
+
+.home-tonal-odd .home-how-num {
+  color: #C9A248 !important;
+}
+
+.home-tonal-odd .home-how-title {
+  color: #FFFFFF !important;
+}
+
+.home-tonal-odd .home-how-desc {
+  color: #C5CEC9 !important;
+}
+
+.home-tonal-odd .home-how-line {
+  background: rgba(201, 162, 72, 0.35) !important;
+}
+
+.home-tonal-odd .home-how-arrow {
+  color: #C9A248 !important;
+}
+
+/* Contact Details Channel Rows in Dark Emerald */
+.home-tonal-odd .contact-channel-row {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+.home-tonal-odd .contact-channel-val {
+  color: #FFFFFF !important;
+}
+
+.home-tonal-odd .contact-channel-val:hover {
   color: #C9A248 !important;
 }
 
 .home-tonal-odd .contact-copy-btn,
-.home-tonal-even .contact-copy-btn {
-  background: #E5DAC6 !important;
-  border: 1px solid #D8C9A8 !important;
-  color: #123C32 !important;
+.home-tonal-odd .contact-sub-badge {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
 }
 
-.home-tonal-odd .contact-sub-badge,
-.home-tonal-even .contact-sub-badge {
-  background: #E5DAC6 !important;
-  border: 1px solid #D8C9A8 !important;
-  color: #123C32 !important;
+.home-tonal-odd .contact-hours-schedule b {
+  color: #FFFFFF !important;
 }
 
-.home-tonal-odd .contact-hours-schedule,
-.home-tonal-even .contact-hours-schedule {
-  color: #18352D !important;
+.home-tonal-odd .contact-hours-sub small {
+  color: #C5CEC9 !important;
 }
 
-.home-tonal-odd .contact-hours-schedule b,
-.home-tonal-even .contact-hours-schedule b {
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .contact-hours-sub small,
-.home-tonal-even .contact-hours-sub small {
-  color: #647168 !important;
-}
-
-.home-tonal-odd .contact-channel-row,
-.home-tonal-even .contact-channel-row {
-  background: #F5F0E5 !important;
-  border: 1px solid #D8C9A8 !important;
-}
-
-.home-tonal-odd .action-card-link-btn,
-.home-tonal-even .action-card-link-btn {
-  background: #E5DAC6 !important;
-  border: 1px solid #D8C9A8 !important;
-  color: #123C32 !important;
-}
-
-.home-tonal-odd .action-card-link-btn:hover,
-.home-tonal-even .action-card-link-btn:hover {
-  background: #C9A248 !important;
-  color: #041711 !important;
-  border-color: #C9A248 !important;
-}
-
-.home-tonal-odd .action-card-icon-ring,
-.home-tonal-even .action-card-icon-ring {
-  background: rgba(201, 162, 72, 0.16) !important;
-  border: 1px solid rgba(201, 162, 72, 0.4) !important;
-  color: #C9A248 !important;
-}
-
-/* Light Section Form Controls (Installations & Contact Forms) */
+/* Form Inputs in Dark Emerald Sections: High-contrast readable input fields */
 .home-tonal-odd input:not([type="checkbox"]):not([type="radio"]),
-.home-tonal-even input:not([type="checkbox"]):not([type="radio"]),
 .home-tonal-odd select,
-.home-tonal-even select,
 .home-tonal-odd textarea,
-.home-tonal-even textarea,
 .home-tonal-odd .contact-input-field,
-.home-tonal-even .contact-input-field,
 .home-tonal-odd .contact-select-field,
-.home-tonal-even .contact-select-field,
-.home-tonal-odd .contact-textarea-field,
-.home-tonal-even .contact-textarea-field {
+.home-tonal-odd .contact-textarea-field {
   background: #FFFFFF !important;
   border: 1px solid #D8C9A8 !important;
   color: #18352D !important;
 }
 
 .home-tonal-odd input::placeholder,
-.home-tonal-even input::placeholder,
-.home-tonal-odd textarea::placeholder,
-.home-tonal-even textarea::placeholder {
+.home-tonal-odd textarea::placeholder {
   color: #64756D !important;
 }
 
 .home-tonal-odd input:focus,
-.home-tonal-even input:focus,
 .home-tonal-odd select:focus,
-.home-tonal-even select:focus,
-.home-tonal-odd textarea:focus,
-.home-tonal-even textarea:focus {
+.home-tonal-odd textarea:focus {
   border-color: #C9A248 !important;
-  box-shadow: 0 0 0 3px rgba(201, 162, 72, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(201, 162, 72, 0.25) !important;
   outline: none !important;
 }
 
-/* Products Page Sidebar & Header Light Treatment */
-.home-tonal-even .sidebar-glass-panel,
-.home-tonal-odd .sidebar-glass-panel {
-  background: #FFF9EF !important;
-  border: 1px solid #D8C9A8 !important;
+.home-tonal-odd .products-search-bar-card input.search-input-field {
+  background: transparent !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
 }
 
-.home-tonal-even .sidebar-title,
-.home-tonal-odd .sidebar-title,
-.home-tonal-even .sidebar-group-title,
-.home-tonal-odd .sidebar-group-title,
-.home-tonal-even .sidebar-cat-btn,
-.home-tonal-odd .sidebar-cat-btn {
+.home-tonal-odd .products-search-bar-card input.search-input-field::placeholder {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.home-tonal-odd .sort-by-label {
+  color: #C5CEC9 !important;
+}
+
+.home-tonal-odd .sort-select-control {
+  background: #0A261D !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+}
+
+/* --------------------------------------------------------------------------
+   WARM CREAM SECTIONS (Section 2, 4, 6, ...): Typography & Elements
+   -------------------------------------------------------------------------- */
+.home-tonal-even h1,
+.home-tonal-even h2:not(.home-cta-title):not(.about-cta-title),
+.home-tonal-even h3:not(.home-cta-card *):not(.about-cta-banner *):not(.contact-closing-card *),
+.home-tonal-even h4,
+.home-tonal-even .section-title h2,
+.home-tonal-even .home-featured-heading,
+.home-tonal-even .home-services-heading,
+.home-tonal-even .home-gallery-heading,
+.home-tonal-even .catalog-gallery-heading h2,
+.home-tonal-even .install-header h2,
+.home-tonal-even .install-header-title,
+.home-tonal-even .about-header h2,
+.home-tonal-even .about-section-heading h2,
+.home-tonal-even .contact-section-header h2,
+.home-tonal-even .contact-section-title,
+.home-tonal-even .contact-section-heading {
+  color: #123C32 !important; /* Deep Forest Green */
+}
+
+.home-tonal-even p:not(.home-cta-desc):not(.about-cta-desc):not(.contact-closing-card *),
+.home-tonal-even .home-featured-subtitle,
+.home-tonal-even .home-services-subtitle,
+.home-tonal-even .home-gallery-subtitle,
+.home-tonal-even .section-title p,
+.home-tonal-even .install-header p,
+.home-tonal-even .install-header-desc,
+.home-tonal-even .about-header p,
+.home-tonal-even .about-section-heading p,
+.home-tonal-even .contact-section-header p,
+.home-tonal-even .contact-section-desc,
+.home-tonal-even .contact-section-sub {
+  color: #647168 !important;
+}
+
+.home-tonal-even .eyebrow,
+.home-tonal-even small,
+.home-tonal-even .section-title small {
+  color: #C9A248 !important;
+  font-weight: 700;
+}
+
+/* Cards within Warm Cream Sections: Cream White #FFF9EF + Soft Border #D8C9A8 */
+.home-tonal-even .home-compact-card,
+.home-tonal-even .home-service-card,
+.home-tonal-even .catalog-card,
+.home-tonal-even .sidebar-glass-panel,
+.home-tonal-even .catalog-header-bar,
+.home-tonal-even .install-project-card,
+.home-tonal-even .install-faq-item,
+.home-tonal-even .about-offer-card,
+.home-tonal-even .about-showcase-card,
+.home-tonal-even .contact-action-card,
+.home-tonal-even .action-card-inner {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.06), 0 2px 6px rgba(18, 60, 50, 0.04) !important;
+  color: #18352D !important;
+}
+
+/* Card titles and text inside Warm Cream */
+.home-tonal-even .home-compact-title h3,
+.home-tonal-even .home-service-title,
+.home-tonal-even .catalog-card-title h3,
+.home-tonal-even .install-project-body h3,
+.home-tonal-even .install-faq-q,
+.home-tonal-even .about-offer-card h3,
+.home-tonal-even .contact-action-title,
+.home-tonal-even .action-card-title {
+  color: #123C32 !important; /* Deep Forest Green */
+}
+
+.home-tonal-even .home-service-desc,
+.home-tonal-even .catalog-card-meta,
+.home-tonal-even .catalog-card-desc,
+.home-tonal-even .install-project-body p,
+.home-tonal-even .install-faq-a,
+.home-tonal-even .install-faq-desc,
+.home-tonal-even .about-offer-card p,
+.home-tonal-even .contact-action-desc,
+.home-tonal-even .action-card-desc {
+  color: #647168 !important;
+}
+
+.home-tonal-even .home-featured-view-all,
+.home-tonal-even .home-services-view-all,
+.home-tonal-even .home-gallery-view-all,
+.home-tonal-even .install-faq-q svg,
+.home-tonal-even .about-offer-card svg,
+.home-tonal-even .action-card-icon-ring {
+  color: #C9A248 !important;
+}
+
+.home-tonal-even .home-compact-price,
+.home-tonal-even .catalog-price {
   color: #123C32 !important;
 }
 
-.home-tonal-even .sidebar-count,
-.home-tonal-odd .sidebar-count,
-.home-tonal-even .sidebar-subcat-item,
-.home-tonal-odd .sidebar-subcat-item {
-  color: #64756D !important;
-}
-
-.home-tonal-even .catalog-header-bar,
-.home-tonal-odd .catalog-header-bar {
+/* Tabs & Filter Pills inside Warm Cream */
+.home-tonal-even .home-featured-tab,
+.home-tonal-even .home-filter-pill {
   background: #FFF9EF !important;
   border: 1px solid #D8C9A8 !important;
   color: #18352D !important;
 }
 
-.home-tonal-even .breadcrumb-link,
-.home-tonal-odd .breadcrumb-link {
-  color: #64756D !important;
+.home-tonal-even .home-featured-tab.active,
+.home-tonal-even .home-filter-pill.active {
+  background: #123C32 !important;
+  color: #FFF9EF !important;
+  border-color: #123C32 !important;
 }
 
-.home-tonal-even .breadcrumb-current,
-.home-tonal-odd .breadcrumb-current {
+/* Media backgrounds in cards */
+.home-tonal-even .home-compact-media-wrap,
+.home-tonal-even .catalog-card-media,
+.home-tonal-even .install-project-media {
+  background: #F5F0E5 !important;
+}
+
+/* Products Page Sidebar & Header: Deep Forest Green #123C32 */
+.home-tonal-even .sidebar-title,
+.home-tonal-even .sidebar-header h2,
+.home-tonal-even .sidebar-header h3,
+.home-tonal-even .catalog-sidebar-title,
+.home-tonal-even .sidebar-group-title,
+.home-tonal-even .sidebar-cat-btn,
+.home-tonal-even .tree-level-1-name,
+.home-tonal-even .tree-level-2-name,
+.home-tonal-even .tree-level-3-name,
+.home-tonal-even .filter-group-title,
+.home-tonal-even .filter-section-title,
+.home-tonal-even .filter-title,
+.home-tonal-even .price-filter-title,
+.home-tonal-even .rating-filter-title {
   color: #123C32 !important;
   font-weight: 700 !important;
 }
 
-.home-tonal-even .catalog-sort select,
-.home-tonal-odd .catalog-sort select {
+.home-tonal-even .tree-level-1-icon {
+  color: #C9A248 !important;
+}
+
+.home-tonal-even .sidebar-count,
+.home-tonal-even .sidebar-subcat-item,
+.home-tonal-even .tree-count-badge {
+  color: #647168 !important;
+}
+
+.home-tonal-even .catalog-header-bar {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  color: #18352D !important;
+}
+
+.home-tonal-even .breadcrumb-link {
+  color: #647168 !important;
+}
+
+.home-tonal-even .breadcrumb-current {
+  color: #123C32 !important;
+  font-weight: 700 !important;
+}
+
+.home-tonal-even .catalog-sort select {
   background: #FFFFFF !important;
   border: 1px solid #D8C9A8 !important;
   color: #18352D !important;
 }
 
-.home-tonal-even .catalog-sort select option,
-.home-tonal-odd .catalog-sort select option {
+.home-tonal-even .catalog-sort select option {
   background: #FFF9EF !important;
   color: #18352D !important;
 }
 
-.home-tonal-even .view-mode-btn,
-.home-tonal-odd .view-mode-btn {
+.home-tonal-even .view-mode-btn {
   background: #FFF9EF !important;
   border: 1px solid #D8C9A8 !important;
   color: #123C32 !important;
 }
 
-.home-tonal-even .view-mode-btn.active,
-.home-tonal-odd .view-mode-btn.active {
+.home-tonal-even .view-mode-btn.active {
   background: #123C32 !important;
   color: #FFF9EF !important;
   border-color: #123C32 !important;
+}
+
+/* Action Cards Link Button in Contact Section 2 */
+.home-tonal-even .action-card-link-btn {
+  background: #E5DAC6 !important;
+  border: 1px solid #D8C9A8 !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-even .action-card-link-btn:hover {
+  background: #C9A248 !important;
+  color: #041711 !important;
+  border-color: #C9A248 !important;
+}
+
+/* Contact Closing Card inside Warm Cream Section: Dark Emerald Accent */
+.home-tonal-even .contact-closing-card {
+  background: #08281D !important;
+  border: 1px solid rgba(201, 162, 72, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+.home-tonal-even .contact-closing-title {
+  color: #FFFFFF !important;
+}
+
+.home-tonal-even .contact-closing-desc {
+  color: #C5CEC9 !important;
 }
 
 /* Floating stack positioning & Ask HangerHome pill fix across all public pages */

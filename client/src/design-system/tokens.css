@@ -11,11 +11,14 @@
 }
 
 :root {
-  /* --- Master HangerHome Alternating Palette (Requirement 1) --- */
-  --hh-warm-ivory: #F5F0E5;
-  --hh-warm-sand: #E5DAC6;
-  --hh-soft-sage: #E5DAC6; /* Backward-compatibility alias mapped to Warm Sand */
+  /* --- Master HangerHome Alternating Palette (Consistent Section System) --- */
+  --hh-dark-emerald: #061C14;
+  --hh-warm-cream: #F5F0E5;
+  --hh-warm-ivory: #F5F0E5; /* alias */
+  --hh-warm-sand: #F5F0E5; /* alias mapped to Warm Cream */
+  --hh-soft-sage: #F5F0E5; /* alias */
   --hh-cream-white: #FFF9EF;
+  --hh-deep-forest-green: #123C32;
   --hh-deep-emerald: #123C32;
   --hh-medium-emerald: #1F5A48;
   --hh-footer-dark: #041711;

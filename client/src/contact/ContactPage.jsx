@@ -53,7 +53,7 @@ export function ContactPage({ cart = [], total = 0, remove, updateQty, chat, set
         email={email}
       />
 
-      {/* Section 1 (Odd): Two-Column Block (Sticky Details + Form) (Warm Ivory #F5F0E5) */}
+      {/* Section 1 (Odd): Two-Column Block (Sticky Details + Form) (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <div className="container contact-main-container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
           <div className="contact-two-column-split">
@@ -78,7 +78,7 @@ export function ContactPage({ cart = [], total = 0, remove, updateQty, chat, set
         </div>
       </div>
 
-      {/* Section 2 (Even): Three Action Cards (Warm Sand #E5DAC6) */}
+      {/* Section 2 (Even): Three Action Cards (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <div className="container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
           <ContactActionCards
@@ -88,14 +88,14 @@ export function ContactPage({ cart = [], total = 0, remove, updateQty, chat, set
         </div>
       </div>
 
-      {/* Section 3 (Odd): Frequently Asked Questions (Warm Ivory #F5F0E5) */}
+      {/* Section 3 (Odd): Frequently Asked Questions (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <div className="container" style={{ paddingTop: '50px', paddingBottom: '60px' }}>
           <ContactFAQ />
         </div>
       </div>
 
-      {/* Section 4 (Even): Closing CTA Band (Warm Sand #E5DAC6) */}
+      {/* Section 4 (Even): Closing CTA Band (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <div className="container" style={{ paddingTop: '50px', paddingBottom: '80px' }}>
           <ContactClosingCTA

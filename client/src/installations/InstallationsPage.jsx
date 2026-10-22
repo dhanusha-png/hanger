@@ -31,27 +31,27 @@ export function InstallationsPage({ cart = [], total = 0, remove, updateQty, cha
       {/* 1. Cinematic Hero with New Dual-Technician Scene (unchanged) */}
       <InstallationsHero onSelectType={setSelectedType} />
 
-      {/* Section 1 (Odd): Solutions with tabs (Warm Ivory #F5F0E5) */}
+      {/* Section 1 (Odd): Solutions with tabs (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <InstallationSolutions onSelectType={setSelectedType} />
       </div>
 
-      {/* Section 2 (Even): Real Installations Projects Showcase (Warm Sand #E5DAC6) */}
+      {/* Section 2 (Even): Real Installations Projects Showcase (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <InstallationProjects />
       </div>
 
-      {/* Section 3 (Odd): Demonstration Video & Design Pillars (Warm Ivory #F5F0E5) */}
+      {/* Section 3 (Odd): Demonstration Video & Design Pillars (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <InstallationVideoAction />
       </div>
 
-      {/* Section 4 (Even): Comprehensive FAQs (Warm Sand #E5DAC6) */}
+      {/* Section 4 (Even): Common Questions with 4-Item Scrollable Box (Warm Cream #F5F0E5) */}
       <div className="home-tonal-even">
         <InstallationFAQ />
       </div>
 
-      {/* Section 5 (Odd): Closing CTA Band with Segmented Toggle & Quick Booking Form (Warm Ivory #F5F0E5) */}
+      {/* Section 5 (Odd): Closing CTA Band with Segmented Toggle & Quick Booking Form (Dark Emerald #061C14) */}
       <div className="home-tonal-odd">
         <InstallationCTA initialType={selectedType} />
       </div>
