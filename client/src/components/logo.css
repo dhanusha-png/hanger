@@ -76,6 +76,15 @@
   color: #E8C070;
 }
 
+/* Light navbar logo overrides */
+.hh-navbar-logo .hh-logo-hanger {
+  color: #123C32;
+}
+
+.hh-navbar-logo .hh-logo-home {
+  color: #C9A248;
+}
+
 /* Mobile logo text scaling - keep full HANGERHOME text visible and sharp without clipping */
 @media (max-width: 768px) {
   .hh-navbar-logo.hh-logo-lockup {

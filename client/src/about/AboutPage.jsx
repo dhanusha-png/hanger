@@ -14,28 +14,28 @@ export function AboutPage({ cart = [], total = 0, remove, updateQty, chat, setCh
       {/* Section 1: Hero (unchanged) */}
       <AboutHero />
 
-      {/* Section 2 (Even): Who We Are (Deep Forest #0B211A) */}
-      <div className="home-tonal-even">
+      {/* Section 1 (Odd): Who We Are (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd">
         <AboutWhoWeAre />
       </div>
 
-      {/* Section 3 (Odd): What We Offer (Dark #04120e) */}
-      <div className="home-tonal-odd">
+      {/* Section 2 (Even): What We Offer (Warm Sand #E5DAC6) */}
+      <div className="home-tonal-even">
         <AboutWhatWeOffer />
       </div>
 
-      {/* Section 4 (Even): Approach / phases (Deep Forest #0B211A) */}
-      <div className="home-tonal-even">
+      {/* Section 3 (Odd): Approach / phases (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd">
         <AboutApproach />
       </div>
 
-      {/* Section 5 (Odd): On-Site Showcase (Dark #04120e) */}
-      <div className="home-tonal-odd">
+      {/* Section 4 (Even): On-Site Showcase (Warm Sand #E5DAC6) */}
+      <div className="home-tonal-even">
         <AboutShowcase />
       </div>
 
-      {/* Section 6 (Even): Closing CTA (Deep Forest #0B211A) */}
-      <div className="home-tonal-even about-cta-tonal-wrap">
+      {/* Section 5 (Odd): Closing CTA (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd about-cta-tonal-wrap">
         <AboutCTA />
       </div>
 

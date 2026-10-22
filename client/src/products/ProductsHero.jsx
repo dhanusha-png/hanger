@@ -452,90 +452,93 @@ export function ProductsHero({
         </div>
       </section>
 
-      {/* Target Search & Sort Bar (Wide Glass Bar Below Hero) */}
-      <div className="products-search-bar-wrapper">
-        <div className="products-search-bar-card conic-bar-glow">
-          <div className="bar-conic-glow-border" />
-          <div className="search-bar-inner">
-            <div className="search-input-group">
-              <span className="search-icon-circle">
-                <Search size={16} />
-              </span>
-              <input
-                type="text"
-                className="search-input-field"
-                placeholder="Search products, categories or features..."
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                aria-label="Search products, categories or features"
-              />
-            </div>
+      {/* Section 1 (Odd): Search & Sort Bar + Shop by Category (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd" style={{ paddingTop: '32px', paddingBottom: '16px' }}>
+        {/* Target Search & Sort Bar (Wide Glass Bar Below Hero) */}
+        <div className="products-search-bar-wrapper" style={{ marginTop: 0 }}>
+          <div className="products-search-bar-card conic-bar-glow">
+            <div className="bar-conic-glow-border" />
+            <div className="search-bar-inner">
+              <div className="search-input-group">
+                <span className="search-icon-circle">
+                  <Search size={16} />
+                </span>
+                <input
+                  type="text"
+                  className="search-input-field"
+                  placeholder="Search products, categories or features..."
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  aria-label="Search products, categories or features"
+                />
+              </div>
 
-            <div className="sort-dropdown-group">
-              <span className="sort-by-label">Sort by</span>
-              <div className="sort-select-wrapper">
-                <select
-                  value={sort}
-                  onChange={e => setSort(e.target.value)}
-                  className="sort-select-control"
-                  aria-label="Sort products by"
-                >
-                  <option value="featured">Featured</option>
-                  <option value="price-low">Price: low to high</option>
-                  <option value="price-high">Price: high to low</option>
-                  <option value="name">Name</option>
-                </select>
-                <ChevronDown size={14} className="sort-chevron-icon" />
+              <div className="sort-dropdown-group">
+                <span className="sort-by-label">Sort by</span>
+                <div className="sort-select-wrapper">
+                  <select
+                    value={sort}
+                    onChange={e => setSort(e.target.value)}
+                    className="sort-select-control"
+                    aria-label="Sort products by"
+                  >
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: low to high</option>
+                    <option value="price-high">Price: high to low</option>
+                    <option value="name">Name</option>
+                  </select>
+                  <ChevronDown size={14} className="sort-chevron-icon" />
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Target Shop by Category Section (6 Horizontal Quick Cards) */}
+        <section className="products-category-section" aria-label="Shop by Category">
+          <div className="category-section-header">
+            <h2 className="category-section-title">Shop by Category</h2>
+            <button
+              type="button"
+              className="category-view-all-link"
+              onClick={() => {
+                selectCategory('All');
+                setTag('All');
+                setQuery('');
+              }}
+            >
+              View All Products →
+            </button>
+          </div>
+
+          {/* 6 Category Cards Row */}
+          <div className="category-cards-grid">
+            {categoryCards.map(cat => {
+              const IconComp = cat.icon;
+              return (
+                <div
+                  key={cat.id}
+                  className={`category-item-card ${cat.active ? 'active conic-card-glow' : ''}`}
+                  onClick={cat.onClick}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => e.key === 'Enter' && cat.onClick()}
+                >
+                  {cat.active && <div className="card-conic-glow-border" />}
+                  <div className="category-card-icon-box">
+                    <IconComp size={24} className="category-gold-icon" />
+                  </div>
+                  <div className="category-card-body">
+                    <strong className="category-card-name">{cat.title}</strong>
+                    <span className="category-card-count">{cat.subtitle}</span>
+                  </div>
+                  <ArrowRight size={15} className="category-card-arrow" />
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </div>
-
-      {/* Target Shop by Category Section (6 Horizontal Quick Cards) */}
-      <section className="products-category-section" aria-label="Shop by Category">
-        <div className="category-section-header">
-          <h2 className="category-section-title">Shop by Category</h2>
-          <button
-            type="button"
-            className="category-view-all-link"
-            onClick={() => {
-              selectCategory('All');
-              setTag('All');
-              setQuery('');
-            }}
-          >
-            View All Products →
-          </button>
-        </div>
-
-        {/* 6 Category Cards Row */}
-        <div className="category-cards-grid">
-          {categoryCards.map(cat => {
-            const IconComp = cat.icon;
-            return (
-              <div
-                key={cat.id}
-                className={`category-item-card ${cat.active ? 'active conic-card-glow' : ''}`}
-                onClick={cat.onClick}
-                role="button"
-                tabIndex={0}
-                onKeyDown={e => e.key === 'Enter' && cat.onClick()}
-              >
-                {cat.active && <div className="card-conic-glow-border" />}
-                <div className="category-card-icon-box">
-                  <IconComp size={24} className="category-gold-icon" />
-                </div>
-                <div className="category-card-body">
-                  <strong className="category-card-name">{cat.title}</strong>
-                  <span className="category-card-count">{cat.subtitle}</span>
-                </div>
-                <ArrowRight size={15} className="category-card-arrow" />
-              </div>
-            );
-          })}
-        </div>
-      </section>
 
       {/* Anchor for Smooth Scroll */}
       <div className="products-catalog-anchor" />

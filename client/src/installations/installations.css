@@ -532,52 +532,76 @@
 
 /* --------------------------------------------------------------------------
    Split Video Action
+/* --------------------------------------------------------------------------
+   Split Video Action ("See HangerHome in Action")
    -------------------------------------------------------------------------- */
 .install-split-action {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(24px, 3vw, 40px);
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: stretch;
+  gap: clamp(24px, 3.5vw, 44px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .install-split-action {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
 
 .install-video-card {
   position: relative;
-  border-radius: 26px;
+  border-radius: 24px;
   overflow: hidden;
-  height: clamp(340px, 32vw, 440px);
-  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.14));
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-  background: #0A1612;
+  min-height: clamp(340px, 34vw, 460px);
+  border: 1.5px solid var(--hh-soft-border, #D8C9A8);
+  box-shadow: 0 16px 44px rgba(18, 60, 50, 0.12);
+  background: #061813;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .install-video-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
+  opacity: 0.82;
+}
+
+.install-video-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 23, 17, 0.2) 0%, rgba(4, 23, 17, 0.4) 50%, rgba(4, 23, 17, 0.85) 100%);
+  z-index: 1;
 }
 
 .install-video-content {
-  position: absolute;
-  top: 32px;
-  left: 32px;
-  right: 32px;
+  position: relative;
   z-index: 2;
+  padding: 32px 30px 10px;
 }
 
 .install-video-content h3 {
   font-family: var(--font-serif);
-  font-size: clamp(22px, 2.5vw, 32px);
-  color: var(--color-warm-white, #faf8f5);
+  font-size: clamp(24px, 2.6vw, 34px);
+  color: #FFF9EF;
   margin: 0 0 8px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 .install-video-content p {
-  font-size: 14px;
-  color: var(--color-silver, #c5cec9);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #E5DAC6;
   margin: 0;
-  max-width: 420px;
+  max-width: 440px;
 }
 
 .install-play-fab {
@@ -585,114 +609,122 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e8c070 0%, #c9a24b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  color: #04120e;
+  background: linear-gradient(135deg, #C9A248 0%, #E2C46B 60%, #fae29f 100%);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: #041711;
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(232, 192, 112, 0.35);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(201, 162, 72, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   z-index: 3;
 }
 
 .install-play-fab:hover {
   transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 0 35px rgba(232, 192, 112, 0.55);
+  box-shadow: 0 0 40px rgba(201, 162, 72, 0.7);
 }
 
 .install-video-cta {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
+  position: relative;
   z-index: 2;
+  padding: 0 30px 28px;
 }
 
 .install-watch-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 999px;
-  background: rgba(5, 11, 9, 0.85);
+  background: rgba(4, 23, 17, 0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(232, 192, 112, 0.35);
-  color: var(--color-warm-white, #faf8f5);
-  font-size: 13px;
+  border: 1px solid rgba(201, 162, 72, 0.45);
+  color: #FFF9EF;
+  font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .install-watch-btn:hover {
-  border-color: var(--color-gold, #e8c070);
-  color: var(--color-gold, #e8c070);
+  border-color: #C9A248;
+  color: #E2C46B;
 }
 
 .install-designed-card {
-  background: var(--glass-surface-subtle, rgba(4, 18, 14, 0.78));
-  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
-  border-radius: 26px;
-  padding: clamp(32px, 4vw, 44px);
+  background: #FFF9EF;
+  border: 1px solid var(--hh-soft-border, #D8C9A8);
+  border-radius: 24px;
+  padding: clamp(32px, 3.8vw, 48px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 0 8px 30px rgba(18, 60, 50, 0.06);
 }
 
 .install-designed-card h3 {
   font-family: var(--font-serif);
-  font-size: clamp(22px, 2.5vw, 30px);
-  color: var(--color-warm-white, #faf8f5);
+  font-size: clamp(24px, 2.5vw, 32px);
+  color: #123C32;
   margin: 0 0 12px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 .install-designed-card p {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--color-silver, #B8C1BC);
-  margin: 0 0 28px;
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #18352D;
+  margin: 0 0 26px;
 }
 
 .install-design-pillars {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .install-pillar-item {
   display: flex;
   flex-direction: column;
-  padding: 14px 18px;
+  padding: 16px 20px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #F5F0E5;
+  border: 1px solid var(--hh-soft-border, #D8C9A8);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.install-pillar-item:hover {
+  transform: translateY(-2px);
+  border-color: #C9A248;
 }
 
 .install-pillar-icon {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--color-gold, #C6A96B);
+  background: rgba(201, 162, 72, 0.16);
+  border: 1px solid rgba(201, 162, 72, 0.4);
+  color: #C9A248;
   display: grid;
   place-items: center;
   margin-bottom: 8px;
 }
 
 .install-pillar-item b {
-  font-size: 14px;
-  color: var(--color-warm-white, #F7F5EF);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #123C32;
 }
 
 .install-pillar-item small {
-  font-size: 12px;
-  color: var(--color-silver, #B8C1BC);
-  margin-top: 2px;
+  font-size: 12.5px;
+  color: #647168;
+  margin-top: 3px;
+  line-height: 1.45;
 }
 
 /* --------------------------------------------------------------------------
@@ -755,40 +787,61 @@
    -------------------------------------------------------------------------- */
 .install-faq-grid {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   max-width: 860px;
   margin: 0 auto;
 }
 
 .install-faq-item {
-  background: var(--glass-surface-subtle, rgba(255, 255, 255, 0.06));
-  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
+  background: #FFF9EF;
+  border: 1px solid var(--hh-soft-border, #D8C9A8);
   border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 16px rgba(18, 60, 50, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.install-faq-item:hover {
+  border-color: #C9A248;
+  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.08);
 }
 
 .install-faq-q {
-  padding: 18px 22px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 700;
-  color: var(--color-warm-white, #F7F5EF);
+  color: #123C32;
+  transition: color 0.2s ease;
+}
+
+.install-faq-q:hover {
+  color: #1F5A48;
 }
 
 .install-faq-q svg {
-  color: var(--color-gold, #C6A96B);
+  color: #C9A248;
   flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
 }
 
 .install-faq-a {
-  padding: 0 22px 18px;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--color-silver, #B8C1BC);
+  padding: 14px 24px 22px;
+  font-size: 14px;
+  line-height: 1.68;
+  color: #647168;
+  border-top: 1px solid rgba(216, 201, 168, 0.4);
+}
+
+.install-faq-a p {
+  margin: 0;
+  color: #18352D;
 }
 
 /* --------------------------------------------------------------------------

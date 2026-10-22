@@ -59,13 +59,13 @@ export function HomePage({
       {/* 2. Benefit Bar (Overlapping Hero) */}
       <BenefitBar />
 
-      {/* Section 2 (Even): Category Shortcuts (Merged with Hero bottom edge) */}
-      <div className="home-reveal home-tonal-cat-shortcuts">
+      {/* Section 1 (Odd): Category Shortcuts (Warm Ivory #F5F0E5) */}
+      <div className="home-reveal home-tonal-odd home-tonal-cat-shortcuts">
         <CategoryShortcuts />
       </div>
 
-      {/* Section 3 (Odd): Featured Solutions (Dark #04120e) */}
-      <div className="home-reveal home-tonal-odd">
+      {/* Section 2 (Even): Featured Solutions (Warm Sand #E5DAC6) */}
+      <div className="home-reveal home-tonal-even">
         <FeaturedSolutions
           products={products}
           loading={productsLoading}
@@ -76,28 +76,28 @@ export function HomePage({
         />
       </div>
 
-      {/* Section 4 (Even): Installation Showcase (Deep Forest #0B211A) */}
-      <div className="home-reveal home-tonal-even">
+      {/* Section 3 (Odd): Installation Showcase (Warm Ivory #F5F0E5) */}
+      <div className="home-reveal home-tonal-odd">
         <InstallationShowcase />
       </div>
 
-      {/* Section 5 (Odd): Our Services Section (Dark #04120e) */}
-      <div className="home-reveal home-tonal-odd">
+      {/* Section 4 (Even): Our Services Section (Warm Sand #E5DAC6) */}
+      <div className="home-reveal home-tonal-even">
         <ServicesSection />
       </div>
 
-      {/* Section 6 (Even): How It Works (Deep Forest #0B211A) */}
-      <div className="home-reveal home-tonal-even">
+      {/* Section 5 (Odd): How It Works (Warm Ivory #F5F0E5) */}
+      <div className="home-reveal home-tonal-odd">
         <HowItWorks />
       </div>
 
-      {/* Section 7 (Odd): Gallery Preview (Dark #04120e) */}
-      <div className="home-reveal home-tonal-odd">
+      {/* Section 6 (Even): Gallery Preview (Warm Sand #E5DAC6) */}
+      <div className="home-reveal home-tonal-even">
         <GalleryPreview />
       </div>
 
-      {/* Section 8 (Even): Final Premium Call to Action (Deep Forest #0B211A) */}
-      <div className="home-reveal home-tonal-even">
+      {/* Promotional CTA Banner (Dark Emerald & Gold Treatment) */}
+      <div className="home-reveal home-tonal-odd home-cta-wrap">
         <HomeCTA />
       </div>
 

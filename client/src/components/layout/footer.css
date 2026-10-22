@@ -7,13 +7,13 @@
    Root Container & Background
    -------------------------------------------------------------------------- */
 .hh-footer-root {
-  background-color: var(--hh-bg-main, #04120e);
+  background-color: #041711 !important;
   color: #FFFFFF;
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   overflow: hidden;
-  margin-top: 60px;
-  border-top: 1px solid rgba(232, 192, 112, 0.22);
+  margin-top: 0;
+  border-top: 1px solid rgba(201, 162, 72, 0.35);
 }
 
 /* Subtle ambient background glow and gold separator */
@@ -24,28 +24,30 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(232, 192, 112, 0.45) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 72, 0.45) 50%, transparent 100%);
   pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
-   1. Premium CTA Section (Dark Glass + Metallic Highlights)
+   1. Premium CTA Section (Medium Emerald #1F5A48 + Champagne Gold Border)
    -------------------------------------------------------------------------- */
 .hh-footer-cta-container {
-  padding-top: 48px;
-  padding-bottom: 30px;
+  padding-top: 56px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgba(201, 162, 72, 0.22);
+  position: relative;
 }
 
 .hh-footer-cta-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 61, 46, 0.75) 50%, rgba(4, 18, 14, 0.95) 100%);
+  background: linear-gradient(135deg, #1F5A48 0%, #174E3E 50%, #123C32 100%);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(232, 192, 112, 0.25);
+  border: 1.5px solid rgba(201, 162, 72, 0.45);
   border-radius: 28px;
-  padding: clamp(32px, 4vw, 52px) clamp(28px, 4.5vw, 64px);
+  padding: clamp(34px, 4vw, 54px) clamp(28px, 4.5vw, 64px);
   overflow: hidden;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 30px rgba(232, 192, 112, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(4, 23, 17, 0.65), 0 0 35px rgba(31, 90, 72, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   display: grid;
   grid-template-columns: 1.15fr 0.95fr;
   align-items: center;
@@ -84,11 +86,11 @@
   bottom: 0;
   width: 48%;
   background-image: 
-    linear-gradient(to right, #071C18 0%, rgba(7, 28, 24, 0.88) 20%, rgba(7, 28, 24, 0.4) 60%, rgba(7, 28, 24, 0.08) 100%),
+    linear-gradient(to right, #1F5A48 0%, rgba(31, 90, 72, 0.92) 20%, rgba(23, 78, 62, 0.5) 60%, rgba(18, 60, 50, 0.1) 100%),
     url('/media/hanger-1.jpg');
   background-size: cover;
   background-position: center right;
-  opacity: 0.72;
+  opacity: 0.8;
   pointer-events: none;
   z-index: 1;
 }
@@ -107,7 +109,7 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
-  color: var(--color-accent-light, #DFCEAA);
+  color: var(--hh-champagne-gold, #C9A248);
   text-transform: uppercase;
   margin-bottom: 14px;
 }
@@ -116,7 +118,7 @@
   display: inline-block;
   width: 38px;
   height: 1px;
-  background: var(--color-accent, #C8B282);
+  background: var(--hh-champagne-gold, #C9A248);
   opacity: 0.75;
 }
 
@@ -135,14 +137,14 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-weight: 600;
-  color: var(--color-accent-light, #DFCEAA);
+  color: var(--hh-light-gold, #E2C46B);
 }
 
 /* Supporting description */
 .hh-footer-cta-desc {
   font-size: clamp(14px, 1.2vw, 15px);
   line-height: 1.65;
-  color: #D8D0C0;
+  color: #EDE5D8;
   margin: 0 0 28px 0;
   max-width: 500px;
 }
@@ -223,29 +225,29 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(232, 192, 112, 0.3);
-  background: rgba(232, 192, 112, 0.08);
+  border: 1.5px solid rgba(201, 162, 72, 0.45);
+  background: rgba(201, 162, 72, 0.16);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: #e8c070;
+  color: var(--hh-light-gold, #E2C46B);
   display: grid;
   place-items: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(4, 23, 17, 0.35);
   transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hh-cta-feature-item:hover .hh-cta-feature-icon {
   transform: translateY(-3px);
-  border-color: #e8c070;
-  color: #04120e;
-  background: #e8c070;
-  box-shadow: 0 0 20px rgba(232, 192, 112, 0.45);
+  border-color: #E2C46B;
+  color: #041711;
+  background: #E2C46B;
+  box-shadow: 0 0 20px rgba(226, 196, 107, 0.55);
 }
 
 .hh-cta-feature-label {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: #D8D0C0;
+  color: #FFF9EF;
   line-height: 1.35;
 }
 

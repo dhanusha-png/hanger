@@ -35,7 +35,16 @@ export function ContactFAQ() {
     let active = true;
     api('/faqs?group=contact').then(data => {
       if (!active || !Array.isArray(data) || !data.length) return;
-      setFaqList(data.map((f, i) => ({ id: f._id || `faq-${i}`, q: f.question, a: f.answer })));
+      const seen = new Set();
+      const unique = [];
+      for (const f of data) {
+        const norm = (f.question || '').trim().toLowerCase();
+        if (norm && !seen.has(norm)) {
+          seen.add(norm);
+          unique.push({ id: f._id || `faq-${unique.length}`, q: f.question, a: f.answer });
+        }
+      }
+      if (unique.length) setFaqList(unique);
     }).catch(() => {});
     return () => { active = false; };
   }, []);
@@ -44,12 +53,19 @@ export function ContactFAQ() {
     setOpenIdx(prev => (prev === idx ? null : idx));
   };
 
-  const filteredFaqs = faqList.filter(faq => {
-    const qLower = faq.q.toLowerCase();
-    const aLower = faq.a.toLowerCase();
+  const filteredFaqs = React.useMemo(() => {
+    const seen = new Set();
     const query = searchQuery.trim().toLowerCase();
-    return qLower.includes(query) || aLower.includes(query);
-  });
+    return faqList.filter(faq => {
+      const norm = (faq.q || '').trim().toLowerCase();
+      if (seen.has(norm)) return false;
+      seen.add(norm);
+      if (!query) return true;
+      const qLower = faq.q.toLowerCase();
+      const aLower = (faq.a || '').toLowerCase();
+      return qLower.includes(query) || aLower.includes(query);
+    });
+  }, [faqList, searchQuery]);
 
   return (
     <section className="contact-faq-section" id="faq-section" aria-label="Frequently Asked Questions">

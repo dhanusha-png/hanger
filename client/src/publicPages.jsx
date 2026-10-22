@@ -705,21 +705,42 @@ export function GalleryPage({
   const [activeIndex, setActiveIndex] = useState(null);
   const [customLightbox, setCustomLightbox] = useState(null);
   const [videoOpen, setVideoOpen] = useState(false);
-  const fallbackImages = useMemo(() => [1,2,3,4,5,6,7,8].map(i => ({
-    src: `/media/hanger-${i}.jpg`,
-    title: `HangerHome installation ${i}`,
-    category: 'Hangers'
-  })), []);
+  const fallbackImages = useMemo(() => [
+    { src: '/media/hanger-1.jpg', title: 'Ceiling Hanger System Installation', category: 'Hangers' },
+    { src: '/media/hanger-2.jpg', title: 'Balcony Pulley Clothes Hanger', category: 'Hangers' },
+    { src: '/media/hanger-3.jpg', title: 'Heavy-Duty Ceiling Drying Rack', category: 'Hangers' },
+    { src: '/media/hanger-4.jpg', title: 'Compact Multi-Line Balcony Hanger', category: 'Hangers' },
+    { src: '/media/hanger-5.jpg', title: 'Precision Adjustable Hanger Unit', category: 'Hangers' },
+    { src: '/media/hanger-6.jpg', title: 'Wall-Mounted Extendable Clothes Rack', category: 'Hangers' },
+    { src: '/media/hanger-7.jpg', title: 'Dual-Rod Ceiling Pulley System', category: 'Hangers' },
+    { src: '/media/hanger-8.jpg', title: 'Stainless Steel Balcony Hanger', category: 'Hangers' },
+    { src: '/products/card-shoe-rack.jpg', title: 'Modular Multi-Tier Shoe Organizer', category: 'Shoe Racks' },
+    { src: '/products/shoe-rack-modern-5-tier.jpg', title: 'Modern 5-Tier Entryway Shoe Rack', category: 'Shoe Racks' },
+    { src: '/products/shoe-rack-family-organizer.jpg', title: 'Family Space-Saving Shoe Cabinet', category: 'Shoe Racks' },
+    { src: '/products/shoe-rack-premium-metal.jpg', title: 'Premium Metal Frame Shoe Organizer', category: 'Shoe Racks' },
+    { src: '/installations/install-professional.jpg', title: 'Balcony Ceiling System Project', category: 'Projects' },
+    { src: '/installations/install-finish.jpg', title: 'Master Suite Drying Integration', category: 'Projects' },
+    { src: '/installations/install-measurement.jpg', title: 'Custom Architectural Space Setup', category: 'Projects' },
+    { src: '/installations/cat-custom.jpg', title: 'Bespoke Balcony Storage Project', category: 'Projects' }
+  ], []);
   const [images, setImages] = useState(fallbackImages);
 
   useEffect(() => {
     api('/content/gallery').then(result => {
-      if (Array.isArray(result?.items) && result.items.length) setImages(result.items);
+      if (Array.isArray(result?.items) && result.items.length) {
+        // Merge or keep categories supported
+        setImages(result.items);
+      }
     }).catch(() => {});
   }, []);
 
   const visibleImages = category === 'All' ? images : images.filter(item => item.category === category);
-  const availableCategories = useMemo(() => ['All', ...Array.from(new Set(images.map(item => item.category).filter(Boolean)))], [images]);
+  const availableCategories = useMemo(() => {
+    const defaultCats = ['All', 'Hangers', 'Shoe Racks', 'Projects'];
+    const dynamicCats = Array.from(new Set(images.map(item => item.category).filter(Boolean)));
+    const merged = Array.from(new Set([...defaultCats, ...dynamicCats]));
+    return merged;
+  }, [images]);
 
   useEffect(() => {
     setActiveIndex(null);
@@ -766,8 +787,8 @@ export function GalleryPage({
         totalPhotos={visibleImages.length}
       />
 
-      {/* Section 2 (Even): Photo Grid (Deep Forest #0B211A) */}
-      <div className="home-tonal-even">
+      {/* Section 1 (Odd): Photo Grid (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd">
         <section className="section container catalog-gallery-page" style={{ paddingTop: '36px', paddingBottom: '60px' }}>
           {visibleImages.length ? (
             <div className="catalog-gallery-grid">
@@ -786,9 +807,9 @@ export function GalleryPage({
         </section>
       </div>
 
-      {/* Section 3 (Odd): Installation in Motion video card (Dark #04120e) */}
+      {/* Section 2 (Even): Installation in Motion video card (Warm Sand #E5DAC6) */}
       {category !== 'Shoe Racks' && (
-        <div className="home-tonal-odd">
+        <div className="home-tonal-even">
           <section className="section container" style={{ paddingTop: '50px', paddingBottom: '70px' }}>
             <div className="catalog-video-section" style={{ marginTop: 0 }}>
               <div className="catalog-gallery-heading">

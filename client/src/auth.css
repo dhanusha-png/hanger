@@ -497,13 +497,13 @@ input:-webkit-autofill:active {
   top: calc(100% + 10px);
   right: 0;
   min-width: 220px;
-  background: rgba(6, 24, 19, 0.96);
+  background: #F5F0E5;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(232, 192, 112, 0.25);
+  border: 1px solid #D8C9A8;
   border-radius: 16px;
   padding: 8px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.18);
   z-index: 1000;
   animation: dropdownFadeIn 0.2s ease;
 }
@@ -520,12 +520,12 @@ input:-webkit-autofill:active {
 }
 
 .account-dropdown-header b {
-  color: #ffffff;
+  color: #123C32;
   font-size: 14px;
 }
 
 .account-dropdown-header small {
-  color: #95a8a0;
+  color: #64756D;
   font-size: 11.5px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -534,7 +534,7 @@ input:-webkit-autofill:active {
 
 .account-dropdown-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #D8C9A8;
   margin: 6px 0;
 }
 
@@ -547,7 +547,7 @@ input:-webkit-autofill:active {
   padding: 9px 12px;
   border-radius: 10px;
   font-size: 13px;
-  color: #c5cec9;
+  color: #123C32;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -559,8 +559,8 @@ input:-webkit-autofill:active {
 
 .account-dropdown-menu a:hover,
 .account-dropdown-logout:hover {
-  background: rgba(232, 192, 112, 0.12);
-  color: #fae29f;
+  background: rgba(31, 90, 72, 0.08);
+  color: #1F5A48;
 }
 
 .account-dropdown-logout {

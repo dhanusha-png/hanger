@@ -31,28 +31,28 @@ export function InstallationsPage({ cart = [], total = 0, remove, updateQty, cha
       {/* 1. Cinematic Hero with New Dual-Technician Scene (unchanged) */}
       <InstallationsHero onSelectType={setSelectedType} />
 
-      {/* Section 2 (Even): Solutions with tabs (Deep Forest #0B211A) */}
-      <div className="home-tonal-even">
+      {/* Section 1 (Odd): Solutions with tabs (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd">
         <InstallationSolutions onSelectType={setSelectedType} />
       </div>
 
-      {/* Section 3 (Odd): Real Installations Projects Showcase (Dark #04120e) */}
-      <div className="home-tonal-odd">
+      {/* Section 2 (Even): Real Installations Projects Showcase (Warm Sand #E5DAC6) */}
+      <div className="home-tonal-even">
         <InstallationProjects />
       </div>
 
-      {/* Section 4 (Even): Demonstration Video & Design Pillars (Deep Forest #0B211A) */}
-      <div className="home-tonal-even">
+      {/* Section 3 (Odd): Demonstration Video & Design Pillars (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd">
         <InstallationVideoAction />
       </div>
 
-      {/* Section 5 (Odd): Comprehensive FAQs (Dark #04120e) */}
-      <div className="home-tonal-odd">
+      {/* Section 4 (Even): Comprehensive FAQs (Warm Sand #E5DAC6) */}
+      <div className="home-tonal-even">
         <InstallationFAQ />
       </div>
 
-      {/* Section 6 (Even): Closing CTA Band with Segmented Toggle & Quick Booking Form (Deep Forest #0B211A) */}
-      <div className="home-tonal-even">
+      {/* Section 5 (Odd): Closing CTA Band with Segmented Toggle & Quick Booking Form (Warm Ivory #F5F0E5) */}
+      <div className="home-tonal-odd">
         <InstallationCTA initialType={selectedType} />
       </div>
 
