@@ -31,22 +31,48 @@ function Header() {
   const { cart, user, wishlist, logout, setCartDrawerOpen } = useStore();
   const [open, setOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const searchRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const pathname = location.pathname;
-  const closeMenu = () => { setOpen(false); setAccountMenuOpen(false); };
+  const closeMenu = () => {
+    setOpen(false);
+    setAccountMenuOpen(false);
+    setSearchOpen(false);
+  };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setAccountMenuOpen(false);
       }
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setSearchOpen(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setAccountMenuOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    setAccountMenuOpen(false);
+    setSearchOpen(false);
+    setOpen(false);
+  }, [location.pathname]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -56,8 +82,9 @@ function Header() {
     }
   };
 
-  const realCartCount = cart.reduce((s, i) => s + (i.qty || 1), 0);
-  const cartBadgeCount = realCartCount > 0 ? realCartCount : 3;
+  const realCartCount = user ? cart.reduce((s, i) => s + (i.qty || 1), 0) : 0;
+  const showCartBadge = Boolean(user && realCartCount > 0);
+  const showWishlistBadge = Boolean(user && wishlist && wishlist.length > 0);
 
   return (
     <header className="header">
@@ -103,7 +130,7 @@ function Header() {
             {pathname.startsWith('/contact') && <span className="nav-gold-indicator" />}
           </Link>
           <Link to="/wishlist" className="mobile-wishlist-link" onClick={closeMenu}>
-            Wishlist {wishlist.length > 0 && `(${wishlist.length})`}
+            Wishlist {showWishlistBadge && `(${wishlist.length})`}
           </Link>
           {user ? (
             <div className="drawer-user-card">
@@ -143,38 +170,74 @@ function Header() {
           )}
         </nav>
         <div className="nav-actions">
-          <form className="nav-search-bar desktop-only-search" onSubmit={handleSearch}>
-            <Search size={15} className="nav-search-icon" />
-            <input
-              type="text"
-              placeholder="Search products, services..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              aria-label="Search products, services"
-            />
-          </form>
-          <Link to="/wishlist" className="icon-btn wishlist-control" aria-label={`Wishlist${wishlist.length > 0 ? `, ${wishlist.length} items` : ''}`} title="Wishlist" onClick={closeMenu}>
+          <div className="search-popover-wrap desktop-only-search" ref={searchRef}>
+            <button
+              type="button"
+              className={`icon-btn search-icon-btn ${searchOpen ? 'active' : ''}`}
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Search products"
+              title="Search"
+            >
+              <Search size={18} />
+            </button>
+            {searchOpen && (
+              <form className="search-popover-dropdown" onSubmit={handleSearch}>
+                <Search size={16} className="nav-search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search products, services..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  aria-label="Search products, services"
+                  autoFocus
+                />
+                {searchQuery && (
+                  <button type="button" className="search-clear-btn" onClick={() => setSearchQuery('')} aria-label="Clear search">
+                    <X size={14} />
+                  </button>
+                )}
+              </form>
+            )}
+          </div>
+          <Link
+            to="/wishlist"
+            className="icon-btn wishlist-control"
+            aria-label={`Wishlist${showWishlistBadge ? `, ${wishlist.length} items` : ''}`}
+            title="Wishlist"
+            onClick={closeMenu}
+          >
             <Heart size={18} />
-            {wishlist.length > 0 && <b>{wishlist.length}</b>}
+            {showWishlistBadge && <b>{wishlist.length}</b>}
           </Link>
-          <Link to="/cart" className="icon-btn cart-icon" aria-label={`Cart ${cartBadgeCount} items`} title="Cart" onClick={(e)=>{if(setCartDrawerOpen&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey){e.preventDefault();setCartDrawerOpen(true);}closeMenu();}}>
+          <Link
+            to="/cart"
+            className="icon-btn cart-icon"
+            aria-label={`Cart${showCartBadge ? ` ${realCartCount} items` : ''}`}
+            title="Cart"
+            onClick={(e) => {
+              if (setCartDrawerOpen && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                e.preventDefault();
+                setCartDrawerOpen(true);
+              }
+              closeMenu();
+            }}
+          >
             <ShoppingCart size={18} />
-            <b className="cart-badge-gold">{cartBadgeCount}</b>
+            {showCartBadge && <b className="cart-badge-gold">{realCartCount}</b>}
           </Link>
           {user ? (
             <div className="account-dropdown-wrap desktop-only-account" ref={dropdownRef}>
               <button
                 type="button"
-                className="profile-pill-btn account-pill-active"
+                className={`icon-btn account-icon-btn ${accountMenuOpen ? 'active' : ''}`}
                 onClick={() => setAccountMenuOpen(!accountMenuOpen)}
                 aria-expanded={accountMenuOpen}
                 aria-label="Account Menu"
+                title="Account"
               >
-                <div className="nav-avatar-mini">
+                <div className="nav-avatar-mini" style={{ width: '26px', height: '26px', fontSize: '13px' }}>
                   {user.avatar ? <img src={img(user.avatar)} alt="" /> : (user.name?.[0] || 'U')}
                 </div>
-                <span className="nav-user-name">{user.name.split(' ')[0]}</span>
-                <ChevronDown size={14} style={{ transform: accountMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
               </button>
               {accountMenuOpen && (
                 <div className="account-dropdown-menu">
@@ -209,9 +272,14 @@ function Header() {
               )}
             </div>
           ) : (
-            <Link to="/login" className="profile-pill-btn desktop-only-account" aria-label="Login" title="Login" onClick={closeMenu}>
-              <UserRound size={16} />
-              <span>Login</span>
+            <Link
+              to="/login"
+              className="icon-btn account-icon-btn desktop-only-account"
+              aria-label="Login"
+              title="Login"
+              onClick={closeMenu}
+            >
+              <UserRound size={18} />
             </Link>
           )}
           <button className="mobile-menu" type="button" aria-label={open ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>

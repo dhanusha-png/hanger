@@ -133,47 +133,81 @@
   gap: 10px;
 }
 
-.nav-search-bar {
+.search-popover-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.search-popover-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 290px;
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(4, 18, 14, 0.96);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(232, 192, 112, 0.35);
   border-radius: 9999px;
-  padding: 6px 14px;
-  width: clamp(160px, 15vw, 220px);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 8px 14px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(232, 192, 112, 0.15);
+  z-index: 1000;
+  animation: searchDropdownFadeIn 0.2s ease;
 }
 
-.nav-search-bar:focus-within {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(232, 192, 112, 0.55);
-  box-shadow: 0 0 18px rgba(232, 192, 112, 0.22);
-  width: clamp(180px, 17vw, 250px);
+@keyframes searchDropdownFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-search-bar:focus-within .nav-search-icon {
-  color: #e8c070;
-}
-
-.nav-search-icon {
-  color: rgba(255, 255, 255, 0.55);
-  flex-shrink: 0;
-  transition: color 0.2s ease;
-}
-
-.nav-search-bar input {
+.search-popover-dropdown input {
   background: transparent;
   border: none;
   outline: none;
   color: #ffffff;
-  font-size: 12.5px;
+  font-size: 13px;
   width: 100%;
 }
 
-.nav-search-bar input::placeholder {
+.search-popover-dropdown input::placeholder {
   color: rgba(255, 255, 255, 0.45);
   font-size: 12px;
+}
+
+.search-clear-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  color: #e8c070;
+}
+
+.icon-btn.active {
+  background: rgba(232, 192, 112, 0.16);
+  border-color: #e8c070;
+  color: #e8c070;
+  box-shadow: 0 0 14px rgba(232, 192, 112, 0.25);
+}
+
+.account-icon-btn {
+  padding: 0;
+  overflow: hidden;
+}
+
+.account-icon-btn .nav-avatar-mini {
+  margin: 0;
 }
 
 .icon-btn,
@@ -527,6 +561,7 @@
 @media (min-width: 961px) {
   .drawer-search-bar,
   .drawer-account-wrap,
+  .drawer-user-card,
   .mobile-drawer-header {
     display: none !important;
   }

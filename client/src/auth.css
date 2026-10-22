@@ -440,7 +440,8 @@ input:-webkit-autofill:active {
    ========================================================================== */
 .account-dropdown-wrap {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 
 .account-pill-active {
@@ -572,6 +573,12 @@ input:-webkit-autofill:active {
 }
 
 /* Mobile Drawer Account Box */
+@media (min-width: 961px) {
+  .drawer-user-card {
+    display: none !important;
+  }
+}
+
 .drawer-user-card {
   background: rgba(6, 24, 19, 0.7);
   border: 1px solid rgba(232, 192, 112, 0.2);
