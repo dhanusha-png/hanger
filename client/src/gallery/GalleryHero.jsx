@@ -16,7 +16,7 @@ export function GalleryHero({
 
   // Smooth scroll down to installations section
   const handleScrollToGrid = () => {
-    const el = document.querySelector('.gallery-section-heading') || document.querySelector('.catalog-gallery-grid');
+    const el = document.querySelector('.gallery-intro-bar') || document.querySelector('.gallery-filter-bar') || document.querySelector('.catalog-gallery-grid');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -212,37 +212,6 @@ export function GalleryHero({
           </div>
         </div>
       </section>
-
-      {/* Filter Chips Bar (All / Hangers) */}
-      <div className="gallery-filter-chips-row" aria-label="Gallery category filters">
-        <div className="gallery-chips-group">
-          {categories.map(cat => {
-            const isActive = category === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                className={`gallery-chip-btn ${isActive ? 'active conic-chip-glow' : ''}`}
-                onClick={() => setCategory(cat)}
-              >
-                {isActive && <span className="chip-conic-glow-border" />}
-                <span>{cat}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Section Heading Below Chips */}
-      <div className="gallery-section-heading">
-        <div className="gallery-heading-text">
-          <span className="gallery-heading-eyebrow">PRODUCT IMAGES</span>
-          <h2 className="gallery-heading-title">
-            {category === 'Shoe Racks' ? 'Shoe Rack Installations' : 'Hanger Installations'}
-          </h2>
-        </div>
-        <span className="gallery-heading-count">{totalPhotos} photos</span>
-      </div>
 
       {/* Video Demonstration Modal */}
       {videoModalOpen && (

@@ -778,24 +778,70 @@ export function GalleryPage({
 
   return (
     <>
-      {/* 1. Target Gallery Hero Panel with 3D Tilted Photo Cards, Golden Streak, Flare, Filter Chips, and Heading */}
+      {/* 1. Target Gallery Hero Panel with 3D Tilted Photo Cards, Golden Streak, Flare, and Actions */}
       <GalleryHero
         onCardClick={handleHeroCardClick}
-        category={category}
-        setCategory={setCategory}
-        categories={availableCategories}
-        totalPhotos={visibleImages.length}
       />
 
-      {/* Section 1 (Odd): Photo Grid (Warm Ivory #F5F0E5) */}
+      {/* Section 1 (Odd): Exhibition Gallery Heading, Filter Chips & Photo Grid (Warm Ivory #F5F0E5) */}
       <div className="home-tonal-odd">
-        <section className="section container catalog-gallery-page" style={{ paddingTop: '36px', paddingBottom: '60px' }}>
+        <section className="section container catalog-gallery-page" style={{ paddingTop: '44px', paddingBottom: '70px' }}>
+          {/* Upper row: Small gold eyebrow label and clear Gallery heading, photo count on right */}
+          <div className="gallery-intro-bar">
+            <div className="gallery-intro-titles">
+              <span className="gallery-intro-eyebrow">PRODUCT IMAGES</span>
+              <h2 className="gallery-intro-heading">
+                {category === 'Shoe Racks' ? 'Shoe Rack Installations' : category === 'Projects' ? 'Custom Balcony & Storage Projects' : 'Hanger Installations'}
+              </h2>
+            </div>
+            <div className="gallery-intro-count">
+              <span>{visibleImages.length} photos</span>
+            </div>
+          </div>
+
+          {/* Filter row: The category buttons placed below heading with comfortable spacing */}
+          <div className="gallery-filter-bar" aria-label="Gallery category filters">
+            <div className="gallery-filter-chips">
+              {availableCategories.map(cat => {
+                const isActive = category === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    className={`gallery-filter-btn ${isActive ? 'active' : ''}`}
+                    onClick={() => setCategory(cat)}
+                  >
+                    <span>{cat}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Modern Exhibition-Style Image Grid */}
           {visibleImages.length ? (
             <div className="catalog-gallery-grid">
               {visibleImages.map((image, index) => (
-                <button className="catalog-gallery-item" type="button" key={image.src} onClick={() => setActiveIndex(index)} aria-label={`Open ${image.title}, photo ${index + 1}`}>
-                  <img src={img(image.src)} alt={`${image.title}, reference photo ${index + 1}`} loading="lazy" />
-                  <span>{image.title}</span>
+                <button
+                  className="catalog-gallery-item"
+                  type="button"
+                  key={image.src}
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={`Open ${image.title}, photo ${index + 1}`}
+                >
+                  <div className="gallery-card-frame">
+                    <img
+                      src={img(image.src)}
+                      alt={`${image.title}, reference photo ${index + 1}`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="gallery-card-info">
+                    <h3 className="gallery-card-title">{image.title}</h3>
+                    {image.category && (
+                      <span className="gallery-card-category">{image.category}</span>
+                    )}
+                  </div>
                 </button>
               ))}
             </div>

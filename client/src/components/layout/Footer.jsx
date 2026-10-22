@@ -26,6 +26,28 @@ export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [submittingSub, setSubmittingSub] = useState(false);
   const [subMsg, setSubMsg] = useState('');
+  const footerRef = React.useRef(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setRevealed(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -139,7 +161,7 @@ export function Footer() {
       {/* ==================================================================
           2. Main Dark Footer (5-Column Structure + Contact Glass Card)
           ================================================================== */}
-      <div className="hh-footer-main">
+      <div ref={footerRef} className={`hh-footer-main ${revealed ? 'hh-revealed' : ''}`}>
         {/* Subtle architectural wireframe illustration in background */}
         <div className="hh-footer-arch-lines" aria-hidden="true">
           <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -154,7 +176,7 @@ export function Footer() {
           {/* Column 1: Brand Column */}
           <div className="hh-footer-col hh-footer-brand-col">
             <div className="hh-footer-brand-logo-wrap">
-              <Logo variant="stacked" height={60} className="hh-footer-logo" />
+              <Logo variant="lockup" height={36} className="hh-footer-logo" />
             </div>
 
             <p className="hh-footer-brand-desc">
@@ -169,26 +191,27 @@ export function Footer() {
             </div>
 
             {/* Newsletter Subscription */}
-            <form className="hh-footer-newsletter-wrap" onSubmit={handleSubscribe} style={{ margin: '14px 0' }}>
-              <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(5, 18, 14, 0.7)', border: '1px solid rgba(232, 192, 112, 0.25)', borderRadius: '10px', padding: '4px 6px', maxWidth: '280px' }}>
+            <form className="hh-footer-newsletter-wrap" onSubmit={handleSubscribe}>
+              <div className="hh-newsletter-input-group">
                 <input
                   type="email"
+                  className="hh-newsletter-input"
                   placeholder="Enter email for newsletter..."
                   value={newsletterEmail}
                   onChange={e => setNewsletterEmail(e.target.value)}
                   required
-                  style={{ background: 'transparent', border: 'none', color: '#fff', fontSize: '12px', padding: '6px 8px', outline: 'none', width: '100%' }}
+                  aria-label="Email address for newsletter"
                 />
                 <button
                   type="submit"
                   disabled={submittingSub}
-                  style={{ background: '#e8c070', color: '#04120e', border: 'none', borderRadius: '6px', padding: '6px 10px', cursor: 'pointer', display: 'grid', placeItems: 'center' }}
+                  className="hh-newsletter-submit-btn"
                   aria-label="Subscribe"
                 >
                   <ArrowRight size={13} />
                 </button>
               </div>
-              {subMsg && <small style={{ color: '#e8c070', fontSize: '11px', display: 'block', marginTop: '5px' }}>{subMsg}</small>}
+              {subMsg && <small className="hh-newsletter-msg">{subMsg}</small>}
             </form>
 
             {/* Social Icons (Dynamic from Settings) */}
@@ -345,7 +368,7 @@ export function Footer() {
             3. Bottom Bar: Divider, Copyright, Policies & Demo Security Note
             ================================================================== */}
         <div className="container hh-footer-bottom-container">
-          <GoldDivider glow opacity={0.28} className="hh-footer-gold-divider" />
+          <GoldDivider glow opacity={0.28} className="hh-footer-gold-divider" style={{ margin: '12px 0 14px 0' }} />
           <div className="hh-footer-bottom-row">
             <div className="hh-footer-copyright">
               © 2026 HangerHome. All rights reserved.
