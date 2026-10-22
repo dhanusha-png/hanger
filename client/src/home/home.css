@@ -2629,34 +2629,32 @@
   background-color: transparent !important;
 }
 
-/* Section 2 (Even): Category Shortcuts
-   Merged into the hero's bottom edge (same dark tone #04120e, soft fade of ~60px into #0B211A) */
+/* Section 1: Category Shortcuts
+   Clean solid Warm Cream #F5F0E5 directly beneath hero banner */
 .home-tonal-cat-shortcuts {
-  background: radial-gradient(ellipse 65% 75% at 92% 10%, rgba(20, 85, 64, 0.22) 0%, transparent 60%),
-              linear-gradient(180deg, #04120e 0%, #04120e 15px, #0B211A 60px, #0B211A 100%);
+  background-color: #F5F0E5 !important;
+  background-image: none !important;
   position: relative;
   z-index: 2;
 }
 
-/* Odd Sections (3, 5, 7): Keep the current #04120e */
+/* Dark Emerald Sections: #061C14 */
 .home-tonal-odd {
-  background-color: #04120e;
+  background-color: #061C14 !important;
   position: relative;
   z-index: 2;
 }
 
-/* Even Sections (4, 6, 8): Slightly lighter deep forest tone #0B211A
-   with subtle radial glow in the corner */
+/* Warm Cream Sections: Clean solid #F5F0E5 without any green-tinted gradients or overlays */
 .home-tonal-even {
-  background-color: #0B211A;
-  background-image: radial-gradient(ellipse 65% 75% at 92% 8%, rgba(20, 85, 64, 0.28) 0%, transparent 65%);
+  background-color: #F5F0E5 !important;
+  background-image: none !important;
   position: relative;
   z-index: 2;
 }
 
-/* Alternating corner glow for visual balance across even sections */
 .home-tonal-even:nth-of-type(even) {
-  background-image: radial-gradient(ellipse 65% 75% at 8% 12%, rgba(20, 85, 64, 0.26) 0%, transparent 65%);
+  background-image: none !important;
 }
 
 /* Thin gold-to-transparent line along the top edge of even sections (4, 6, 8) */

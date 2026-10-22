@@ -26,6 +26,7 @@ import { ProductsHero } from './products/ProductsHero';
 import { ProductCatalogSidebar, matchProductLevel } from './products/ProductCatalogSidebar';
 import { GalleryHero } from './gallery/GalleryHero';
 import { FloatingWidgets } from './home/FloatingWidgets';
+import { getDemoProductBySlug } from './data/demoProducts';
 import './catalog.css';
 import './products/products-hero.css';
 import './products/product-sidebar.css';
@@ -288,8 +289,8 @@ export function ProductsPage({
         setTag={setTag}
       />
 
-      {/* Section 2 (Even): Professional Two-Column Catalog Section: Sticky Sidebar + Product Grid (Warm Cream #F5F0E5) */}
-      <div className="home-tonal-even">
+      {/* Section 2: Professional Two-Column Catalog Section: Sticky Sidebar + Product Grid (Next section: Dark Emerald #061C14) */}
+      <div className="home-tonal-odd">
         <section className="section container catalog-section" style={{ paddingTop: '36px', paddingBottom: '64px' }}>
         <div className="products-catalog-layout">
           {/* Desktop Sticky Left Glass Sidebar */}
@@ -527,7 +528,7 @@ export function CatalogProductDetail({ slug, products, onAdd, toggleWishlist, is
         }
       })
       .catch(() => {
-        const catalogProduct = products.find(item => item.slug === slug);
+        const catalogProduct = (products && products.find(item => item.slug === slug)) || getDemoProductBySlug(slug);
         if (current) {
           setProduct(catalogProduct || null);
           setReviews([]);
@@ -783,8 +784,8 @@ export function GalleryPage({
         onCardClick={handleHeroCardClick}
       />
 
-      {/* Section 1 (Odd): Exhibition Gallery Heading, Filter Chips & Photo Grid (Dark Emerald #061C14) */}
-      <div className="home-tonal-odd">
+      {/* Section 1: Gallery Heading, Category Filter Chips & Photo Grid (First section after hero: Warm Cream #F5F0E5) */}
+      <div className="home-tonal-even">
         <section className="section container catalog-gallery-page" style={{ paddingTop: '44px', paddingBottom: '70px' }}>
           {/* Upper row: Small gold eyebrow label and clear Gallery heading, photo count on right */}
           <div className="gallery-intro-bar">
@@ -853,9 +854,9 @@ export function GalleryPage({
         </section>
       </div>
 
-      {/* Section 2 (Even): Installation in Motion video card (Warm Cream #F5F0E5) */}
+      {/* Section 2: Installation in Motion video card (Next section: Dark Emerald #061C14) */}
       {category !== 'Shoe Racks' && (
-        <div className="home-tonal-even">
+        <div className="home-tonal-odd">
           <section className="section container" style={{ paddingTop: '50px', paddingBottom: '70px' }}>
             <div className="catalog-video-section" style={{ marginTop: 0 }}>
               <div className="catalog-gallery-heading">

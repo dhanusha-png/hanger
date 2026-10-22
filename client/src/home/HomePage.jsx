@@ -59,13 +59,13 @@ export function HomePage({
       {/* 2. Benefit Bar (Overlapping Hero) */}
       <BenefitBar />
 
-      {/* Section 1 (Odd): Category Shortcuts (Dark Emerald #061C14) */}
-      <div className="home-reveal home-tonal-odd home-tonal-cat-shortcuts">
+      {/* Section 1: Category Shortcuts (First section after hero: Warm Cream #F5F0E5) */}
+      <div className="home-reveal home-tonal-even">
         <CategoryShortcuts />
       </div>
 
-      {/* Section 2 (Even): Featured Solutions (Warm Cream #F5F0E5) */}
-      <div className="home-reveal home-tonal-even">
+      {/* Section 2: Featured Solutions (Next section: Dark Emerald #061C14) */}
+      <div className="home-reveal home-tonal-odd">
         <FeaturedSolutions
           products={products}
           loading={productsLoading}
@@ -76,27 +76,27 @@ export function HomePage({
         />
       </div>
 
-      {/* Section 3 (Odd): Installation Showcase (Dark Emerald #061C14) */}
-      <div className="home-reveal home-tonal-odd">
+      {/* Section 3: Installation Showcase (Next section: Warm Cream #F5F0E5) */}
+      <div className="home-reveal home-tonal-even">
         <InstallationShowcase />
       </div>
 
-      {/* Section 4 (Even): Our Services Section (Warm Cream #F5F0E5) */}
-      <div className="home-reveal home-tonal-even">
+      {/* Section 4: Our Services Section (Next section: Dark Emerald #061C14) */}
+      <div className="home-reveal home-tonal-odd">
         <ServicesSection />
       </div>
 
-      {/* Section 5 (Odd): How It Works (Dark Emerald #061C14) */}
-      <div className="home-reveal home-tonal-odd">
+      {/* Section 5: How It Works (Next section: Warm Cream #F5F0E5) */}
+      <div className="home-reveal home-tonal-even">
         <HowItWorks />
       </div>
 
-      {/* Section 6 (Even): Gallery Preview (Warm Cream #F5F0E5) */}
-      <div className="home-reveal home-tonal-even">
+      {/* Section 6: Gallery Preview (Next section: Dark Emerald #061C14) */}
+      <div className="home-reveal home-tonal-odd">
         <GalleryPreview />
       </div>
 
-      {/* Promotional CTA Banner (Dark Emerald & Gold Treatment) */}
+      {/* Promotional CTA Banner (Dark Emerald & Gold Treatment) - Preserved */}
       <div className="home-reveal home-tonal-odd home-cta-wrap">
         <HomeCTA />
       </div>

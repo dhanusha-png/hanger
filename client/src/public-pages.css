@@ -951,7 +951,7 @@
   border-color: #123C32 !important;
 }
 
-/* Action Cards Link Button in Contact Section 2 */
+/* Action Cards Link Button in Contact Section */
 .home-tonal-even .action-card-link-btn {
   background: #E5DAC6 !important;
   border: 1px solid #D8C9A8 !important;
@@ -976,6 +976,282 @@
 }
 
 .home-tonal-even .contact-closing-desc {
+  color: #C5CEC9 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Targeted Page-Specific Sections in Warm Cream (#F5F0E5)
+   -------------------------------------------------------------------------- */
+
+/* Products Page First Section: Search Bar & 6 Category Cards */
+.home-tonal-even .products-search-bar-card {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.08) !important;
+}
+
+.home-tonal-even .search-input-field {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .search-input-field::placeholder {
+  color: #64756D !important;
+}
+
+.home-tonal-even .sort-by-label {
+  color: #64756D !important;
+}
+
+.home-tonal-even .sort-select-control {
+  background: #FFFFFF !important;
+  border: 1px solid #D8C9A8 !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-even .sort-select-control option {
+  background: #FFF9EF !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-even .category-section-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .category-view-all-link {
+  color: #C9A248 !important;
+}
+
+.home-tonal-even .category-item-card {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 4px 16px rgba(18, 60, 50, 0.06) !important;
+}
+
+.home-tonal-even .category-item-card:hover {
+  background: #FFFFFF !important;
+  border-color: #C9A248 !important;
+  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.12), 0 0 16px rgba(201, 162, 72, 0.15) !important;
+}
+
+.home-tonal-even .category-item-card.active {
+  background: rgba(201, 162, 72, 0.16) !important;
+  border-color: #C9A248 !important;
+}
+
+.home-tonal-even .category-card-name {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .category-card-count {
+  color: #647168 !important;
+}
+
+.home-tonal-even .category-card-icon-box {
+  color: #C9A248 !important;
+}
+
+.home-tonal-even .category-card-arrow {
+  color: #647168 !important;
+}
+
+.home-tonal-even .category-item-card:hover .category-card-arrow {
+  color: #123C32 !important;
+}
+
+/* Gallery Page First Section: Intro Bar, Category Filter Chips & Photo Cards */
+.home-tonal-even .gallery-intro-heading {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .gallery-intro-count span {
+  color: #647168 !important;
+}
+
+.home-tonal-even .gallery-filter-btn {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  color: #18352D !important;
+}
+
+.home-tonal-even .gallery-filter-btn:hover {
+  background: rgba(201, 162, 72, 0.14) !important;
+  border-color: #C9A248 !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-even .gallery-filter-btn.active {
+  background: #123C32 !important;
+  border-color: #123C32 !important;
+  color: #FFF9EF !important;
+}
+
+.home-tonal-even .catalog-gallery-item {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 6px 20px rgba(18, 60, 50, 0.06) !important;
+}
+
+.home-tonal-even .gallery-card-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .gallery-card-category {
+  color: #C9A248 !important;
+}
+
+/* About Page Sections in Warm Cream: Who We Are & Approach */
+.home-tonal-even .about-who-item {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 4px 16px rgba(18, 60, 50, 0.05) !important;
+}
+
+.home-tonal-even .about-who-item b {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .about-who-item small {
+  color: #647168 !important;
+}
+
+.home-tonal-even .about-approach-card {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.06) !important;
+  color: #18352D !important;
+}
+
+.home-tonal-even .about-approach-card h3 {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .about-approach-card p {
+  color: #647168 !important;
+}
+
+.home-tonal-even .about-approach-card .step-num {
+  color: #C9A248 !important;
+}
+
+/* Contact Page Section 1 (Details + Form) & Section 3 (FAQ) in Warm Cream */
+.home-tonal-even .contact-glass-card,
+.home-tonal-even .contact-hours-card,
+.home-tonal-even .contact-channels-card,
+.home-tonal-even .contact-meta-card {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 8px 24px rgba(18, 60, 50, 0.06) !important;
+  color: #18352D !important;
+}
+
+.home-tonal-even .contact-card-title,
+.home-tonal-even .contact-channel-val,
+.home-tonal-even .contact-channel-sub {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .contact-channel-label,
+.home-tonal-even .contact-meta-desc,
+.home-tonal-even .contact-hours-text {
+  color: #647168 !important;
+}
+
+.home-tonal-even .contact-form-panel {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 16px 44px rgba(18, 60, 50, 0.08) !important;
+  color: #18352D !important;
+}
+
+.home-tonal-even .contact-form-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .contact-form-subtitle {
+  color: #647168 !important;
+}
+
+.home-tonal-even .contact-progress-container {
+  background: rgba(18, 60, 50, 0.04) !important;
+  border: 1px solid #D8C9A8 !important;
+}
+
+.home-tonal-even .contact-progress-track {
+  background: #D8C9A8 !important;
+}
+
+.home-tonal-even .contact-step-hint {
+  color: #647168 !important;
+}
+
+.home-tonal-even .contact-step-hint.step-done,
+.home-tonal-even .contact-step-hint.step-active {
+  color: #123C32 !important;
+  font-weight: 700 !important;
+}
+
+.home-tonal-even .field-input-wrap input,
+.home-tonal-even .field-input-wrap textarea,
+.home-tonal-even .field-input-wrap select,
+.home-tonal-even .contact-form-panel input:not([type="checkbox"]):not([type="radio"]),
+.home-tonal-even .contact-form-panel textarea,
+.home-tonal-even .contact-form-panel select {
+  background: #FFFFFF !important;
+  border: 1px solid #D8C9A8 !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-even .field-input-wrap label {
+  color: #647168 !important;
+}
+
+.home-tonal-even .field-lead-icon {
+  color: #C9A248 !important;
+}
+
+.home-tonal-even .chip-btn {
+  background: #F5F0E5 !important;
+  border: 1px solid #D8C9A8 !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-even .chip-btn.active {
+  background: #123C32 !important;
+  border-color: #123C32 !important;
+  color: #FFF9EF !important;
+}
+
+.home-tonal-even .contact-faq-item,
+.home-tonal-even .contact-faq-card {
+  background: #FFF9EF !important;
+  border: 1px solid #D8C9A8 !important;
+  box-shadow: 0 4px 16px rgba(18, 60, 50, 0.05) !important;
+}
+
+.home-tonal-even .contact-faq-trigger,
+.home-tonal-even .faq-question-text,
+.home-tonal-even .contact-faq-question {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .contact-faq-answer,
+.home-tonal-even .faq-answer-inner p {
+  color: #647168 !important;
+}
+
+/* Contact Page Section 2 (Action Cards) in Dark Emerald */
+.home-tonal-odd .contact-action-card,
+.home-tonal-odd .action-card-inner {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  color: #FFFFFF !important;
+}
+
+.home-tonal-odd .action-card-title {
+  color: #FFFFFF !important;
+}
+
+.home-tonal-odd .action-card-desc {
   color: #C5CEC9 !important;
 }
 
