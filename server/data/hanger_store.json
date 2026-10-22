@@ -1,0 +1,2165 @@
+{
+  "User": [
+    {
+      "_id": "6ada57124e14b733cfe11cf8",
+      "name": "Super Admin",
+      "email": "admin@example.com",
+      "passwordHash": "$2a$10$2v7XLEc9U.5Y0C7b/F2LNeExcOttSYMw3Lid27ykfwfL4NVjc3iWC",
+      "role": "admin",
+      "phone": "+919876543210",
+      "city": "Mumbai",
+      "pincode": "400001",
+      "acceptedTerms": true,
+      "isBlocked": false,
+      "addresses": [],
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf9",
+      "name": "Operations Staff",
+      "email": "staff@example.com",
+      "passwordHash": "$2a$10$2v7XLEc9U.5Y0C7b/F2LNeExcOttSYMw3Lid27ykfwfL4NVjc3iWC",
+      "role": "staff",
+      "phone": "+919876543211",
+      "city": "Bangalore",
+      "pincode": "560001",
+      "acceptedTerms": true,
+      "isBlocked": false,
+      "addresses": [],
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cfa",
+      "name": "Rahul Verma",
+      "email": "rahul.verma@example.com",
+      "passwordHash": "$2a$10$2v7XLEc9U.5Y0C7b/F2LNeExcOttSYMw3Lid27ykfwfL4NVjc3iWC",
+      "role": "customer",
+      "phone": "+919876543220",
+      "city": "Bangalore",
+      "pincode": "560034",
+      "acceptedTerms": true,
+      "isBlocked": false,
+      "addresses": [
+        {
+          "_id": "6ada57124e14b733cfe11cfb",
+          "fullName": "Rahul Verma",
+          "phone": "+919876543220",
+          "line1": "Flat 402, Green Glen",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": "560034",
+          "country": "India",
+          "isDefault": true
+        }
+      ],
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cfc",
+      "name": "Sneha Patel",
+      "email": "sneha.patel@example.com",
+      "passwordHash": "$2a$10$2v7XLEc9U.5Y0C7b/F2LNeExcOttSYMw3Lid27ykfwfL4NVjc3iWC",
+      "role": "customer",
+      "phone": "+919876543221",
+      "city": "Mumbai",
+      "pincode": "400050",
+      "acceptedTerms": true,
+      "isBlocked": false,
+      "addresses": [
+        {
+          "_id": "6ada57124e14b733cfe11cfd",
+          "fullName": "Sneha Patel",
+          "phone": "+919876543221",
+          "line1": "14 Palm Beach Rd",
+          "city": "Mumbai",
+          "state": "Maharashtra",
+          "pincode": "400050",
+          "country": "India",
+          "isDefault": true
+        }
+      ],
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Category": [
+    {
+      "_id": "6ada57124e14b733cfe11cdf",
+      "name": "Ceiling Hangers",
+      "slug": "ceiling-hangers",
+      "level": 1,
+      "icon": "CeilingPulleyIcon",
+      "order": 1,
+      "description": "Overhead pulley and retractable drying systems for balconies and utility ceilings.",
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce0",
+      "name": "Wall Hangers",
+      "slug": "wall-hangers",
+      "level": 1,
+      "icon": "WallHangerIcon",
+      "order": 2,
+      "description": "Space-saving accordion and foldable wall-mounted drying racks.",
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce1",
+      "name": "Shoe Racks",
+      "slug": "shoe-racks",
+      "level": 1,
+      "icon": "ShoeIcon",
+      "order": 3,
+      "description": "Multi-tier organizers, slim entryway cabinets, and floor-standing racks.",
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce2",
+      "name": "Storage Solutions",
+      "slug": "storage-solutions",
+      "level": 1,
+      "icon": "StorageBoxIcon",
+      "order": 4,
+      "description": "Modular organizers, valets, coat trees, and space-saving accessories.",
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce3",
+      "name": "Custom Solutions",
+      "slug": "custom-solutions",
+      "level": 1,
+      "icon": "RulerTriangleIcon",
+      "order": 5,
+      "description": "Tailored dimensions and custom installations engineered for your home.",
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Product": [
+    {
+      "_id": "6ada57124e14b733cfe11ce4",
+      "name": "Multi-Purpose Clothes Hanger Stand",
+      "slug": "multi-purpose-clothes-hanger-stand",
+      "sku": "HHD-HANGER-001",
+      "modelName": "HH-HGR-001",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Modern tree coat stand with weighted composite marble base and 8 staggered pegs.",
+      "description": "An elegant freestanding valet and coat tree designed for entryways, bedrooms, and offices. The heavy 38 cm composite marble base provides unshakeable stability, while the matte black steel central mast features 8 staggered oak branches tipped with champagne gold caps to prevent fabric snagging.",
+      "price": 2599,
+      "compareAtPrice": 2999,
+      "stock": 15,
+      "images": [
+        {
+          "url": "/products/hanger-multipurpose-stand.jpg",
+          "alt": "Multi-Purpose Clothes Hanger Stand"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Freestanding",
+        "Premium",
+        "Compact"
+      ],
+      "features": [
+        "Modern minimalist tree branch design",
+        "Solid weighted circular marble base",
+        "8 staggered wooden hanging branches",
+        "Champagne gold finial and accents"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "Freestanding Coat & Valet Stand"
+        },
+        {
+          "label": "Base Material",
+          "value": "Weighted Composite Marble"
+        },
+        {
+          "label": "Pole Material",
+          "value": "Powder-Coated Steel & Oak Pegs"
+        },
+        {
+          "label": "Height",
+          "value": "180 cm"
+        },
+        {
+          "label": "Base Diameter",
+          "value": "38 cm"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2999,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 1,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce5",
+      "name": "Premium Wall Mounted Clothes Drying Hanger",
+      "slug": "premium-wall-mounted-clothes-hanger",
+      "sku": "HHD-HANGER-002",
+      "modelName": "HH-HGR-002",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Space-saving accordion wall-mounted drying rack with 6 parallel stainless steel rods.",
+      "description": "The Premium Wall-Mounted Clothes Drying Hanger is engineered for compact laundry areas, balconies, and utility rooms. Built with heavy-duty accordion scissor arms and 6 high-grade stainless steel rods, it extends smoothly for drying and folds flush against the wall when not in use. Weatherproof powder-coated brackets ensure long-lasting durability.",
+      "price": 2499,
+      "compareAtPrice": 2999,
+      "stock": 25,
+      "images": [
+        {
+          "url": "/products/hanger-premium-wall-mounted.jpg",
+          "alt": "Premium Wall Mounted Clothes Drying Hanger"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Wall Mounted",
+        "Space Saver",
+        "Premium"
+      ],
+      "features": [
+        "Heavy-duty accordion scissor extension mechanism",
+        "6 parallel stainless steel drying rods",
+        "Rust-resistant powder-coated wall brackets",
+        "Smooth wall fold-away profile to save floor space"
+      ],
+      "specifications": [
+        {
+          "label": "Mounting Style",
+          "value": "Wall Mounted"
+        },
+        {
+          "label": "Material",
+          "value": "304 Stainless Steel & Aluminum"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "25 kg"
+        },
+        {
+          "label": "Dimensions",
+          "value": "120 cm x 70 cm (extended)"
+        },
+        {
+          "label": "Finish",
+          "value": "Matte Black & Polished Chrome"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2999,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 2,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce6",
+      "name": "Multi-Tier Folding Clothes Drying Rack",
+      "slug": "multi-tier-folding-clothes-drying-rack",
+      "sku": "HHD-HANGER-003",
+      "modelName": "HH-HGR-003",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Gullwing multi-tier folding drying stand with high-capacity dual wings and shoe shelf.",
+      "description": "Designed for versatile home drying, this Multi-Tier Folding Clothes Drying Rack features an A-frame gullwing design with 18 meters of drying line. The center table accommodates flat drying for delicate sweaters, while angled wings support full-length garments. Includes an integrated bottom rack for footwear and non-slip rubber footing.",
+      "price": 2799,
+      "compareAtPrice": 3299,
+      "stock": 18,
+      "images": [
+        {
+          "url": "/products/hanger-multi-tier-folding.jpg",
+          "alt": "Multi-Tier Folding Clothes Drying Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Multi-Tier",
+        "Foldable",
+        "Space Saver"
+      ],
+      "features": [
+        "Gullwing dual fold-out drying wings",
+        "Center horizontal drying grid for delicate garments",
+        "Lower level shoe and accessory shelf",
+        "Non-scratch rubber floor protectors"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "Gullwing Freestanding"
+        },
+        {
+          "label": "Material",
+          "value": "Reinforced Tubular Steel"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "30 kg"
+        },
+        {
+          "label": "Drying Line",
+          "value": "18 meters total"
+        },
+        {
+          "label": "Finish",
+          "value": "Electrostatic Anthracite Powder"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3299,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 3,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce7",
+      "name": "Foldable Space-Saving Hanger",
+      "slug": "foldable-space-saving-hanger",
+      "sku": "HHD-HANGER-004",
+      "modelName": "HH-HGR-004",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Classic 4-tier concertina drying tower with solid birch frame and chrome rungs.",
+      "description": "A timeless vertical drying tower that folds accordion-style into an ultra-slim 8 cm profile. Crafted from smooth solid birch wood struts and chrome-plated steel rungs, it offers 4 vertical levels of drying space while taking up a minimal floor footprint in apartments and bathrooms.",
+      "price": 2199,
+      "compareAtPrice": 2599,
+      "stock": 20,
+      "images": [
+        {
+          "url": "/products/hanger-foldable-space-saver.jpg",
+          "alt": "Foldable Space-Saving Hanger"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Foldable",
+        "Space Saver",
+        "Compact"
+      ],
+      "features": [
+        "4-tier concertina accordion tower layout",
+        "Collapses flat for behind-door storage",
+        "Solid natural wood uprights with brass hardware",
+        "Chrome-finished snag-free drying rungs"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "Concertina Vertical Tower"
+        },
+        {
+          "label": "Material",
+          "value": "Solid Birch Wood & Chrome Rods"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "20 kg"
+        },
+        {
+          "label": "Storage Depth",
+          "value": "8 cm when folded"
+        },
+        {
+          "label": "Finish",
+          "value": "Natural Timber & Polished Chrome"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2599,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 4,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce8",
+      "name": "Heavy Duty Garment Hanger Rack",
+      "slug": "heavy-duty-garment-hanger-rack",
+      "sku": "HHD-HANGER-005",
+      "modelName": "HH-HGR-005",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Commercial-grade rolling steel garment rack with bottom storage and 360° locking wheels.",
+      "description": "A robust mobile garment storage solution constructed from heavy-gauge industrial tubular steel. With a reinforced top hanging rail and pull-out extension stoppers on both ends, this rack holds coats, suits, and daily wardrobe items with ease. Equipped with 4 smooth-rolling 360° industrial casters with step-locks.",
+      "price": 3199,
+      "compareAtPrice": 3699,
+      "stock": 14,
+      "images": [
+        {
+          "url": "/products/hanger-heavy-duty-garment.jpg",
+          "alt": "Heavy Duty Garment Hanger Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Heavy Duty",
+        "Premium",
+        "Freestanding"
+      ],
+      "features": [
+        "Commercial-grade thick steel frame",
+        "Heavy-duty smooth-rolling 360° casters with locks",
+        "Dual side end-stopper extensions for extra hanging",
+        "Reinforced bottom grid shelf for storage boxes"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "Rolling Garment Rack"
+        },
+        {
+          "label": "Material",
+          "value": "Heavy-Gauge Carbon Steel"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "50 kg"
+        },
+        {
+          "label": "Mobility",
+          "value": "4 Industrial Locking Wheels"
+        },
+        {
+          "label": "Finish",
+          "value": "Industrial Matte Black & Chrome"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3699,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 5,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ce9",
+      "name": "Compact Balcony Drying Hanger",
+      "slug": "compact-balcony-drying-hanger",
+      "sku": "HHD-HANGER-006",
+      "modelName": "HH-HGR-006",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Balcony railing hook-on drying rack with adjustable arms and 6 rustproof aluminum bars.",
+      "description": "Maximize apartment balcony space with this sleek over-the-rail drying rack. Adjustable clamp arms hook securely over balcony balustrades, parapets, or window sills up to 15 cm wide. The 6 anodized aluminum drying tubes provide quick natural air drying without occupying any floor space.",
+      "price": 1699,
+      "compareAtPrice": 1999,
+      "stock": 22,
+      "images": [
+        {
+          "url": "/products/hanger-compact-balcony.jpg",
+          "alt": "Compact Balcony Drying Hanger"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Compact",
+        "Balcony",
+        "Space Saver"
+      ],
+      "features": [
+        "Universal adjustable railing hook brackets",
+        "Space-efficient balcony ledge hanging",
+        "6 high-strength aluminum drying bars",
+        "Weatherproof UV-stabilized coating"
+      ],
+      "specifications": [
+        {
+          "label": "Mounting",
+          "value": "Balcony Railing / Parapet / Window Sill"
+        },
+        {
+          "label": "Material",
+          "value": "Anodized Aluminum & Steel"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "15 kg"
+        },
+        {
+          "label": "Railing Fit",
+          "value": "Fits railings up to 15 cm depth"
+        },
+        {
+          "label": "Finish",
+          "value": "Brushed Metal & Champagne Accent"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 1999,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 6,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cea",
+      "name": "Adjustable Clothes Drying Rack",
+      "slug": "adjustable-clothes-drying-rack",
+      "sku": "HHD-HANGER-007",
+      "modelName": "HH-HGR-007",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Telescopic double-rail drying stand with quick-lock height adjustment and stabilizing feet.",
+      "description": "This height-adjustable drying stand features dual parallel hanging bars with independent telescopic uprights. Adjust the height between 100 cm and 175 cm to accommodate everything from shirts to long sarees and bedsheets. Built on a weighted H-base with leveling pads for stable drying.",
+      "price": 2899,
+      "compareAtPrice": 3399,
+      "stock": 16,
+      "images": [
+        {
+          "url": "/products/hanger-adjustable-drying.jpg",
+          "alt": "Adjustable Clothes Drying Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Adjustable",
+        "Multi-Tier",
+        "Premium"
+      ],
+      "features": [
+        "Telescopic height adjustment poles with quick-locks",
+        "Dual hanging rails at staggered elevations",
+        "Sturdy H-base with floor leveling feet",
+        "Side swivel arms for hanging accessories"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "Telescopic Double Rail"
+        },
+        {
+          "label": "Material",
+          "value": "Stainless Steel & Tough Resin"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "35 kg"
+        },
+        {
+          "label": "Height Range",
+          "value": "100 cm to 175 cm"
+        },
+        {
+          "label": "Finish",
+          "value": "Midnight Black & Polished Steel"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3399,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 7,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ceb",
+      "name": "Premium Extendable Clothes Drying Rack",
+      "slug": "premium-extendable-clothes-drying-rack",
+      "sku": "HHD-HANGER-008",
+      "modelName": "HH-HGR-008",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Lateral slide-out extendable drying frame expanding from 110 cm to 195 cm width.",
+      "description": "Featuring an ingenious dual-side lateral slide mechanism, this drying rack expands effortlessly to nearly 2 meters in length for bed sheets and family laundry, and retracts back into a compact footprint when drying smaller loads. Built on reinforced folding scissor legs with anti-slip feet.",
+      "price": 2699,
+      "compareAtPrice": 3199,
+      "stock": 17,
+      "images": [
+        {
+          "url": "/products/hanger-extendable-drying.jpg",
+          "alt": "Premium Extendable Clothes Drying Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Extendable",
+        "Foldable",
+        "Space Saver"
+      ],
+      "features": [
+        "Lateral sliding telescopic wings on both sides",
+        "Expands from 110 cm to 195 cm width",
+        "Reinforced folding scissor leg support",
+        "Snag-free smooth polished rods"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "Lateral Telescopic Expanding"
+        },
+        {
+          "label": "Material",
+          "value": "Electroplated Alloy & Steel"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "28 kg"
+        },
+        {
+          "label": "Expanded Length",
+          "value": "Up to 195 cm"
+        },
+        {
+          "label": "Finish",
+          "value": "Charcoal & Champagne Gold"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3199,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 8,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cec",
+      "name": "Stainless Steel Hanging Rack",
+      "slug": "stainless-steel-hanging-rack",
+      "sku": "HHD-HANGER-009",
+      "modelName": "HH-HGR-009",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Wall-mounted 304 stainless steel rack with upper towel shelf and 8 sliding S-hooks.",
+      "description": "Precision-fabricated from heavy-duty 304 marine-grade stainless steel, this wall rack combines an upper 5-bar towel shelf with a lower hanging rail. Includes 8 smooth-sliding S-hooks for garments, towels, or kitchenware. Resistant to moisture, rust, and humidity for lifetime utility.",
+      "price": 3499,
+      "compareAtPrice": 3999,
+      "stock": 12,
+      "images": [
+        {
+          "url": "/products/hanger-stainless-steel.jpg",
+          "alt": "Stainless Steel Hanging Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Wall Mounted",
+        "Stainless Steel",
+        "Premium"
+      ],
+      "features": [
+        "Marine-grade 304 brushed stainless steel",
+        "Integrated top towel storage shelf",
+        "8 smooth-sliding brass S-hooks included",
+        "Concealed heavy-duty wall anchors"
+      ],
+      "specifications": [
+        {
+          "label": "Mounting",
+          "value": "Direct Wall Mount"
+        },
+        {
+          "label": "Material",
+          "value": "Grade 304 Stainless Steel"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "30 kg"
+        },
+        {
+          "label": "Dimensions",
+          "value": "90 cm x 35 cm x 25 cm"
+        },
+        {
+          "label": "Finish",
+          "value": "Brushed Satin Stainless"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3999,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 9,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11ced",
+      "name": "Deluxe Freestanding Garment Hanger",
+      "slug": "deluxe-freestanding-garment-hanger",
+      "sku": "HHD-HANGER-010",
+      "modelName": "HH-HGR-010",
+      "productType": "hanger",
+      "category": "Hangers",
+      "shortDescription": "Architectural solid oak A-frame valet with top wardrobe rail and bottom shoe deck.",
+      "description": "A Scandinavian-inspired open wardrobe garment rack crafted from solid natural oak and heavy steel fixtures. The upper full-width steel rail holds heavy coats and everyday clothing, while the lower slatted oak platform accommodates shoes, storage baskets, and bags.",
+      "price": 3599,
+      "compareAtPrice": 4199,
+      "stock": 10,
+      "images": [
+        {
+          "url": "/products/hanger-deluxe-freestanding.jpg",
+          "alt": "Deluxe Freestanding Garment Hanger"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Freestanding",
+        "Premium",
+        "Multi-Tier"
+      ],
+      "features": [
+        "Architectural solid oak A-frame side posts",
+        "Heavy-duty central wardrobe hanging rail",
+        "Integrated bottom slatted shoe and basket deck",
+        "Side accessory knobs for hats and bags"
+      ],
+      "specifications": [
+        {
+          "label": "Style",
+          "value": "A-Frame Wardrobe Valet"
+        },
+        {
+          "label": "Frame Material",
+          "value": "Natural Oak & Steel"
+        },
+        {
+          "label": "Load Capacity",
+          "value": "45 kg"
+        },
+        {
+          "label": "Dimensions",
+          "value": "115 cm x 45 cm x 165 cm"
+        },
+        {
+          "label": "Finish",
+          "value": "Warm Oak & Brushed Chrome"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 4199,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 10,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cee",
+      "name": "Compact 3-Tier Shoe Rack",
+      "slug": "compact-3-tier-shoe-rack",
+      "sku": "HHD-SHOE-001",
+      "modelName": "HH-SHOE-001",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Natural solid wood 3-tier slatted shoe rack holding up to 9-12 pairs of footwear.",
+      "description": "Keep your entryway tidy with this compact 3-tier solid wood shoe rack. Designed with open slatted shelves that promote ventilation and natural drying for shoes. Its clean, warm timber aesthetic complements any modern or traditional home interior.",
+      "price": 1999,
+      "compareAtPrice": 2399,
+      "stock": 18,
+      "images": [
+        {
+          "url": "/products/shoe-rack-compact-3-tier.jpg",
+          "alt": "Compact 3-Tier Shoe Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Multi-Tier",
+        "Compact",
+        "Space Saver"
+      ],
+      "features": [
+        "3 full slatted natural wood tiers",
+        "Compact footprint perfect for entryways and closets",
+        "Accommodates up to 9-12 pairs of footwear",
+        "Smooth rounded edges and snag-free finish"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "9-12 Pairs (3 Tiers)"
+        },
+        {
+          "label": "Material",
+          "value": "Solid Natural Pine / Oak"
+        },
+        {
+          "label": "Dimensions",
+          "value": "75 cm x 28 cm x 55 cm"
+        },
+        {
+          "label": "Tier Spacing",
+          "value": "19 cm per shelf"
+        },
+        {
+          "label": "Finish",
+          "value": "Natural Clear Matte"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2399,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 11,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cef",
+      "name": "Premium 4-Tier Shoe Organizer",
+      "slug": "premium-4-tier-shoe-organizer",
+      "sku": "HHD-SHOE-002",
+      "modelName": "HH-SHOE-002",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Angled metal mesh 4-tier shoe stand with dark walnut sides and front heel guards.",
+      "description": "An elevated shoe organization stand featuring 4 angled wire mesh tiers with raised front retaining lips that keep shoes securely in place. Framed by rich dark walnut side supports with contoured top carry handles for effortless room-to-room rearrangement.",
+      "price": 2599,
+      "compareAtPrice": 2999,
+      "stock": 15,
+      "images": [
+        {
+          "url": "/products/shoe-rack-premium-4-tier.jpg",
+          "alt": "Premium 4-Tier Shoe Organizer"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Multi-Tier",
+        "Premium",
+        "Angled"
+      ],
+      "features": [
+        "4 angled wire mesh tiers with front heel stop lip",
+        "Dark walnut wood side panels with arched handles",
+        "Prevents dust buildup and promotes shoe airflow",
+        "Holds up to 16 pairs of sneakers, heels, and flats"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "12-16 Pairs (4 Tiers)"
+        },
+        {
+          "label": "Material",
+          "value": "Dark Walnut & Carbon Steel"
+        },
+        {
+          "label": "Dimensions",
+          "value": "80 cm x 30 cm x 85 cm"
+        },
+        {
+          "label": "Shelf Type",
+          "value": "Angled Mesh with Heel Stop"
+        },
+        {
+          "label": "Finish",
+          "value": "Deep Walnut & Matte Black"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2999,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 12,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf0",
+      "name": "Slim Entryway Shoe Rack",
+      "slug": "slim-entryway-shoe-rack",
+      "sku": "HHD-SHOE-003",
+      "modelName": "HH-SHOE-003",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Ultra-slim 18 cm hallway shoe cabinet with 3 tilt-out compartments and brass hardware.",
+      "description": "Engineered specifically for narrow hallways and compact apartments, this ultra-slim cabinet measures just 18 cm in depth. The 3 drop-down tilt compartments feature dual-row shoe dividers that hold up to 18 pairs while concealing footwear completely behind clean modern white panels.",
+      "price": 3499,
+      "compareAtPrice": 3999,
+      "stock": 12,
+      "images": [
+        {
+          "url": "/products/shoe-rack-slim-entryway.jpg",
+          "alt": "Slim Entryway Shoe Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Slim",
+        "Space Saver",
+        "Entryway"
+      ],
+      "features": [
+        "Ultra-slim 18 cm cabinet profile for narrow hallways",
+        "3 drop-down tilt compartments with dual dividers",
+        "Warm oak top display ledge for keys and decor",
+        "Sleek brushed brass minimalist pull handles"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "12-18 Pairs in 3 Fold Compartments"
+        },
+        {
+          "label": "Material",
+          "value": "E1 Engineered Board & Solid Wood Top"
+        },
+        {
+          "label": "Dimensions",
+          "value": "70 cm x 18 cm x 115 cm"
+        },
+        {
+          "label": "Mounting",
+          "value": "Freestanding with Wall Safety Anchor"
+        },
+        {
+          "label": "Finish",
+          "value": "Pure White & Natural Oak Accent"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3999,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 13,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf1",
+      "name": "Modern 5-Tier Shoe Stand",
+      "slug": "modern-5-tier-shoe-stand",
+      "sku": "HHD-SHOE-004",
+      "modelName": "HH-SHOE-004",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "5-tier industrial tubular metal shoe stand accommodating up to 20 pairs of footwear.",
+      "description": "A high-capacity 5-tier storage stand with a clean architectural profile. Fabricated from powder-coated tubular steel, it stores up to 20 pairs of adult footwear without bowing. The elevated bottom tier provides clearance for robotic vacuums and floor sweeping.",
+      "price": 3199,
+      "compareAtPrice": 3699,
+      "stock": 14,
+      "images": [
+        {
+          "url": "/products/shoe-rack-modern-5-tier.jpg",
+          "alt": "Modern 5-Tier Shoe Stand"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Multi-Tier",
+        "Modern",
+        "Space Saver"
+      ],
+      "features": [
+        "5 generous horizontal metal tubular shelves",
+        "Clean open industrial silhouette",
+        "Holds up to 20 pairs of family footwear",
+        "Raised bottom tier allows easy floor cleaning"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "15-20 Pairs (5 Tiers)"
+        },
+        {
+          "label": "Material",
+          "value": "Heavy-Duty Tubular Steel"
+        },
+        {
+          "label": "Dimensions",
+          "value": "85 cm x 30 cm x 105 cm"
+        },
+        {
+          "label": "Shelf Height",
+          "value": "19 cm per level"
+        },
+        {
+          "label": "Finish",
+          "value": "Electrostatic Charcoal Gray"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3699,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 14,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf2",
+      "name": "Space-Saving Shoe Storage Rack",
+      "slug": "space-saving-shoe-storage-rack",
+      "sku": "HHD-SHOE-005",
+      "modelName": "HH-SHOE-005",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Staggered vertical modular tower with 6 levels and compact corner footprint.",
+      "description": "An innovative staggered column shoe tower that utilizes vertical corner space. The interlocking alternating shelves easily fit different shoe heights from running sneakers to high-top ankle boots, making it an ideal organizer for entryway alcoves and walk-in closets.",
+      "price": 2299,
+      "compareAtPrice": 2699,
+      "stock": 19,
+      "images": [
+        {
+          "url": "/products/shoe-rack-space-saving.jpg",
+          "alt": "Space-Saving Shoe Storage Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Space Saver",
+        "Modular",
+        "Compact"
+      ],
+      "features": [
+        "Staggered geometric dual-column modular shelves",
+        "Utilizes vertical corner space with narrow footprint",
+        "Suitable for high-tops, boots, and everyday sneakers",
+        "Modular stackable interlocking connector system"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "12 Pairs across 6 Staggered Tiers"
+        },
+        {
+          "label": "Material",
+          "value": "Composite Wood & Steel Spine"
+        },
+        {
+          "label": "Dimensions",
+          "value": "48 cm x 28 cm x 110 cm"
+        },
+        {
+          "label": "Orientation",
+          "value": "Vertical Space-Saving Tower"
+        },
+        {
+          "label": "Finish",
+          "value": "Nordic Oak & Matte Black"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2699,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 15,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf3",
+      "name": "Heavy Duty Multi-Level Shoe Rack",
+      "slug": "heavy-duty-multi-level-shoe-rack",
+      "sku": "HHD-SHOE-006",
+      "modelName": "HH-SHOE-006",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Commercial-grade 4-tier steel rack with reinforced rear X-brace and mesh shelves.",
+      "description": "Built for high-traffic homes and commercial foyers, this heavy-duty shoe organizer features thick 50mm steel box uprights and a rear structural X-brace that guarantees zero wobble. Each of the 4 heavy-gauge wire mesh shelves easily holds up to 20 kg of boots and sports gear.",
+      "price": 2899,
+      "compareAtPrice": 3299,
+      "stock": 11,
+      "images": [
+        {
+          "url": "/products/shoe-rack-heavy-duty.jpg",
+          "alt": "Heavy Duty Multi-Level Shoe Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Heavy Duty",
+        "Multi-Tier",
+        "Reinforced"
+      ],
+      "features": [
+        "Industrial 50mm square steel upright legs",
+        "Reinforced rear X-brace prevents swaying or tilting",
+        "4 heavy-gauge steel wire mesh shelves",
+        "Load capacity up to 20 kg per shelf"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "16-20 Pairs (4 Tiers)"
+        },
+        {
+          "label": "Material",
+          "value": "Commercial Grade Structural Steel"
+        },
+        {
+          "label": "Dimensions",
+          "value": "90 cm x 32 cm x 88 cm"
+        },
+        {
+          "label": "Total Load",
+          "value": "80 kg evenly distributed"
+        },
+        {
+          "label": "Finish",
+          "value": "Textured Industrial Matte Black"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3299,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 16,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf4",
+      "name": "Foldable Shoe Rack",
+      "slug": "foldable-shoe-rack",
+      "sku": "HHD-SHOE-007",
+      "modelName": "HH-SHOE-007",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "100% natural bamboo 4-tier folding rack with zero-assembly instant setup.",
+      "description": "Crafted from sustainable mountain bamboo, this folding shoe organizer requires zero tools or assembly—simply expand the scissor joints and the 4 slatted tiers lock firmly into position. Folds down flat to just 8 cm thickness for effortless relocation or temporary storage.",
+      "price": 2199,
+      "compareAtPrice": 2499,
+      "stock": 21,
+      "images": [
+        {
+          "url": "/products/shoe-rack-foldable.jpg",
+          "alt": "Foldable Shoe Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Foldable",
+        "Bamboo",
+        "Space Saver"
+      ],
+      "features": [
+        "Zero-assembly ready to use right out of the box",
+        "Scissor-fold bamboo mechanism collapses flat in seconds",
+        "4 sturdy slatted bamboo tiers holding 12-16 pairs",
+        "Eco-friendly natural moisture-resistant bamboo"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "12-16 Pairs (4 Tiers)"
+        },
+        {
+          "label": "Material",
+          "value": "100% Alpine Bamboo"
+        },
+        {
+          "label": "Dimensions",
+          "value": "70 cm x 26 cm x 68 cm"
+        },
+        {
+          "label": "Folded Size",
+          "value": "70 cm x 32 cm x 8 cm"
+        },
+        {
+          "label": "Finish",
+          "value": "Natural Bamboo Eco-Seal"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": true,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 2499,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 17,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf5",
+      "name": "Family Shoe Storage Organizer",
+      "slug": "family-shoe-storage-organizer",
+      "sku": "HHD-SHOE-008",
+      "modelName": "HH-SHOE-008",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Double-wide 4-tier storage unit holding up to 28 pairs with a solid oak bench top.",
+      "description": "The ultimate family organizer for busy households. This extra-wide 120 cm unit features 3 lower heavy-duty steel wire tiers accommodating up to 28 pairs of footwear, topped by a solid oak surface rated to support bags, backpacks, and decorative entryway accents.",
+      "price": 3899,
+      "compareAtPrice": 4499,
+      "stock": 8,
+      "images": [
+        {
+          "url": "/products/shoe-rack-family-organizer.jpg",
+          "alt": "Family Shoe Storage Organizer"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Family",
+        "Multi-Tier",
+        "Premium"
+      ],
+      "features": [
+        "Double-wide high-capacity layout holding 24-28 pairs",
+        "Thick solid oak top bench surface for bags or decor",
+        "3 lower wide steel grid shelves",
+        "Triple upright center reinforcement pillar"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "24-28 Pairs"
+        },
+        {
+          "label": "Material",
+          "value": "Solid Oak Top & Steel Framework"
+        },
+        {
+          "label": "Dimensions",
+          "value": "120 cm x 34 cm x 75 cm"
+        },
+        {
+          "label": "Bench Weight Limit",
+          "value": "100 kg"
+        },
+        {
+          "label": "Finish",
+          "value": "Warm Oak & Satin Black"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 4499,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 18,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf6",
+      "name": "Premium Metal Shoe Stand",
+      "slug": "premium-metal-shoe-stand",
+      "sku": "HHD-SHOE-009",
+      "modelName": "HH-SHOE-009",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "Luxury brushed champagne gold shoe stand with 4 geometric perforated shelves.",
+      "description": "Make a glamorous statement in your foyer or dressing suite. Featuring a warm champagne gold electroplated finish, 4 perforated metal shelves with raised front lips, and gracefully arched side frame handles with decorative sphere finials.",
+      "price": 3399,
+      "compareAtPrice": 3899,
+      "stock": 10,
+      "images": [
+        {
+          "url": "/products/shoe-rack-premium-metal.jpg",
+          "alt": "Premium Metal Shoe Stand"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Premium",
+        "Metal",
+        "Luxury"
+      ],
+      "features": [
+        "Brushed champagne gold electroplated finish",
+        "4 geometric perforated metal shelves with front retention lips",
+        "Arched side carry handles with decorative ball finials",
+        "Adds a luxurious statement to entryways and dressing rooms"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "12-16 Pairs (4 Tiers)"
+        },
+        {
+          "label": "Material",
+          "value": "Electroplated Solid Metal Alloy"
+        },
+        {
+          "label": "Dimensions",
+          "value": "78 cm x 28 cm x 82 cm"
+        },
+        {
+          "label": "Corrosion Resistance",
+          "value": "Multi-Layer Anti-Tarnish Coating"
+        },
+        {
+          "label": "Finish",
+          "value": "Brushed Champagne Gold"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 3899,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 19,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cf7",
+      "name": "Tall Multi-Level Shoe Storage Rack",
+      "slug": "tall-multi-level-shoe-storage-rack",
+      "sku": "HHD-SHOE-010",
+      "modelName": "HH-SHOE-010",
+      "productType": "shoe-rack",
+      "category": "Shoe Racks",
+      "shortDescription": "8-tier vertical shoe tower with solid oak shelves and brass safety retention rails.",
+      "description": "An architectural 8-tier vertical shoe tower that commands attention while occupying a tiny 52 cm x 30 cm footprint. Solid oak wood shelf inserts are bordered by polished brass rails, keeping up to 16 pairs of shoes neatly arranged with a top catch-all tray for everyday pocket items.",
+      "price": 3699,
+      "compareAtPrice": 4299,
+      "stock": 9,
+      "images": [
+        {
+          "url": "/products/shoe-rack-tall-multilevel.jpg",
+          "alt": "Tall Multi-Level Shoe Storage Rack"
+        }
+      ],
+      "video": "",
+      "tags": [
+        "Multi-Tier",
+        "Tall",
+        "Space Saver"
+      ],
+      "features": [
+        "8 vertical stacked tiers in an ultra-compact footprint",
+        "Solid oak shelf inserts with brass retention bars",
+        "Stores up to 16 pairs vertically without eating hallway floor space",
+        "Top accessory shelf for wallets, keys, and sanitizers"
+      ],
+      "specifications": [
+        {
+          "label": "Capacity",
+          "value": "16 Pairs across 8 Vertical Tiers"
+        },
+        {
+          "label": "Material",
+          "value": "Solid Oak, Steel & Brass Rails"
+        },
+        {
+          "label": "Dimensions",
+          "value": "52 cm x 30 cm x 150 cm"
+        },
+        {
+          "label": "Safety",
+          "value": "Included Anti-Tip Wall Anchor Hardware"
+        },
+        {
+          "label": "Finish",
+          "value": "Matte Black & Natural Oak Accent"
+        }
+      ],
+      "rating": 0,
+      "reviewCount": 0,
+      "isFeatured": false,
+      "isDemo": false,
+      "isActive": true,
+      "buyEnabled": true,
+      "quoteEnabled": true,
+      "installationAvailable": true,
+      "mrp": 4299,
+      "discount": 0,
+      "lowStockThreshold": 5,
+      "order": 20,
+      "status": "active",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Order": [
+    {
+      "_id": "6ada57124e14b733cfe11cfe",
+      "orderNumber": "HH-2026-000101",
+      "user": "6ada57124e14b733cfe11cfa",
+      "customer": {
+        "name": "Rahul Verma",
+        "email": "rahul.verma@example.com",
+        "phone": "+919876543220"
+      },
+      "items": [
+        {
+          "product": "6ada57124e14b733cfe11ce4",
+          "name": "Multi-Purpose Clothes Hanger Stand",
+          "image": "/products/hanger-multipurpose-stand.jpg",
+          "price": 2599,
+          "qty": 1,
+          "installation": true,
+          "installationPrice": 499
+        }
+      ],
+      "address": {
+        "fullName": "Rahul Verma",
+        "phone": "+919876543220",
+        "line1": "Flat 402, Green Glen",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560034",
+        "country": "India"
+      },
+      "subtotal": 2599,
+      "installationTotal": 499,
+      "shipping": 0,
+      "discount": 0,
+      "total": 3098,
+      "paymentMethod": "cod",
+      "paymentStatus": "pending",
+      "status": "confirmed",
+      "tracking": [
+        {
+          "status": "confirmed",
+          "note": "Order confirmed by customer",
+          "at": "2026-10-22T18:33:54.558Z",
+          "by": "system"
+        }
+      ],
+      "adminNotes": "Customer requested afternoon slot",
+      "createdAt": "2026-10-21T18:33:54.563Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11cff",
+      "orderNumber": "HH-2026-000102",
+      "user": "6ada57124e14b733cfe11cfc",
+      "customer": {
+        "name": "Sneha Patel",
+        "email": "sneha.patel@example.com",
+        "phone": "+919876543221"
+      },
+      "items": [
+        {
+          "product": "6ada57124e14b733cfe11ce5",
+          "name": "Premium Wall Mounted Clothes Drying Hanger",
+          "image": "/products/hanger-premium-wall-mounted.jpg",
+          "price": 2499,
+          "qty": 1,
+          "installation": false,
+          "installationPrice": 0
+        }
+      ],
+      "address": {
+        "fullName": "Sneha Patel",
+        "phone": "+919876543221",
+        "line1": "14 Palm Beach Rd",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "pincode": "400050",
+        "country": "India"
+      },
+      "subtotal": 2499,
+      "installationTotal": 0,
+      "shipping": 0,
+      "discount": 200,
+      "total": 2299,
+      "paymentMethod": "razorpay_demo",
+      "paymentStatus": "paid",
+      "status": "delivered",
+      "tracking": [
+        {
+          "status": "placed",
+          "note": "Order placed",
+          "at": "2026-10-20T18:33:54.563Z",
+          "by": "system"
+        },
+        {
+          "status": "delivered",
+          "note": "Delivered safely",
+          "at": "2026-10-22T18:33:54.558Z",
+          "by": "admin"
+        }
+      ],
+      "adminNotes": "",
+      "createdAt": "2026-10-20T18:33:54.563Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Enquiry": [
+    {
+      "_id": "6ada57124e14b733cfe11d00",
+      "name": "Aditya Roy",
+      "email": "aditya.roy@example.com",
+      "phone": "+919876500112",
+      "requirement": "Ceiling Cloth Hangers",
+      "message": "Looking for 6-rod pulley ceiling hanger for 8ft balcony ceiling in Bangalore.",
+      "status": "new",
+      "adminNotes": "",
+      "source": "contact-page",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d01",
+      "name": "Meera Nambiar",
+      "email": "meera.nambiar@example.com",
+      "phone": "+919876500114",
+      "requirement": "Shoe Rack Installation",
+      "message": "Need 4-tier shoe organizer with anti-tip anchoring in Koramangala.",
+      "status": "contacted",
+      "adminNotes": "Spoke with customer, sent catalog photos",
+      "source": "contact-page",
+      "createdAt": "2026-10-21T06:33:54.563Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Contact": [
+    {
+      "_id": "6ada57124e14b733cfe11d00",
+      "name": "Aditya Roy",
+      "email": "aditya.roy@example.com",
+      "phone": "+919876500112",
+      "requirement": "Ceiling Cloth Hangers",
+      "message": "Looking for 6-rod pulley ceiling hanger for 8ft balcony ceiling in Bangalore.",
+      "status": "new",
+      "adminNotes": "",
+      "source": "contact-page",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d01",
+      "name": "Meera Nambiar",
+      "email": "meera.nambiar@example.com",
+      "phone": "+919876500114",
+      "requirement": "Shoe Rack Installation",
+      "message": "Need 4-tier shoe organizer with anti-tip anchoring in Koramangala.",
+      "status": "contacted",
+      "adminNotes": "Spoke with customer, sent catalog photos",
+      "source": "contact-page",
+      "createdAt": "2026-10-21T06:33:54.563Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Booking": [
+    {
+      "_id": "6ada57124e14b733cfe11d02",
+      "type": "Hanger Installation",
+      "customer": {
+        "name": "Vikram Joshi",
+        "email": "vikram.j@example.com",
+        "phone": "+919876511223"
+      },
+      "address": {
+        "line1": "Flat 5B, Skyline Towers, Bellandur",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "preferredDate": "2026-10-25",
+      "preferredTime": "10:00 AM - 1:00 PM",
+      "status": "new",
+      "assignedTechnician": {
+        "name": "Kiran Kumar",
+        "phone": "+919876509988"
+      },
+      "quoteAmount": 499,
+      "message": "Balcony installation into concrete ceiling.",
+      "adminNotes": "",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Service": [
+    {
+      "_id": "6ada57124e14b733cfe11d02",
+      "type": "Hanger Installation",
+      "customer": {
+        "name": "Vikram Joshi",
+        "email": "vikram.j@example.com",
+        "phone": "+919876511223"
+      },
+      "address": {
+        "line1": "Flat 5B, Skyline Towers, Bellandur",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "preferredDate": "2026-10-25",
+      "preferredTime": "10:00 AM - 1:00 PM",
+      "status": "new",
+      "assignedTechnician": {
+        "name": "Kiran Kumar",
+        "phone": "+919876509988"
+      },
+      "quoteAmount": 499,
+      "message": "Balcony installation into concrete ceiling.",
+      "adminNotes": "",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "GalleryItem": [
+    {
+      "_id": "6ada57124e14b733cfe11d03",
+      "url": "/media/hanger-1.jpg",
+      "src": "/media/hanger-1.jpg",
+      "thumbnail": "/media/hanger-1.jpg",
+      "title": "Ceiling Hanger High-Rise Balcony",
+      "category": "Hangers",
+      "type": "image",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d04",
+      "url": "/media/hanger-2.jpg",
+      "src": "/media/hanger-2.jpg",
+      "thumbnail": "/media/hanger-2.jpg",
+      "title": "Corridor Overhead Clothes Rack",
+      "category": "Hangers",
+      "type": "image",
+      "order": 2,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d05",
+      "url": "/media/hanger-3.jpg",
+      "src": "/media/hanger-3.jpg",
+      "thumbnail": "/media/hanger-3.jpg",
+      "title": "Stainless Steel Pulley Rod System",
+      "category": "Hangers",
+      "type": "image",
+      "order": 3,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d06",
+      "url": "/media/hanger-4.jpg",
+      "src": "/media/hanger-4.jpg",
+      "thumbnail": "/media/hanger-4.jpg",
+      "title": "Wall-Mounted Accordion Scissor Dryer",
+      "category": "Hangers",
+      "type": "image",
+      "order": 4,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d07",
+      "url": "/media/hanger-5.jpg",
+      "src": "/media/hanger-5.jpg",
+      "thumbnail": "/media/hanger-5.jpg",
+      "title": "Compact Multi-Tier Wooden Shoe Rack",
+      "category": "Shoe Racks",
+      "type": "image",
+      "order": 5,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d08",
+      "url": "/media/hanger-6.jpg",
+      "src": "/media/hanger-6.jpg",
+      "thumbnail": "/media/hanger-6.jpg",
+      "title": "Integrated Laundry & Valet Storage",
+      "category": "Projects",
+      "type": "image",
+      "order": 6,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d09",
+      "url": "/media/hanger-demo.mp4",
+      "src": "/media/hanger-demo.mp4",
+      "thumbnail": "/media/hanger-1.jpg",
+      "title": "Ceiling Pulley Demonstration Video",
+      "category": "Hangers",
+      "type": "video",
+      "order": 7,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Review": [
+    {
+      "_id": "6ada57124e14b733cfe11d0b",
+      "name": "Suresh Menon",
+      "avatar": "",
+      "rating": 5,
+      "title": "Flawless Installation & Solid Build",
+      "body": "Installed the 6-rod ceiling hanger in our balcony. Frees up so much floor space. Very happy with the service.",
+      "comment": "Installed the 6-rod ceiling hanger in our balcony. Frees up so much floor space. Very happy with the service.",
+      "verified": true,
+      "approved": true,
+      "status": "approved",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Faq": [
+    {
+      "_id": "6ada57124e14b733cfe11d0c",
+      "group": "installation",
+      "question": "Do you provide professional installation with product purchases?",
+      "answer": "Yes, we provide certified professional installation for all ceiling-mounted, wall-mounted, and balcony clothes drying systems.",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d0d",
+      "group": "installation",
+      "question": "Do you provide on-site measurements before installation?",
+      "answer": "Yes. Our technician visits your home to inspect the ceiling or wall structure and check clearance heights before fitting.",
+      "order": 2,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d0e",
+      "group": "contact",
+      "question": "How quickly does the HangerHome team respond to enquiries?",
+      "answer": "Our customer support team typically reviews and responds to general enquiries and service requests within 2 to 4 business hours.",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d0f",
+      "group": "general",
+      "question": "What payment options are supported?",
+      "answer": "We support Cash on Delivery (COD) as well as secure online payments via Razorpay (UPI, Netbanking, Credit & Debit Cards).",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Testimonial": [
+    {
+      "_id": "6ada57124e14b733cfe11d10",
+      "name": "Ananya Sharma",
+      "location": "Bangalore · Whitefield",
+      "text": "The ceiling drying hanger completely transformed our balcony. The pulley system is effortless to operate and frees up the entire floor.",
+      "rating": 5,
+      "image": "/media/hanger-1.jpg",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d11",
+      "name": "Vikram Mehta",
+      "location": "Mumbai · Powai",
+      "text": "Sturdy stainless steel construction and neat wall mounting. Highly recommend HangerHome.",
+      "rating": 5,
+      "image": "/media/hanger-2.jpg",
+      "order": 2,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Setting": [
+    {
+      "_id": "6ada57124e14b733cfe11d12",
+      "key": "site_settings",
+      "businessName": "HangerHome",
+      "tagline": "Designed for your space. Built for everyday living.",
+      "phone": "+91 98765 43210",
+      "whatsapp": "+91 98765 43210",
+      "email": "support@hangerhome.com",
+      "address": "HangerHome Studio, Bangalore, Karnataka, India",
+      "serviceArea": "Bangalore, Mumbai, Delhi-NCR, Hyderabad, Chennai, Pune",
+      "workingHours": "Mon - Sat: 9:00 AM - 7:00 PM",
+      "socialLinks": {
+        "instagram": "https://instagram.com/hangerhome",
+        "facebook": "https://facebook.com/hangerhome",
+        "youtube": "https://youtube.com/@hangerhome",
+        "twitter": ""
+      },
+      "shippingRules": {
+        "flatRate": 99,
+        "freeShippingThreshold": 3000
+      },
+      "taxPercent": 0,
+      "paymentMethods": {
+        "cod": true,
+        "razorpay": true
+      },
+      "announcementText": "Complimentary site measurement and professional installation available across major cities.",
+      "stats": {
+        "homes": 1000,
+        "years": 5,
+        "products": 20,
+        "satisfaction": 99
+      },
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Coupon": [
+    {
+      "_id": "6ada57124e14b733cfe11d13",
+      "code": "WELCOME10",
+      "type": "percent",
+      "value": 10,
+      "minimumOrder": 1500,
+      "minOrder": 1500,
+      "usageLimit": 200,
+      "usedCount": 14,
+      "isActive": true,
+      "active": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Subscriber": [
+    {
+      "_id": "6ada57124e14b733cfe11d14",
+      "email": "client@example.com",
+      "status": "active",
+      "source": "footer",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "AuditLog": [
+    {
+      "_id": "6ada58366432f41cd51542bc",
+      "user": null,
+      "userName": "Anonymous",
+      "userRole": "system",
+      "action": "admin_login",
+      "entity": "User",
+      "entityId": "6ada57124e14b733cfe11cf8",
+      "details": {
+        "email": "admin@example.com",
+        "role": "admin"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:38:46.497Z",
+      "updatedAt": "2026-10-22T18:38:46.497Z"
+    },
+    {
+      "_id": "6ada576a6432f41cd51542bb",
+      "user": null,
+      "userName": "Anonymous",
+      "userRole": "system",
+      "action": "admin_login",
+      "entity": "User",
+      "entityId": "6ada57124e14b733cfe11cf8",
+      "details": {
+        "email": "admin@example.com",
+        "role": "admin"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:35:22.979Z",
+      "updatedAt": "2026-10-22T18:35:22.979Z"
+    },
+    {
+      "_id": "6ada57636432f41cd51542ba",
+      "user": "6ada57124e14b733cfe11cf8",
+      "userName": "Super Admin",
+      "userRole": "admin",
+      "action": "delete_product",
+      "entity": "Product",
+      "entityId": "6ada57636432f41cd51542b7",
+      "details": {
+        "name": "Test Automatic Cloth Hanger"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:35:15.148Z",
+      "updatedAt": "2026-10-22T18:35:15.148Z"
+    },
+    {
+      "_id": "6ada57636432f41cd51542b9",
+      "user": "6ada57124e14b733cfe11cf8",
+      "userName": "Super Admin",
+      "userRole": "admin",
+      "action": "update_product",
+      "entity": "Product",
+      "entityId": "6ada57636432f41cd51542b7",
+      "details": {
+        "name": "Test Automatic Cloth Hanger"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:35:15.132Z",
+      "updatedAt": "2026-10-22T18:35:15.132Z"
+    },
+    {
+      "_id": "6ada57636432f41cd51542b8",
+      "user": "6ada57124e14b733cfe11cf8",
+      "userName": "Super Admin",
+      "userRole": "admin",
+      "action": "create_product",
+      "entity": "Product",
+      "entityId": "6ada57636432f41cd51542b7",
+      "details": {
+        "name": "Test Automatic Cloth Hanger"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:35:15.113Z",
+      "updatedAt": "2026-10-22T18:35:15.113Z"
+    },
+    {
+      "_id": "6ada57636432f41cd51542b6",
+      "user": null,
+      "userName": "Anonymous",
+      "userRole": "system",
+      "action": "admin_login",
+      "entity": "User",
+      "entityId": "6ada57124e14b733cfe11cf8",
+      "details": {
+        "email": "admin@example.com",
+        "role": "admin"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:35:15.012Z",
+      "updatedAt": "2026-10-22T18:35:15.012Z"
+    },
+    {
+      "_id": "6ada573f6432f41cd51542b5",
+      "user": null,
+      "userName": "Anonymous",
+      "userRole": "system",
+      "action": "admin_login",
+      "entity": "User",
+      "entityId": "6ada57124e14b733cfe11cf8",
+      "details": {
+        "email": "admin@example.com",
+        "role": "admin"
+      },
+      "ip": "::1",
+      "createdAt": "2026-10-22T18:34:39.330Z",
+      "updatedAt": "2026-10-22T18:34:39.330Z"
+    },
+    {
+      "_id": "6ada57124e14b733cfe11d15",
+      "userName": "Super Admin",
+      "userRole": "admin",
+      "action": "system_initialize",
+      "entity": "System",
+      "entityId": "init",
+      "details": {
+        "message": "Database initialized with demo catalog and administrative roles"
+      },
+      "ip": "127.0.0.1",
+      "createdAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Content": [],
+  "Notification": [],
+  "Quote": [
+    {
+      "_id": "6ada57124e14b733cfe11d02",
+      "type": "Hanger Installation",
+      "customer": {
+        "name": "Vikram Joshi",
+        "email": "vikram.j@example.com",
+        "phone": "+919876511223"
+      },
+      "address": {
+        "line1": "Flat 5B, Skyline Towers, Bellandur",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560103"
+      },
+      "preferredDate": "2026-10-25",
+      "preferredTime": "10:00 AM - 1:00 PM",
+      "status": "new",
+      "assignedTechnician": {
+        "name": "Kiran Kumar",
+        "phone": "+919876509988"
+      },
+      "quoteAmount": 499,
+      "message": "Balcony installation into concrete ceiling.",
+      "adminNotes": "",
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ],
+  "Banner": [
+    {
+      "_id": "6ada57124e14b733cfe11d0a",
+      "title": "Turn Every Space Into Something Better.",
+      "subtitle": "Smart Space • Premium Living",
+      "description": "Premium ceiling hangers, shoe racks and home storage solutions with professional installation.",
+      "image": "/home/hero-bg.jpg",
+      "link": "/products",
+      "buttonText": "Explore Products",
+      "badge": "SMART SPACE • PREMIUM LIVING",
+      "placement": "home_hero",
+      "order": 1,
+      "isActive": true,
+      "createdAt": "2026-10-22T18:33:54.558Z",
+      "updatedAt": "2026-10-22T18:33:54.558Z"
+    }
+  ]
+}

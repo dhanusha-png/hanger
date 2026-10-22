@@ -274,28 +274,32 @@ app.use((err, req, res, _next) => {
   });
 });
 
+// Ensure uploads directory exists
+try {
+  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+} catch (e) {
+  // directory exists
+}
+
 // -------------------------------------------------------------
-// MongoDB Connection & Server Launch with Retry
+// Server Launch with Background MongoDB Connection & Fallback Store
 // -------------------------------------------------------------
-async function startServer() {
+const server = app.listen(PORT, () => {
+  console.log(`✓ HangerHome API running on http://localhost:${PORT}`);
+  console.log(`✓ Upload directory ready at: ${UPLOADS_DIR}`);
+});
+
+async function connectToMongo() {
   const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/hanger_commerce';
-  console.log('Connecting to MongoDB database...');
-
+  console.log('Attempting MongoDB connection...');
   try {
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 5000 });
     console.log('✓ MongoDB connected successfully.');
-
-    // Auto-seed on start if first run or database is empty
     seedDatabase().catch((e) => console.warn('Non-blocking seed notice:', e.message));
-
-    app.listen(PORT, () => {
-      console.log(`✓ HangerHome API running on http://localhost:${PORT}`);
-    });
   } catch (err) {
-    console.error('Failed to connect to MongoDB:', err.message);
-    console.log('Retrying connection in 5 seconds...');
-    setTimeout(startServer, 5000);
+    console.warn(`⚠️ MongoDB connection unavailable (${err.message}). Resilient File-Backed Local Store is ACTIVE.`);
   }
 }
 
-startServer();
+connectToMongo();
+

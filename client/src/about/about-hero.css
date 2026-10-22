@@ -1045,14 +1045,15 @@
 
   .about-hero-stage {
     min-height: auto;
-    padding-top: calc(74px + env(safe-area-inset-top, 0px) + 18px) !important;
+    padding-top: calc(96px + env(safe-area-inset-top, 0px)) !important;
     padding-bottom: 36px;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .about-hero-bg-plate img {
-    object-position: 60% center;
+    object-position: center center;
   }
 
   .about-hero-overlay {
@@ -1068,34 +1069,59 @@
     grid-template-columns: 1fr;
     order: 1;
     gap: 18px;
-    padding: 0 20px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .about-hero-left {
     max-width: 100%;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .about-eyebrow {
+    justify-content: center !important;
   }
 
   .about-headline {
-    font-size: 34px;
+    font-size: clamp(30px, 8vw, 38px) !important;
+    text-align: center !important;
+    line-height: 1.15 !important;
+  }
+
+  .about-paragraph {
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 95% !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
   }
 
   .about-hero-actions {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 6px auto 0 !important;
+    gap: 10px !important;
   }
 
   .about-btn-gold,
   .about-btn-outline {
-    width: 100%;
-    justify-content: center;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
   }
 
   .about-trust-row {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px 10px !important;
     width: 100% !important;
-    margin-top: 14px !important;
+    max-width: 360px !important;
+    margin: 18px auto 0 !important;
+    padding-top: 16px !important;
   }
 
   .about-trust-item {
@@ -1103,41 +1129,52 @@
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 4px !important;
+    gap: 6px !important;
+  }
+
+  .about-trust-item:last-child {
+    grid-column: span 2 !important;
+    max-width: 260px !important;
+    margin: 0 auto !important;
   }
 
   .about-trust-icon-ring {
-    width: 34px !important;
-    height: 34px !important;
+    width: 38px !important;
+    height: 38px !important;
   }
 
   .about-trust-icon-ring svg {
-    width: 16px !important;
-    height: 16px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
 
   .about-trust-text b {
-    font-size: 11px !important;
-    line-height: 1.2 !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
   }
 
   .about-trust-text small {
-    font-size: 9.5px !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
   }
 
   /* Show stats as a 2x2 grid */
   .about-stats-container {
     order: 2;
     margin-top: 22px;
-    padding: 0 20px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .about-stats-card {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
+    max-width: 360px;
     box-sizing: border-box;
     gap: 10px;
     padding: 12px 14px;
@@ -1164,7 +1201,7 @@
     position: relative;
     width: 100%;
     margin-top: 18px;
-    padding: 0 20px;
+    padding: 0 16px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -1174,9 +1211,9 @@
     position: static;
     transform: none !important;
     animation: none !important;
-    max-width: 100%;
+    max-width: 360px !important;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
   }
 
@@ -1196,7 +1233,8 @@
 
   .about-floating-install-card {
     position: static;
-    margin-top: 16px;
+    margin: 16px auto 0;
+    max-width: 360px;
     width: 100%;
     box-sizing: border-box;
   }

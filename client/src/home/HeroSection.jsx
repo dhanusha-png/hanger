@@ -62,17 +62,6 @@ function RulerTriangleIcon(props) {
 export function HeroSection({ featuredProduct }) {
   const [activeHotspot, setActiveHotspot] = useState(null); // for tap-to-open on touch devices
   const [videoModalOpen, setVideoModalOpen] = useState(false);
-  const [heroBanner, setHeroBanner] = useState(null);
-
-  useEffect(() => {
-    api('/banners?placement=home_hero')
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setHeroBanner(data[0]);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   // Ceiling product data
   const ceilingProductData = {
@@ -141,9 +130,7 @@ export function HeroSection({ featuredProduct }) {
         <div
           className="target-hero-single-bg"
           style={{
-            backgroundImage: heroBanner?.image
-              ? `url(${img(heroBanner.image)}), url(/home/hero-bg.webp)`
-              : 'url(/home/hero-bg.webp), url(/home/hero-bg.jpg), url(/hero/hero-bg.jpg)',
+            backgroundImage: 'url(/home/hero-bg.webp), url(/home/hero-bg.jpg), url(/hero/hero-bg.jpg)',
           }}
         />
 
@@ -154,7 +141,7 @@ export function HeroSection({ featuredProduct }) {
         {/* Foreground Out-of-Focus Tropical Leaves (framing left edge) */}
         <div className="target-hero-leaves-overlay" aria-hidden="true">
           <svg viewBox="0 0 320 540" fill="none" className="leaves-svg">
-            <g opacity="0.85" filter="blur(5px)">
+            <g opacity="0.85">
               <path d="M-40 -20 C 20 80, 80 160, 60 280 C 40 370, -20 440, -60 480 C -10 390, 10 300, 0 190 C -10 100, -30 20, -40 -20 Z" fill="#072218" />
               <path d="M-20 -10 C 60 70, 130 180, 100 310 C 80 390, 20 460, -30 500 C 30 420, 50 320, 30 220 C 10 130, -10 40, -20 -10 Z" fill="#0d3b2b" />
               <path d="M0 40 C 90 120, 150 240, 120 360 C 100 430, 40 500, 10 530 C 50 460, 70 370, 50 280 C 30 200, 10 110, 0 40 Z" fill="#144d39" />
@@ -178,34 +165,28 @@ export function HeroSection({ featuredProduct }) {
           {/* Eyebrow Badge */}
           <div className="target-hero-eyebrow">
             <span className="eyebrow-sparkle-dot" />
-            <span>{heroBanner?.badge || 'SMART SPACE • PREMIUM LIVING'}</span>
+            <span>SMART SPACE • PREMIUM LIVING</span>
           </div>
 
           {/* Headline with Serif & Luminous Gold Underline */}
           <h1 className="target-hero-title">
-            {heroBanner?.title ? (
-              <span className="title-line title-line-1">{heroBanner.title}</span>
-            ) : (
-              <>
-                <span className="title-line title-line-1">Turn Every Space</span>
-                <span className="title-line title-line-2">Into Something</span>
-                <span className="title-line title-line-3">
-                  <span className="gold-text-highlight">Better.</span>
-                </span>
-              </>
-            )}
+            <span className="title-line title-line-1">Turn Every Space</span>
+            <span className="title-line title-line-2">Into Something</span>
+            <span className="title-line title-line-3">
+              <span className="gold-text-highlight">Better.</span>
+            </span>
           </h1>
 
           {/* Description Paragraph (clean, no stray underlines) */}
           <p className="target-hero-lead">
-            {heroBanner?.description || heroBanner?.subtitle || 'Premium ceiling hangers, shoe racks and storage solutions designed for modern homes — with professional installation and support.'}
+            Premium ceiling hangers, shoe racks and storage solutions designed for modern homes — with professional installation and support.
           </p>
 
           {/* Action Buttons with Rotating Conic Light Glow */}
           <div className="target-hero-buttons-row">
-            <Link to={heroBanner?.link || '/products'} className="target-btn-primary conic-light-btn">
+            <Link to="/products" className="target-btn-primary conic-light-btn">
               <span className="btn-conic-glow-border" />
-              <span className="btn-label-text">{heroBanner?.buttonText || 'Explore Products'}</span>
+              <span className="btn-label-text">Explore Products</span>
               <ArrowRight size={18} className="btn-icon-arrow" />
               <div className="btn-goo-accent" />
             </Link>

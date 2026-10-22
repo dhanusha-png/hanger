@@ -582,26 +582,49 @@ const bannerSchema = new mongoose.Schema(
 );
 
 // -------------------------------------------------------------
-// Exports
+// Exports (Wrapped with resilient fallback store adapter)
 // -------------------------------------------------------------
-export const User = mongoose.model('User', userSchema);
-export const Category = mongoose.model('Category', categorySchema);
-export const Product = mongoose.model('Product', productSchema);
-export const Order = mongoose.model('Order', orderSchema);
-export const Service = mongoose.model('Service', bookingSchema); // Service is now backed by bookingSchema
-export const Booking = mongoose.model('Booking', bookingSchema); // Alias
-export const Contact = mongoose.model('Contact', enquirySchema); // Contact is now backed by enquirySchema
-export const Enquiry = mongoose.model('Enquiry', enquirySchema); // Alias
-export const GalleryItem = mongoose.model('GalleryItem', galleryItemSchema);
-export const Review = mongoose.model('Review', reviewSchema);
-export const Faq = mongoose.model('Faq', faqSchema);
-export const Testimonial = mongoose.model('Testimonial', testimonialSchema);
-export const Setting = mongoose.model('Setting', settingSchema);
-export const Coupon = mongoose.model('Coupon', couponSchema);
-export const Subscriber = mongoose.model('Subscriber', subscriberSchema);
-export const AuditLog = mongoose.model('AuditLog', auditLogSchema);
-export const Content = mongoose.model('Content', contentSchema);
-export const Notification = mongoose.model('Notification', notificationSchema);
-export const Quote = mongoose.model('Quote', quoteSchema);
-export const Banner = mongoose.model('Banner', bannerSchema);
+import { createModelAdapter } from './fallbackStore.js';
+
+export const MongoUser = mongoose.model('User', userSchema);
+export const MongoCategory = mongoose.model('Category', categorySchema);
+export const MongoProduct = mongoose.model('Product', productSchema);
+export const MongoOrder = mongoose.model('Order', orderSchema);
+export const MongoService = mongoose.model('Service', bookingSchema);
+export const MongoBooking = mongoose.model('Booking', bookingSchema);
+export const MongoContact = mongoose.model('Contact', enquirySchema);
+export const MongoEnquiry = mongoose.model('Enquiry', enquirySchema);
+export const MongoGalleryItem = mongoose.model('GalleryItem', galleryItemSchema);
+export const MongoReview = mongoose.model('Review', reviewSchema);
+export const MongoFaq = mongoose.model('Faq', faqSchema);
+export const MongoTestimonial = mongoose.model('Testimonial', testimonialSchema);
+export const MongoSetting = mongoose.model('Setting', settingSchema);
+export const MongoCoupon = mongoose.model('Coupon', couponSchema);
+export const MongoSubscriber = mongoose.model('Subscriber', subscriberSchema);
+export const MongoAuditLog = mongoose.model('AuditLog', auditLogSchema);
+export const MongoContent = mongoose.model('Content', contentSchema);
+export const MongoNotification = mongoose.model('Notification', notificationSchema);
+export const MongoQuote = mongoose.model('Quote', quoteSchema);
+export const MongoBanner = mongoose.model('Banner', bannerSchema);
+
+export const User = createModelAdapter('User', MongoUser);
+export const Category = createModelAdapter('Category', MongoCategory);
+export const Product = createModelAdapter('Product', MongoProduct);
+export const Order = createModelAdapter('Order', MongoOrder);
+export const Service = createModelAdapter('Booking', MongoBooking);
+export const Booking = createModelAdapter('Booking', MongoBooking);
+export const Contact = createModelAdapter('Enquiry', MongoEnquiry);
+export const Enquiry = createModelAdapter('Enquiry', MongoEnquiry);
+export const GalleryItem = createModelAdapter('GalleryItem', MongoGalleryItem);
+export const Review = createModelAdapter('Review', MongoReview);
+export const Faq = createModelAdapter('Faq', MongoFaq);
+export const Testimonial = createModelAdapter('Testimonial', MongoTestimonial);
+export const Setting = createModelAdapter('Setting', MongoSetting);
+export const Coupon = createModelAdapter('Coupon', MongoCoupon);
+export const Subscriber = createModelAdapter('Subscriber', MongoSubscriber);
+export const AuditLog = createModelAdapter('AuditLog', MongoAuditLog);
+export const Content = createModelAdapter('Content', MongoContent);
+export const Notification = createModelAdapter('Notification', MongoNotification);
+export const Quote = createModelAdapter('Booking', MongoQuote);
+export const Banner = createModelAdapter('Banner', MongoBanner);
 

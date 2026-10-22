@@ -1482,7 +1482,7 @@
 
   .install-hero-stage {
     min-height: auto;
-    padding-top: calc(84px + env(safe-area-inset-top, 0px) + 16px) !important;
+    padding-top: calc(96px + env(safe-area-inset-top, 0px)) !important;
     padding-bottom: 36px;
     box-sizing: border-box !important;
   }
@@ -1491,71 +1491,186 @@
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 0 clamp(16px, 4vw, 24px);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .install-hero-left {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
     gap: 14px;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
   }
 
   .install-eyebrow {
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
+    font-size: 11px;
+    letter-spacing: 0.16em;
     margin-bottom: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
   }
 
   .install-headline {
-    font-size: clamp(24px, 6.5vw, 34px);
+    font-size: clamp(26px, 7vw, 36px);
     line-height: 1.15;
     margin: 0 0 10px;
+    text-align: center !important;
   }
 
   .install-headline-white,
   .install-headline-gold {
     display: block;
+    text-align: center !important;
   }
 
   .install-paragraph {
-    font-size: 13.5px;
-    line-height: 1.52;
-    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0 auto 16px !important;
+    max-width: 540px !important;
+    text-align: center !important;
+    color: rgba(244, 239, 230, 0.88);
+  }
+
+  .install-hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .install-btn-gold,
+  .install-btn-gold-outline {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 13px 20px;
+  }
+
+  .install-link-watch {
+    justify-content: center;
+    margin: 6px auto 0 !important;
+  }
+
+  /* 2-Column Centered Trust Row (Image 2 Target Style) */
+  .install-trust-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px 14px !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 18px auto 0 !important;
+    box-sizing: border-box !important;
+    padding: 14px 10px !important;
+    background: rgba(6, 18, 14, 0.72) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(232, 192, 112, 0.22) !important;
+    border-radius: 16px !important;
+  }
+
+  .install-trust-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .install-trust-icon-ring {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .install-trust-icon-ring svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .install-trust-text {
+    text-align: center !important;
+  }
+
+  .install-trust-text b {
+    display: block !important;
+    font-size: 11.5px !important;
+    line-height: 1.25 !important;
+    color: #ffffff !important;
+  }
+
+  .install-trust-text small {
+    display: block !important;
+    font-size: 10px !important;
+    color: #a0b2aa !important;
   }
 
   .install-hero-right {
     min-height: auto;
-    align-items: center;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 18px;
+    box-sizing: border-box;
   }
 
   .install-pill-motion-wrap {
     position: static;
     transform: none;
-    margin-bottom: 16px;
+    margin: 0 auto 16px !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 360px !important;
   }
 
   .install-floating-pill {
     animation: none;
     max-width: 100%;
+    width: 100%;
     box-sizing: border-box;
+    justify-content: center;
   }
 
   .install-right-cards-stack {
     position: static;
     transform: none;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    max-width: 360px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding-right: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 12px;
+    box-sizing: border-box;
   }
 
   .install-glass-card {
     animation: none !important;
     transform: none !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   .install-script-tag {
     position: static;
     transform: none;
-    margin-top: 16px;
-    display: inline-block;
+    margin: 16px auto 0 !important;
+    display: block !important;
+    text-align: center !important;
   }
 
   .install-cat-grid,
@@ -1578,45 +1693,6 @@
 }
 
 @media (max-width: 640px) {
-  .install-trust-row {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px 12px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: 8px !important;
-    padding-top: 12px !important;
-  }
-
-  .install-trust-item {
-    gap: 4px !important;
-  }
-
-  .install-trust-icon-ring {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  .install-trust-icon-ring svg {
-    width: 16px !important;
-    height: 16px !important;
-  }
-
-  .install-trust-text b {
-    font-size: 11.5px !important;
-    line-height: 1.2 !important;
-  }
-
-  .install-trust-text small {
-    font-size: 9.5px !important;
-  }
-
-  .install-right-cards-stack {
-    grid-template-columns: 1fr;
-    padding-right: 56px;
-    box-sizing: border-box;
-  }
-
   .install-cat-grid,
   .service-solutions-grid {
     grid-template-columns: 1fr;
@@ -1624,27 +1700,6 @@
 
   .install-steps-track {
     grid-template-columns: 1fr;
-  }
-
-  .install-hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .install-btn-gold,
-  .install-btn-gold-outline {
-    width: 100%;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 13px 20px;
-  }
-
-  .install-link-watch {
-    justify-content: center;
-    margin-left: 0;
-    margin-top: 4px;
   }
 
   .install-tabs-pill {
@@ -1661,13 +1716,11 @@
 
 @media (max-width: 360px) {
   .install-headline {
-    font-size: 22px !important;
+    font-size: 24px !important;
   }
   .install-trust-row {
-    gap: 6px !important;
-  }
-  .install-right-cards-stack {
-    padding-right: 48px !important;
+    gap: 8px !important;
+    padding: 10px 6px !important;
   }
 }
 

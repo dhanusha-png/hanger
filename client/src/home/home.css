@@ -1072,24 +1072,34 @@
 
 @media (max-width: 768px) {
   .home-compact-product-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 12px;
-    padding-bottom: 12px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin: 0 -16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 0 0 12px 0 !important;
+    overflow-x: visible !important;
   }
   .home-compact-product-grid::-webkit-scrollbar {
     display: none;
   }
   .home-compact-card {
-    flex: 0 0 clamp(200px, 62vw, 240px);
-    scroll-snap-align: start;
-    min-width: 0;
+    flex: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 10px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+  }
+  .home-compact-title h3 {
+    font-size: 12.5px !important;
+    line-height: 1.25 !important;
+  }
+  .home-compact-actions {
+    gap: 6px !important;
+  }
+  .home-compact-btn-add {
+    padding: 7px 10px !important;
+    font-size: 11px !important;
   }
 }
 
@@ -2087,7 +2097,7 @@
   pointer-events: none;
   max-width: calc(100vw - 28px);
   overflow: visible;
-  transition: bottom 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: bottom 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .home-float-btn {
@@ -2095,22 +2105,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 30px rgba(7, 28, 24, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
   cursor: pointer;
   text-decoration: none;
 }
 
-/* WhatsApp: Vibrant Green Circle Matching Image 2 */
+/* WhatsApp: Vibrant Green Circle */
 .home-float-whatsapp {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   background: #25D366 !important;
   color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
   position: relative;
 }
 
@@ -2132,30 +2144,30 @@
 
 .home-float-whatsapp:hover {
   background: #20ba5a !important;
-  transform: translateY(-2px) scale(1.08);
-  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.65);
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.65);
 }
 
-/* Floating Cart: Round Dark Glass Circle Matching Image 2 */
+/* Floating Cart: Round Dark Glass Circle */
 .home-float-cart-round {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: rgba(6, 18, 14, 0.85) !important;
+  background: rgba(6, 18, 14, 0.88) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border: 1px solid rgba(232, 192, 112, 0.38) !important;
   color: #ffffff !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
   position: relative;
 }
 
 .home-float-cart-round:hover {
-  background: rgba(8, 20, 16, 0.95) !important;
+  background: rgba(8, 20, 16, 0.96) !important;
   border-color: #e8c070 !important;
   color: #e8c070 !important;
-  transform: translateY(-2px) scale(1.08);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(232, 192, 112, 0.3);
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 0 16px rgba(232, 192, 112, 0.3);
 }
 
 .home-float-cart-icon-wrap {
@@ -2170,10 +2182,10 @@
   right: -8px;
   background: #e8c070;
   color: #04120e;
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 800;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -2183,32 +2195,32 @@
 /* AI Assistant Orb: "Ask HangerHome" */
 .home-float-ai {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: rgba(6, 18, 14, 0.85) !important;
+  background: rgba(6, 18, 14, 0.88) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border: 1px solid rgba(232, 192, 112, 0.38) !important;
   color: #ffffff !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
 }
 
 .home-float-ai:hover {
-  background: rgba(8, 20, 16, 0.95) !important;
+  background: rgba(8, 20, 16, 0.96) !important;
   border-color: #e8c070 !important;
   color: #e8c070 !important;
-  transform: translateY(-2px) scale(1.08);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), 0 0 18px rgba(232, 192, 112, 0.35);
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 0 18px rgba(232, 192, 112, 0.35);
 }
 
 .home-float-ai-pill {
   position: absolute;
-  right: 52px;
-  background: rgba(6, 18, 14, 0.94);
+  right: 60px;
+  background: rgba(6, 18, 14, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(232, 192, 112, 0.28);
+  border: 1px solid rgba(232, 192, 112, 0.32);
   color: #ffffff;
   padding: 6px 14px;
   border-radius: 9999px;
@@ -2231,25 +2243,16 @@
 
 @media (max-width: 768px) {
   .home-floating-stack {
-    right: max(12px, env(safe-area-inset-right, 12px));
-    gap: 7px;
+    right: max(14px, env(safe-area-inset-right, 14px));
+    gap: 9px;
     z-index: 95;
   }
-  .home-float-btn {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  .home-float-whatsapp {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  .home-float-cart-round {
-    width: 40px !important;
-    height: 40px !important;
-  }
+  .home-float-btn,
+  .home-float-whatsapp,
+  .home-float-cart-round,
   .home-float-ai {
-    width: 40px !important;
-    height: 40px !important;
+    width: 50px !important;
+    height: 50px !important;
   }
   .home-float-ai-pill {
     display: none !important;
@@ -2592,13 +2595,15 @@
     min-height: auto;
     height: auto;
     display: block;
-    padding-top: calc(74px + env(safe-area-inset-top, 0px) + 16px);
+    padding-top: calc(96px + env(safe-area-inset-top, 0px));
     padding-bottom: 24px;
     position: relative;
     overflow: hidden;
   }
   .target-hero-single-bg {
-    background-position: 68% center !important;
+    background-position: center top !important;
+    background-size: cover !important;
+    image-rendering: -webkit-optimize-contrast;
   }
   .target-hero-inner-container {
     display: flex;
@@ -2610,21 +2615,26 @@
   }
   .target-hero-left-content {
     width: 100%;
+    margin-top: 4px;
   }
   .target-hero-eyebrow {
     font-size: 11px;
     letter-spacing: 0.18em;
     font-weight: 800;
-    margin-bottom: 12px;
-    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
   .target-hero-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(32px, 8.5vw, 42px);
-    line-height: 1.10;
+    font-size: clamp(28px, 7.8vw, 36px);
+    line-height: 1.15;
     letter-spacing: -0.02em;
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     color: #ffffff;
+    word-break: break-word;
   }
   .target-hero-title .title-line {
     display: block;
@@ -2637,11 +2647,11 @@
     -webkit-text-fill-color: transparent;
   }
   .target-hero-lead {
-    font-size: 14px;
-    line-height: 1.52;
-    margin: 0 0 18px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 0 0 16px;
     max-width: 100%;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.88);
   }
   .target-hero-buttons-row {
     display: flex;
@@ -2691,35 +2701,37 @@
     width: 18px !important;
     height: 18px !important;
   }
-  /* Photographic scene stage with visible hotspots and callout cards */
+  /* Photographic scene stage with visible hotspots positioned away from floating buttons */
   .target-hero-scene-stage {
-    min-height: clamp(340px, 85vw, 420px);
+    min-height: 320px;
     height: auto;
     width: 100%;
     position: relative;
-    margin-top: 8px;
+    margin-top: 12px;
     border-radius: 20px;
     overflow: visible;
   }
   .hotspot-ceiling {
-    top: 6% !important;
-    right: 10px !important;
-    left: auto !important;
+    top: 10px !important;
+    left: 8px !important;
+    right: auto !important;
     position: absolute !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
     z-index: 25 !important;
+    max-width: calc(100% - 68px) !important;
   }
   .hotspot-shoe {
-    top: 42% !important;
-    right: 10px !important;
-    left: auto !important;
+    top: 105px !important;
+    left: 8px !important;
+    right: auto !important;
     position: absolute !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
     z-index: 25 !important;
+    max-width: calc(100% - 68px) !important;
   }
   .target-floating-card {
     display: flex !important;
@@ -2792,12 +2804,17 @@
     height: 13px !important;
   }
   .target-script-tag {
-    top: 68% !important;
-    right: 22px !important;
-    transform: rotate(-3deg) !important;
+    top: auto !important;
+    bottom: 8px !important;
+    left: 12px !important;
+    right: auto !important;
+    transform: rotate(-2deg) !important;
+    max-width: calc(100% - 76px) !important;
+    z-index: 10 !important;
   }
   .script-text {
-    font-size: 21px !important;
+    font-size: 20px !important;
+    line-height: 1.2 !important;
   }
   /* Bottom glass category bar */
   .target-bottom-glass-bar-wrapper {

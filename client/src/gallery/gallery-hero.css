@@ -185,7 +185,7 @@
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
-  filter: blur(2px) brightness(0.72);
+  filter: brightness(0.85);
   animation: kenBurnsGallery 24s ease-in-out infinite alternate;
   will-change: transform;
 }

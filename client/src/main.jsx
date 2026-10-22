@@ -634,17 +634,45 @@ function PublicRoutes(){const{products,productsLoading,productsError,wishlist,re
 <Route path="*" element={<NotFoundPage/>}/></Routes>}
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   useEffect(() => {
     if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      // Instantaneous scroll reset across window and document roots
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+
+      // Secondary check on next frame in case of layout shifts or animation delays
+      const raf = requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        if (document.documentElement) document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+      });
+      return () => cancelAnimationFrame(raf);
     } else {
       const id = hash.replace('#', '');
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+      const scrollToHashElement = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return true;
+        }
+        return false;
+      };
+
+      if (!scrollToHashElement()) {
+        const timer = setTimeout(scrollToHashElement, 150);
+        return () => clearTimeout(timer);
       }
     }
   }, [pathname, hash]);
+
   return null;
 }
 

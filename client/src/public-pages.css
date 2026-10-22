@@ -1314,7 +1314,14 @@
   .home-floating-stack {
     right: max(14px, env(safe-area-inset-right, 14px));
     bottom: 18px;
-    gap: 8px;
+    gap: 9px;
+  }
+  .home-float-btn,
+  .home-float-whatsapp,
+  .home-float-cart-round,
+  .home-float-ai {
+    width: 50px !important;
+    height: 50px !important;
   }
   .home-float-ai-pill {
     display: none !important;
