@@ -829,14 +829,19 @@
 
 /* Mobile Devices (<768px): Stack vertically, cards side by side */
 @media (max-width: 767px) {
+  .gallery-hero-wrapper {
+    margin-top: calc(74px + env(safe-area-inset-top, 0px) + 12px) !important;
+    padding: 0 14px !important;
+  }
+
   .gallery-hero-panel {
     display: flex !important;
     flex-direction: column !important;
     min-height: auto !important;
     height: auto !important;
-    border-radius: 28px;
-    padding: 28px 16px 36px !important;
-    margin-bottom: clamp(32px, 4vw, 48px) !important;
+    border-radius: 24px;
+    padding: 24px 16px 32px !important;
+    margin-bottom: clamp(24px, 4vw, 36px) !important;
     overflow: visible !important;
   }
 

@@ -21,30 +21,26 @@ export function FloatingWidgets({
     let ticking = false;
 
     const updateStackPosition = () => {
-      const footer = document.querySelector('.hh-footer-root, footer, .site-footer');
+      const footerBottom = document.querySelector('.hh-footer-bottom-container');
       const stack = stackRef.current;
       const isMobile = window.innerWidth <= 768;
-      const defaultBottom = isMobile ? 18 : 24;
+      const defaultBottom = isMobile ? 16 : 24;
 
-      if (!footer || !stack) {
+      if (!footerBottom || !stack) {
         setBottomOffset(defaultBottom);
         ticking = false;
         return;
       }
 
-      const footerRect = footer.getBoundingClientRect();
+      const rect = footerBottom.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const stackHeight = stack.offsetHeight || 160;
 
-      // When the footer enters the viewport from below
-      if (footerRect.top < viewportHeight) {
-        const overlap = viewportHeight - footerRect.top;
-        const targetBottom = defaultBottom + overlap;
-        // Keep stack visible within safe viewport boundaries (below navigation header)
-        const topSafeMargin = isMobile ? 75 : 90;
-        const maxBottom = Math.max(defaultBottom, viewportHeight - stackHeight - topSafeMargin);
-        const finalBottom = Math.max(defaultBottom, Math.min(targetBottom, maxBottom));
-        setBottomOffset(finalBottom);
+      // When the bottom copyright / legal bar enters the viewport
+      if (rect.top < viewportHeight) {
+        const overlap = Math.max(0, viewportHeight - rect.top);
+        const maxLift = isMobile ? 76 : 88;
+        const targetBottom = defaultBottom + Math.min(overlap, maxLift);
+        setBottomOffset(targetBottom);
       } else {
         setBottomOffset(defaultBottom);
       }

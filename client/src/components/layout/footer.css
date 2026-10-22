@@ -749,46 +749,122 @@
 
 @media (max-width: 768px) {
   .hh-footer-main {
-    padding: 30px 0 16px;
+    padding: 24px 0 calc(36px + env(safe-area-inset-bottom, 0px));
   }
   .hh-footer-cta-headline {
-    font-size: 28px;
+    font-size: 26px;
+    line-height: 1.2;
   }
   .hh-footer-cta-features {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 14px;
   }
   .hh-cta-feature-item {
     flex-direction: row;
     text-align: left;
+    gap: 12px;
   }
-  /* Mobile: Brand full width, links in 2 columns, support card below */
   .hh-footer-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 20px 16px;
+    gap: 20px 14px;
   }
   .hh-footer-brand-col {
     grid-column: 1 / -1;
     padding-right: 0;
   }
+  .hh-footer-brand-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .hh-footer-brand-desc {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0 0 10px 0;
+    color: #c5cec9;
+  }
+  .hh-footer-tagline-wrap {
+    margin-bottom: 14px;
+  }
+  .hh-footer-tagline {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .hh-footer-newsletter-wrap {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 14px;
+  }
+  .hh-newsletter-input-group {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .hh-newsletter-input {
+    width: 100%;
+    font-size: 13px;
+  }
+  .hh-footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
   .hh-footer-contact-col {
     grid-column: 1 / -1;
-    margin-top: 4px;
+    margin-top: 8px;
     padding-left: 0;
   }
   .hh-contact-glass-card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 16px;
+    padding: 16px 18px;
+    padding-right: 56px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
   }
   .hh-contact-card-btn {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 10px 22px;
+    font-size: 13.5px;
   }
   .hh-desktop-br {
     display: none;
   }
   .hh-footer-bottom-container {
     margin-top: 14px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .hh-footer-bottom-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    font-size: 11.5px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hh-footer-grid {
+    gap: 16px 10px;
+  }
+  .hh-footer-brand-desc {
+    font-size: 12px;
+  }
+  .hh-footer-tagline {
+    font-size: 12.5px;
+  }
+  .hh-contact-glass-card {
+    padding: 14px 12px;
+    padding-right: 48px;
+  }
+  .hh-footer-bottom-row {
+    font-size: 11px;
+    padding-right: 44px;
   }
 }
 
@@ -804,11 +880,13 @@
     box-sizing: border-box;
   }
   .hh-footer-legal-links {
-    flex-direction: column;
-    gap: 6px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 12px;
   }
   .hh-footer-dot {
-    display: none;
+    display: inline;
   }
 }
 

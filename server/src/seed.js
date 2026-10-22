@@ -10,6 +10,7 @@ import {
   Testimonial,
   GalleryItem,
   Coupon,
+  Banner,
 } from './models/index.js';
 import { hash } from './utils/auth.js';
 import { demoProducts } from './demo-products.js';
@@ -403,7 +404,37 @@ export async function seedDatabase() {
   for (const cp of coupons) {
     await Coupon.updateOne({ code: cp.code }, { $set: cp }, { upsert: true });
   }
-  console.log(`✓ Coupons seeded.`);
+  // 10. Seed Default Promotional Banners
+  const sampleBanners = [
+    {
+      title: 'Turn Every Space Into Something Better',
+      subtitle: 'Save 80% Balcony & Utility Space with Ceiling Pulley Systems',
+      description: 'Premium ceiling hangers, shoe racks and storage solutions engineered for modern luxury homes.',
+      image: '/home/hero-bg.webp',
+      badge: 'PREMIUM LIVING',
+      link: '/products',
+      buttonText: 'Explore Solutions',
+      placement: 'home_hero',
+      order: 1,
+      isActive: true,
+    },
+    {
+      title: 'Monsoon Proof Balcony Dryers',
+      subtitle: 'Marine Grade 304 Stainless Steel with Lifetime Rust Resistance',
+      description: 'Engineered for smooth individual rod lifting with high-tensile nylon cords.',
+      image: '/products/hanger-compact-balcony.jpg',
+      badge: 'BESTSELLER',
+      link: '/products?category=Hangers',
+      buttonText: 'Shop Ceiling Hangers',
+      placement: 'home_middle',
+      order: 2,
+      isActive: true,
+    },
+  ];
+  for (const b of sampleBanners) {
+    await Banner.updateOne({ title: b.title }, { $set: b }, { upsert: true });
+  }
+  console.log(`✓ Promotional banners seeded.`);
 
   console.log('--- Database seed completed successfully ---');
 }

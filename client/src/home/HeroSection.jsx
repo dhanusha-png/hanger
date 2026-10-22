@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -9,8 +9,10 @@ import {
   Wrench,
   Sparkles,
   Headphones,
-  Maximize2
+  Maximize2,
+  Star
 } from 'lucide-react';
+import { api, img } from '../lib/api';
 
 // Custom SVG Icons matching the clean gold line aesthetic in Image 2
 function HangerLineIcon(props) {
@@ -60,6 +62,17 @@ function RulerTriangleIcon(props) {
 export function HeroSection({ featuredProduct }) {
   const [activeHotspot, setActiveHotspot] = useState(null); // for tap-to-open on touch devices
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [heroBanner, setHeroBanner] = useState(null);
+
+  useEffect(() => {
+    api('/banners?placement=home_hero')
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setHeroBanner(data[0]);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Ceiling product data
   const ceilingProductData = {
@@ -128,7 +141,9 @@ export function HeroSection({ featuredProduct }) {
         <div
           className="target-hero-single-bg"
           style={{
-            backgroundImage: 'url(/home/hero-bg.webp), url(/home/hero-bg.jpg), url(/hero/hero-bg.jpg)',
+            backgroundImage: heroBanner?.image
+              ? `url(${img(heroBanner.image)}), url(/home/hero-bg.webp)`
+              : 'url(/home/hero-bg.webp), url(/home/hero-bg.jpg), url(/hero/hero-bg.jpg)',
           }}
         />
 
@@ -163,28 +178,34 @@ export function HeroSection({ featuredProduct }) {
           {/* Eyebrow Badge */}
           <div className="target-hero-eyebrow">
             <span className="eyebrow-sparkle-dot" />
-            <span>SMART SPACE • PREMIUM LIVING</span>
+            <span>{heroBanner?.badge || 'SMART SPACE • PREMIUM LIVING'}</span>
           </div>
 
           {/* Headline with Serif & Luminous Gold Underline */}
           <h1 className="target-hero-title">
-            <span className="title-line title-line-1">Turn Every Space</span>
-            <span className="title-line title-line-2">Into Something</span>
-            <span className="title-line title-line-3">
-              <span className="gold-text-highlight">Better.</span>
-            </span>
+            {heroBanner?.title ? (
+              <span className="title-line title-line-1">{heroBanner.title}</span>
+            ) : (
+              <>
+                <span className="title-line title-line-1">Turn Every Space</span>
+                <span className="title-line title-line-2">Into Something</span>
+                <span className="title-line title-line-3">
+                  <span className="gold-text-highlight">Better.</span>
+                </span>
+              </>
+            )}
           </h1>
 
           {/* Description Paragraph (clean, no stray underlines) */}
           <p className="target-hero-lead">
-            Premium ceiling hangers, shoe racks and storage solutions designed for modern homes — with professional installation and support.
+            {heroBanner?.description || heroBanner?.subtitle || 'Premium ceiling hangers, shoe racks and storage solutions designed for modern homes — with professional installation and support.'}
           </p>
 
           {/* Action Buttons with Rotating Conic Light Glow */}
           <div className="target-hero-buttons-row">
-            <Link to="/products" className="target-btn-primary conic-light-btn">
+            <Link to={heroBanner?.link || '/products'} className="target-btn-primary conic-light-btn">
               <span className="btn-conic-glow-border" />
-              <span className="btn-label-text">Explore Products</span>
+              <span className="btn-label-text">{heroBanner?.buttonText || 'Explore Products'}</span>
               <ArrowRight size={18} className="btn-icon-arrow" />
               <div className="btn-goo-accent" />
             </Link>
@@ -214,7 +235,7 @@ export function HeroSection({ featuredProduct }) {
               <span>Professional Installation</span>
             </div>
             <div className="feature-strip-item">
-              <Sparkles size={15} className="feature-gold-icon" />
+              <Star size={15} className="feature-gold-icon" />
               <span>Custom Solutions</span>
             </div>
             <div className="feature-strip-item">
@@ -328,6 +349,9 @@ export function HeroSection({ featuredProduct }) {
                     <strong className="bottom-card-title">{card.title}</strong>
                     <span className="bottom-card-sub">{card.sub}</span>
                   </div>
+                  <span className="bottom-card-arrow-circle" aria-hidden="true">
+                    <ArrowRight size={15} />
+                  </span>
                 </Link>
               );
             })}

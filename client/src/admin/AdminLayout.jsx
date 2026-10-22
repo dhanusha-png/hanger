@@ -21,6 +21,7 @@ import {
   X,
   ExternalLink,
   ChevronRight,
+  Sparkles,
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { useAuth } from '../context/AuthContext';
@@ -54,6 +55,7 @@ export function AdminLayout({ children }) {
     { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, show: true },
     { to: '/admin/products', label: 'Products', icon: Boxes, show: isAdmin },
     { to: '/admin/categories', label: 'Categories', icon: Layers, show: isAdmin },
+    { to: '/admin/banners', label: 'Promotional Banners', icon: Sparkles, show: isAdmin },
     { to: '/admin/orders', label: 'Orders', icon: Package, show: isStaff },
     { to: '/admin/customers', label: 'Customers', icon: Users, show: isAdmin },
     { to: '/admin/enquiries', label: 'Enquiries', icon: Mail, show: isStaff },

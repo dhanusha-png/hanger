@@ -15,3 +15,5 @@ export { AdminSubscribers } from './AdminSubscribers';
 export { AdminSettings } from './AdminSettings';
 export { AdminUsers } from './AdminUsers';
 export { AdminAuditLogs } from './AdminAuditLogs';
+export { AdminBanners } from './AdminBanners';
+

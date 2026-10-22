@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Search, Download, Trash2, Edit, X, Phone } from 'lucide-react';
+import { Mail, Search, Download, Trash2, Edit, X, Phone, Plus } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
 import { api } from '../lib/api';
 
@@ -9,6 +9,16 @@ export function AdminEnquiries() {
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null);
+
+  const blankEnquiry = {
+    name: '',
+    email: '',
+    phone: '',
+    requirement: 'Ceiling Cloth Hangers',
+    message: '',
+    status: 'new',
+    adminNotes: '',
+  };
 
   const loadEnquiries = async () => {
     setLoading(true);
@@ -27,16 +37,27 @@ export function AdminEnquiries() {
     loadEnquiries();
   }, []);
 
-  const handleUpdate = async (id, status, adminNotes) => {
+  const handleSave = async (e) => {
+    e.preventDefault();
+    if (!editing.name.trim() || !editing.email.trim()) {
+      return alert('Name and email are required.');
+    }
     try {
-      await api(`/admin/enquiries/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ status, adminNotes }),
-      });
+      if (editing._id) {
+        await api(`/admin/enquiries/${editing._id}`, {
+          method: 'PUT',
+          body: JSON.stringify(editing),
+        });
+      } else {
+        await api('/admin/enquiries', {
+          method: 'POST',
+          body: JSON.stringify(editing),
+        });
+      }
       setEditing(null);
       await loadEnquiries();
     } catch (err) {
-      alert(err.message || 'Update failed');
+      alert(err.message || 'Save failed');
     }
   };
 
@@ -79,9 +100,14 @@ export function AdminEnquiries() {
             <h1>Contact Form Enquiries</h1>
             <p>Review customer questions, consultation requests, and update contact status.</p>
           </div>
-          <button className="btn btn-soft" onClick={handleExportCsv} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Download size={14} /> Export CSV
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="btn btn-primary" onClick={() => setEditing({ ...blankEnquiry })} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Plus size={14} /> New Lead
+            </button>
+            <button className="btn btn-soft" onClick={handleExportCsv} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Download size={14} /> Export CSV
+            </button>
+          </div>
         </div>
 
         {/* Filters */}
@@ -198,44 +224,94 @@ export function AdminEnquiries() {
               </button>
               <div className="admin-modal-title">
                 <span className="eyebrow">ENQUIRY DETAILS</span>
-                <h2>{editing.name}</h2>
-                <small style={{ color: '#95a8a0' }}>{editing.email} · {editing.phone}</small>
+                <h2>{editing._id ? 'Edit Lead / Enquiry' : 'Log New Customer Lead'}</h2>
               </div>
 
-              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', margin: '14px 0', fontSize: '13px' }}>
-                {editing.message}
-              </div>
+              <form onSubmit={handleSave}>
+                <label>
+                  Customer Name *
+                  <input
+                    required
+                    value={editing.name || ''}
+                    onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+                    placeholder="Full name"
+                  />
+                </label>
 
-              <label>
-                Status
-                <select
-                  value={editing.status}
-                  onChange={(e) => setEditing({ ...editing, status: e.target.value })}
+                <div className="admin-editor-grid">
+                  <label>
+                    Email Address *
+                    <input
+                      required
+                      type="email"
+                      value={editing.email || ''}
+                      onChange={(e) => setEditing({ ...editing, email: e.target.value })}
+                      placeholder="customer@example.com"
+                    />
+                  </label>
+
+                  <label>
+                    Phone Number
+                    <input
+                      value={editing.phone || ''}
+                      onChange={(e) => setEditing({ ...editing, phone: e.target.value })}
+                      placeholder="+91 9876543210"
+                    />
+                  </label>
+                </div>
+
+                <div className="admin-editor-grid">
+                  <label>
+                    Requirement
+                    <input
+                      value={editing.requirement || ''}
+                      onChange={(e) => setEditing({ ...editing, requirement: e.target.value })}
+                      placeholder="e.g. Ceiling Cloth Hangers"
+                    />
+                  </label>
+
+                  <label>
+                    Status
+                    <select
+                      value={editing.status || 'new'}
+                      onChange={(e) => setEditing({ ...editing, status: e.target.value })}
+                    >
+                      <option value="new">New</option>
+                      <option value="contacted">Contacted</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="resolved">Resolved</option>
+                    </select>
+                  </label>
+                </div>
+
+                <label>
+                  Customer Message / Inquired Specifications
+                  <textarea
+                    rows="3"
+                    value={editing.message || ''}
+                    onChange={(e) => setEditing({ ...editing, message: e.target.value })}
+                    placeholder="Customer requirement details..."
+                  />
+                </label>
+
+                <label>
+                  Admin Follow-up Notes
+                  <textarea
+                    rows="2"
+                    value={editing.adminNotes || ''}
+                    onChange={(e) => setEditing({ ...editing, adminNotes: e.target.value })}
+                    placeholder="e.g. Called customer on 19th Oct, scheduled balcony site visit"
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="btn btn-primary full"
+                  style={{ marginTop: '14px' }}
                 >
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="in-progress">In Progress</option>
-                  <option value="resolved">Resolved</option>
-                </select>
-              </label>
-
-              <label>
-                Admin Follow-up Notes
-                <textarea
-                  rows="3"
-                  value={editing.adminNotes || ''}
-                  onChange={(e) => setEditing({ ...editing, adminNotes: e.target.value })}
-                  placeholder="e.g. Called customer on 19th Oct, scheduled balcony site visit"
-                />
-              </label>
-
-              <button
-                type="button"
-                className="btn btn-primary full"
-                onClick={() => handleUpdate(editing._id, editing.status, editing.adminNotes)}
-              >
-                Save Notes
-              </button>
+                  Save Enquiry
+                </button>
+              </form>
             </div>
           </div>
         )}

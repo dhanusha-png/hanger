@@ -558,6 +558,29 @@ const quoteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const bannerSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, trim: true },
+    subtitle: { type: String, default: '' },
+    description: { type: String, default: '' },
+    image: { type: String, required: true },
+    link: { type: String, default: '/products' },
+    buttonText: { type: String, default: 'Explore Now' },
+    badge: { type: String, default: '' },
+    placement: {
+      type: String,
+      enum: ['home_hero', 'home_middle', 'products_top', 'announcement'],
+      default: 'home_hero',
+      index: true,
+    },
+    order: { type: Number, default: 0, index: true },
+    isActive: { type: Boolean, default: true, index: true },
+    startDate: { type: Date, default: null },
+    endDate: { type: Date, default: null },
+  },
+  { timestamps: true }
+);
+
 // -------------------------------------------------------------
 // Exports
 // -------------------------------------------------------------
@@ -580,3 +603,5 @@ export const AuditLog = mongoose.model('AuditLog', auditLogSchema);
 export const Content = mongoose.model('Content', contentSchema);
 export const Notification = mongoose.model('Notification', notificationSchema);
 export const Quote = mongoose.model('Quote', quoteSchema);
+export const Banner = mongoose.model('Banner', bannerSchema);
+

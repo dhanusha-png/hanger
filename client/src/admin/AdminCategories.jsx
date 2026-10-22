@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Layers, Plus, Edit, Trash2, ChevronRight, X, ArrowUp, ArrowDown } from 'lucide-react';
+import { Layers, Plus, Edit, Trash2, ChevronRight, X, ArrowUp, ArrowDown, Upload, Image as ImageIcon } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
-import { api } from '../lib/api';
+import { api, img } from '../lib/api';
 
 export function AdminCategories() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const blank = {
     name: '',
@@ -66,6 +67,33 @@ export function AdminCategories() {
       } catch (err) {
         alert(err.message || 'Failed to delete category');
       }
+    }
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append('files', file);
+      const token = localStorage.getItem('token');
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const res = await fetch(`${baseUrl}/uploads`, {
+        method: 'POST',
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+        body: fd,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Image upload failed');
+      const uploadedUrl = data.files?.[0] || data.url;
+      if (uploadedUrl) {
+        setEditing((prev) => ({ ...prev, image: uploadedUrl }));
+      }
+    } catch (err) {
+      alert(err.message || 'Image upload failed');
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -225,6 +253,42 @@ export function AdminCategories() {
                     placeholder="e.g. ceiling-hangers"
                   />
                 </label>
+
+                {/* Category Thumbnail Image Upload & Preview */}
+                <div style={{ margin: '14px 0' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px' }}>Category Thumbnail Image</label>
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    {editing.image ? (
+                      <div style={{ position: 'relative', width: '64px', height: '64px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(232, 192, 112, 0.3)' }}>
+                        <img src={img(editing.image)} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <button
+                          type="button"
+                          onClick={() => setEditing({ ...editing, image: '' })}
+                          style={{ position: 'absolute', top: '2px', right: '2px', background: 'rgba(0,0,0,0.8)', color: '#f87171', border: 'none', borderRadius: '4px', padding: '2px', cursor: 'pointer' }}
+                          title="Remove image"
+                        >
+                          <X size={12} />
+                        </button>
+                      </div>
+                    ) : (
+                      <div style={{ width: '64px', height: '64px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px dashed rgba(232, 192, 112, 0.3)', display: 'grid', placeItems: 'center', color: '#6e7a76' }}>
+                        <ImageIcon size={20} />
+                      </div>
+                    )}
+                    <div style={{ flex: 1 }}>
+                      <label className="mini upload-mini" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        <Upload size={13} /> {uploading ? 'Uploading…' : editing.image ? 'Replace Image' : 'Upload Image'}
+                        <input hidden type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+                      </label>
+                      <input
+                        placeholder="Or enter image URL (/media/...)"
+                        value={editing.image || ''}
+                        onChange={(e) => setEditing({ ...editing, image: e.target.value })}
+                        style={{ marginTop: '6px', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 <div className="admin-editor-grid">
                   <label>

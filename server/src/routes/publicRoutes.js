@@ -19,6 +19,7 @@ import {
   Subscriber,
   Content,
   Notification,
+  Banner,
 } from '../models/index.js';
 import { requireAuth, optionalAuth } from '../middleware/auth.js';
 import { sendOrderConfirmationEmail, sendAdminNotification } from '../utils/mailer.js';
@@ -32,6 +33,23 @@ async function generateOrderNumber() {
   const seq = String(count + 1).padStart(6, '0');
   return `HH-${year}-${seq}`;
 }
+
+// -------------------------------------------------------------
+// Promotional Banners (Public active banners)
+// -------------------------------------------------------------
+router.get('/banners', async (req, res, next) => {
+  try {
+    const { placement } = req.query;
+    const filter = { isActive: true };
+    if (placement && placement !== 'All') {
+      filter.placement = placement;
+    }
+    const banners = await Banner.find(filter).sort({ order: 1, createdAt: -1 });
+    res.json(banners);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // -------------------------------------------------------------
 // 1. Categories & 3-Level Hierarchy

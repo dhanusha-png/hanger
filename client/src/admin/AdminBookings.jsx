@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wrench, Search, Calendar, UserCheck, Trash2, Edit, X, Phone, MapPin } from 'lucide-react';
+import { Wrench, Search, Calendar, UserCheck, Trash2, Edit, X, Phone, MapPin, Plus, IndianRupee } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
 import { api } from '../lib/api';
 
@@ -9,6 +9,19 @@ export function AdminBookings() {
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null);
+
+  const blankBooking = {
+    type: 'Hanger Installation',
+    customer: { name: '', email: '', phone: '' },
+    address: { line1: '', city: 'Bangalore', pincode: '' },
+    preferredDate: '',
+    preferredTime: '10:00 AM - 1:00 PM',
+    status: 'new',
+    assignedTechnician: { name: '', phone: '' },
+    quoteAmount: 0,
+    message: '',
+    adminNotes: '',
+  };
 
   const loadBookings = async () => {
     setLoading(true);
@@ -30,14 +43,21 @@ export function AdminBookings() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      await api(`/admin/bookings/${editing._id}`, {
-        method: 'PUT',
-        body: JSON.stringify(editing),
-      });
+      if (editing._id) {
+        await api(`/admin/bookings/${editing._id}`, {
+          method: 'PUT',
+          body: JSON.stringify(editing),
+        });
+      } else {
+        await api('/admin/bookings', {
+          method: 'POST',
+          body: JSON.stringify(editing),
+        });
+      }
       setEditing(null);
       await loadBookings();
     } catch (err) {
-      alert(err.message || 'Update failed');
+      alert(err.message || 'Save failed');
     }
   };
 
@@ -73,6 +93,9 @@ export function AdminBookings() {
             <h1>Installation & Service Bookings</h1>
             <p>Schedule on-site installation, technician visits, repairs and custom space measurement appointments.</p>
           </div>
+          <button className="btn btn-primary" onClick={() => setEditing({ ...blankBooking })}>
+            <Plus size={16} /> Add Booking
+          </button>
         </div>
 
         {/* Filters */}
@@ -188,11 +211,114 @@ export function AdminBookings() {
 
               <div className="admin-modal-title">
                 <span className="eyebrow">DISPATCH MANAGEMENT</span>
-                <h2>{editing.type || 'Service Booking'}</h2>
-                <small style={{ color: '#95a8a0' }}>Customer: {editing.customer?.name} ({editing.customer?.phone})</small>
+                <h2>{editing._id ? 'Edit Service Booking' : 'New Service Booking'}</h2>
               </div>
 
               <form onSubmit={handleSave} style={{ marginTop: '16px' }}>
+                <div className="admin-editor-grid">
+                  <label>
+                    Service Type *
+                    <select
+                      value={editing.type || 'Hanger Installation'}
+                      onChange={(e) => setEditing({ ...editing, type: e.target.value })}
+                    >
+                      <option value="Hanger Installation">Hanger Installation</option>
+                      <option value="Hanger Repair & Fixing">Hanger Repair & Fixing</option>
+                      <option value="Custom Hanger Making">Custom Hanger Making</option>
+                      <option value="Shoe Rack Installation">Shoe Rack Installation</option>
+                      <option value="Site Measurement">Site Measurement</option>
+                      <option value="Maintenance">Maintenance</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Quote / Service Fee (₹)
+                    <input
+                      type="number"
+                      min="0"
+                      value={editing.quoteAmount || 0}
+                      onChange={(e) => setEditing({ ...editing, quoteAmount: Number(e.target.value) })}
+                      placeholder="0"
+                    />
+                  </label>
+                </div>
+
+                <div className="admin-editor-grid">
+                  <label>
+                    Customer Name *
+                    <input
+                      required
+                      value={editing.customer?.name || ''}
+                      onChange={(e) =>
+                        setEditing({
+                          ...editing,
+                          customer: { ...editing.customer, name: e.target.value },
+                        })
+                      }
+                      placeholder="e.g. Anand Sharma"
+                    />
+                  </label>
+
+                  <label>
+                    Customer Phone *
+                    <input
+                      required
+                      value={editing.customer?.phone || ''}
+                      onChange={(e) =>
+                        setEditing({
+                          ...editing,
+                          customer: { ...editing.customer, phone: e.target.value },
+                        })
+                      }
+                      placeholder="+91 9876543210"
+                    />
+                  </label>
+                </div>
+
+                <div className="admin-editor-grid">
+                  <label>
+                    Customer Email
+                    <input
+                      value={editing.customer?.email || ''}
+                      onChange={(e) =>
+                        setEditing({
+                          ...editing,
+                          customer: { ...editing.customer, email: e.target.value },
+                        })
+                      }
+                      placeholder="customer@example.com"
+                    />
+                  </label>
+
+                  <label>
+                    City / Location
+                    <input
+                      value={editing.address?.city || ''}
+                      onChange={(e) =>
+                        setEditing({
+                          ...editing,
+                          address: { ...editing.address, city: e.target.value },
+                        })
+                      }
+                      placeholder="e.g. Bangalore"
+                    />
+                  </label>
+                </div>
+
+                <label>
+                  Service Address & Landmarks
+                  <input
+                    value={editing.address?.line1 || ''}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        address: { ...editing.address, line1: e.target.value },
+                      })
+                    }
+                    placeholder="Apartment name, Flat no, Street..."
+                  />
+                </label>
+
                 <div className="admin-editor-grid">
                   <label>
                     Scheduled Appointment Date

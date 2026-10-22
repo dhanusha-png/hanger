@@ -1039,9 +1039,14 @@
 /* Mobile: stack text on top, photo object-position ~60% center, stronger overlay,
    hide sign tilt and light sweep, put sign below stats as flat card, 2x2 stats grid */
 @media (max-width: 768px) {
+  .about-hero-master {
+    margin-top: 0 !important;
+  }
+
   .about-hero-stage {
     min-height: auto;
-    padding: 120px 0 36px;
+    padding-top: calc(74px + env(safe-area-inset-top, 0px) + 18px) !important;
+    padding-bottom: 36px;
     display: flex;
     flex-direction: column;
   }
@@ -1086,8 +1091,38 @@
   }
 
   .about-trust-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-top: 14px !important;
+  }
+
+  .about-trust-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 4px !important;
+  }
+
+  .about-trust-icon-ring {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .about-trust-icon-ring svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .about-trust-text b {
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+  }
+
+  .about-trust-text small {
+    font-size: 9.5px !important;
   }
 
   /* Show stats as a 2x2 grid */

@@ -1476,30 +1476,65 @@
 }
 
 @media (max-width: 992px) {
+  .install-hero-master {
+    margin-top: 0 !important;
+  }
+
   .install-hero-stage {
     min-height: auto;
-    padding-top: 120px;
-    padding-bottom: 40px;
+    padding-top: calc(84px + env(safe-area-inset-top, 0px) + 16px) !important;
+    padding-bottom: 36px;
+    box-sizing: border-box !important;
   }
 
   .install-hero-content-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 24px;
+    padding: 0 clamp(16px, 4vw, 24px);
+  }
+
+  .install-hero-left {
+    gap: 14px;
+  }
+
+  .install-eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+  }
+
+  .install-headline {
+    font-size: clamp(24px, 6.5vw, 34px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+
+  .install-headline-white,
+  .install-headline-gold {
+    display: block;
+  }
+
+  .install-paragraph {
+    font-size: 13.5px;
+    line-height: 1.52;
+    margin-bottom: 14px;
   }
 
   .install-hero-right {
-    min-height: 280px;
+    min-height: auto;
     align-items: center;
   }
 
   .install-pill-motion-wrap {
     position: static;
     transform: none;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .install-floating-pill {
     animation: none;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .install-right-cards-stack {
@@ -1507,7 +1542,7 @@
     transform: none;
     max-width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
@@ -1519,7 +1554,7 @@
   .install-script-tag {
     position: static;
     transform: none;
-    margin-top: 20px;
+    margin-top: 16px;
     display: inline-block;
   }
 
@@ -1530,7 +1565,7 @@
 
   .install-steps-track {
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 24px;
   }
 
   .install-step-connector {
@@ -1544,12 +1579,42 @@
 
 @media (max-width: 640px) {
   .install-trust-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 8px !important;
+    padding-top: 12px !important;
+  }
+
+  .install-trust-item {
+    gap: 4px !important;
+  }
+
+  .install-trust-icon-ring {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .install-trust-icon-ring svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .install-trust-text b {
+    font-size: 11.5px !important;
+    line-height: 1.2 !important;
+  }
+
+  .install-trust-text small {
+    font-size: 9.5px !important;
   }
 
   .install-right-cards-stack {
     grid-template-columns: 1fr;
+    padding-right: 56px;
+    box-sizing: border-box;
   }
 
   .install-cat-grid,
@@ -1564,16 +1629,22 @@
   .install-hero-actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
+    width: 100%;
   }
 
   .install-btn-gold,
   .install-btn-gold-outline {
     width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 13px 20px;
   }
 
   .install-link-watch {
     justify-content: center;
     margin-left: 0;
+    margin-top: 4px;
   }
 
   .install-tabs-pill {
@@ -1582,8 +1653,21 @@
   }
 
   .install-tab-btn {
-    padding: 8px 14px;
+    padding: 8px 12px;
     font-size: 12px;
     flex: 1;
   }
 }
+
+@media (max-width: 360px) {
+  .install-headline {
+    font-size: 22px !important;
+  }
+  .install-trust-row {
+    gap: 6px !important;
+  }
+  .install-right-cards-stack {
+    padding-right: 48px !important;
+  }
+}
+

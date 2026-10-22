@@ -19,6 +19,7 @@ import {
   AuditLog,
   Content,
   Quote,
+  Banner,
 } from '../models/index.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
 import { recordAudit } from '../utils/audit.js';
@@ -32,7 +33,9 @@ router.use(requireAuth, requireRole('admin', 'staff'));
 // Helper for pagination
 function getPagination(req) {
   const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 20));
+  const limit = req.query.limit
+    ? Math.min(1000, Math.max(1, parseInt(req.query.limit, 10)))
+    : (req.query.page ? 20 : 100);
   const skip = (page - 1) * limit;
   return { page, limit, skip };
 }
@@ -297,14 +300,35 @@ router.put('/categories/:id', async (req, res, next) => {
 
 router.delete('/categories/:id', async (req, res, next) => {
   try {
+    const category = await Category.findById(req.params.id);
+    if (!category) return res.status(404).json({ message: 'Category not found.' });
+
     // Check if subcategories exist
     const subCount = await Category.countDocuments({ parent: req.params.id });
     if (subCount > 0) {
-      return res.status(400).json({ message: 'Cannot delete category that contains subcategories. Delete children first.' });
+      return res.status(400).json({
+        message: `Cannot delete category "${category.name}" because it contains ${subCount} subcategory(ies). Please reassign or delete subcategories first.`
+      });
     }
+
+    // Check if products are associated with this category
+    const productCount = await Product.countDocuments({
+      $or: [
+        { category: category.name },
+        { category: category.slug },
+        { subCategory: category.name },
+        { subCategory: category.slug },
+      ],
+    });
+    if (productCount > 0) {
+      return res.status(400).json({
+        message: `Cannot delete category "${category.name}" because ${productCount} product(s) are assigned to it. Please reassign those products first to maintain catalog consistency.`
+      });
+    }
+
     await Category.findByIdAndDelete(req.params.id);
-    await recordAudit(req, 'delete_category', 'Category', req.params.id);
-    res.json({ ok: true, message: 'Category deleted.' });
+    await recordAudit(req, 'delete_category', 'Category', req.params.id, { name: category.name });
+    res.json({ ok: true, message: `Category "${category.name}" safely deleted.` });
   } catch (err) {
     next(err);
   }
@@ -555,10 +579,21 @@ router.put('/contacts/:id', async (req, res, next) => {
   }
 });
 
+router.post('/enquiries', async (req, res, next) => {
+  try {
+    const item = await Enquiry.create(req.body);
+    await recordAudit(req, 'create_enquiry', 'Enquiry', item._id, { name: item.name });
+    res.status(201).json(item);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.delete('/enquiries/:id', async (req, res, next) => {
   try {
     await Enquiry.findByIdAndDelete(req.params.id);
-    res.json({ ok: true });
+    await recordAudit(req, 'delete_enquiry', 'Enquiry', req.params.id);
+    res.json({ ok: true, message: 'Enquiry deleted.' });
   } catch (err) {
     next(err);
   }
@@ -593,6 +628,16 @@ router.get('/bookings', async (req, res, next) => {
     if (type) filter.type = type;
     const bookings = await Booking.find(filter).sort({ createdAt: -1 });
     res.json(bookings);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/bookings', async (req, res, next) => {
+  try {
+    const item = await Booking.create(req.body);
+    await recordAudit(req, 'create_booking', 'Booking', item._id, { type: item.type, customer: item.customer?.name });
+    res.status(201).json(item);
   } catch (err) {
     next(err);
   }
@@ -1050,6 +1095,82 @@ router.get('/audit-logs', requireRole('admin'), async (req, res, next) => {
 
     res.setHeader('X-Total-Count', total);
     res.json(logs);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// -------------------------------------------------------------
+// 17. Promotional Banners Management
+// -------------------------------------------------------------
+router.get('/banners', async (req, res, next) => {
+  try {
+    const { placement } = req.query;
+    const filter = {};
+    if (placement && placement !== 'All') filter.placement = placement;
+    const banners = await Banner.find(filter).sort({ order: 1, createdAt: -1 });
+    res.json(banners);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/banners', async (req, res, next) => {
+  try {
+    const banner = await Banner.create(req.body);
+    await recordAudit(req, 'create_banner', 'Banner', banner._id, { title: banner.title });
+    res.status(201).json(banner);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/banners/:id', async (req, res, next) => {
+  try {
+    const banner = await Banner.findById(req.params.id);
+    if (!banner) return res.status(404).json({ message: 'Banner not found.' });
+    res.json(banner);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/banners/:id', async (req, res, next) => {
+  try {
+    const banner = await Banner.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!banner) return res.status(404).json({ message: 'Banner not found.' });
+    await recordAudit(req, 'update_banner', 'Banner', banner._id, { title: banner.title });
+    res.json(banner);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/banners/:id', async (req, res, next) => {
+  try {
+    const banner = await Banner.findByIdAndDelete(req.params.id);
+    if (banner) {
+      await recordAudit(req, 'delete_banner', 'Banner', req.params.id, { title: banner.title });
+    }
+    res.json({ ok: true, message: 'Banner deleted successfully.' });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/banners/reorder', async (req, res, next) => {
+  try {
+    const { items } = req.body;
+    if (Array.isArray(items)) {
+      const ops = items.map((it) => ({
+        updateOne: {
+          filter: { _id: it.id },
+          update: { $set: { order: it.order } },
+        },
+      }));
+      await Banner.bulkWrite(ops);
+    }
+    res.json({ ok: true });
   } catch (err) {
     next(err);
   }

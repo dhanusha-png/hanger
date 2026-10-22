@@ -5,15 +5,21 @@ import { api, img } from '../lib/api';
 
 export function AdminGallery() {
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [replacing, setReplacing] = useState(false);
   const [editing, setEditing] = useState(null);
 
   const loadGallery = async () => {
     setLoading(true);
     try {
-      const data = await api('/admin/gallery');
-      setItems(Array.isArray(data) ? data : []);
+      const [gData, cData] = await Promise.all([
+        api('/admin/gallery'),
+        api('/admin/categories').catch(() => []),
+      ]);
+      setItems(Array.isArray(gData) ? gData : []);
+      if (Array.isArray(cData)) setCategories(cData);
     } catch (err) {
       console.error(err);
       setItems([]);
@@ -95,6 +101,40 @@ export function AdminGallery() {
       await loadGallery();
     } catch (err) {
       alert(err.message || 'Save failed');
+    }
+  };
+
+  const handleReplaceMedia = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setReplacing(true);
+    try {
+      const fd = new FormData();
+      fd.append('files', file);
+
+      const token = localStorage.getItem('token');
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const res = await fetch(`${baseUrl}/uploads`, {
+        method: 'POST',
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+        body: fd,
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Upload failed');
+
+      const url = data.files?.[0] || data.url;
+      const isVideo = file.type.startsWith('video/') || url.endsWith('.mp4') || url.endsWith('.webm');
+      setEditing((prev) => ({
+        ...prev,
+        url,
+        type: isVideo ? 'video' : 'image',
+      }));
+    } catch (err) {
+      alert(err.message || 'Media replacement failed');
+    } finally {
+      setReplacing(false);
     }
   };
 
@@ -191,6 +231,32 @@ export function AdminGallery() {
               </div>
 
               <form onSubmit={handleSaveEdit}>
+                {/* Media Preview & Replace Button */}
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '13px' }}>Media Asset Preview</label>
+                  <div style={{ border: '1px solid rgba(232, 192, 112, 0.25)', borderRadius: '10px', padding: '12px', background: 'rgba(0,0,0,0.3)', textAlign: 'center' }}>
+                    {editing.type === 'video' ? (
+                      <video
+                        src={img(editing.url)}
+                        controls
+                        style={{ width: '100%', maxHeight: '180px', borderRadius: '8px', objectFit: 'contain' }}
+                      />
+                    ) : (
+                      <img
+                        src={img(editing.url)}
+                        alt={editing.title}
+                        style={{ width: '100%', maxHeight: '180px', borderRadius: '8px', objectFit: 'cover' }}
+                      />
+                    )}
+                    <div style={{ marginTop: '10px' }}>
+                      <label className="mini upload-mini" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        <Upload size={13} /> {replacing ? 'Uploading…' : 'Replace Media (Image/Video)'}
+                        <input hidden type="file" accept="image/*,video/*" onChange={handleReplaceMedia} disabled={replacing} />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
                 <label>
                   Media Caption / Title
                   <input
@@ -209,6 +275,11 @@ export function AdminGallery() {
                       <option value="Hangers">Hangers</option>
                       <option value="Shoe Racks">Shoe Racks</option>
                       <option value="Projects">Projects</option>
+                      {categories
+                        .filter((c) => !['Hangers', 'Shoe Racks', 'Projects'].includes(c.name))
+                        .map((c) => (
+                          <option key={c._id} value={c.name}>{c.name}</option>
+                        ))}
                     </select>
                   </label>
 

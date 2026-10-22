@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Plus,
   Search,
@@ -11,12 +11,14 @@ import {
   AlertTriangle,
   Check,
   Boxes,
+  Video,
 } from 'lucide-react';
 import { AdminLayout } from './AdminLayout';
 import { api, img } from '../lib/api';
 
 export function AdminProducts() {
   const [list, setList] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -54,11 +56,15 @@ export function AdminProducts() {
     installationAvailable: true,
   };
 
-  const loadProducts = async () => {
+  const loadData = async () => {
     setLoading(true);
     try {
-      const data = await api('/admin/products');
-      setList(Array.isArray(data) ? data : []);
+      const [pData, cData] = await Promise.all([
+        api('/admin/products?limit=100'),
+        api('/admin/categories').catch(() => []),
+      ]);
+      setList(Array.isArray(pData) ? pData : []);
+      if (Array.isArray(cData)) setCategories(cData);
     } catch (err) {
       console.error(err);
       setList([]);
@@ -67,9 +73,22 @@ export function AdminProducts() {
     }
   };
 
+  const loadProducts = loadData;
+
   useEffect(() => {
-    loadProducts();
+    loadData();
   }, []);
+
+  const availableCategories = useMemo(() => {
+    const set = new Set(['Hangers', 'Shoe Racks', 'Storage Solutions', 'Custom Solutions']);
+    categories.forEach((c) => {
+      if (c.name) set.add(c.name);
+    });
+    list.forEach((p) => {
+      if (p.category) set.add(p.category);
+    });
+    return Array.from(set);
+  }, [categories, list]);
 
   const filtered = list.filter((p) => {
     const matchCat = selectedCategory === 'All' || p.category === selectedCategory;
@@ -219,9 +238,9 @@ export function AdminProducts() {
 
           <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} style={{ margin: 0, width: 'auto' }}>
             <option value="All">All Categories</option>
-            <option value="Hangers">Hangers</option>
-            <option value="Shoe Racks">Shoe Racks</option>
-            <option value="Storage Solutions">Storage Solutions</option>
+            {availableCategories.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
           </select>
 
           <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} style={{ margin: 0, width: 'auto' }}>
@@ -409,10 +428,26 @@ export function AdminProducts() {
                       value={editing.category}
                       onChange={(e) => setEditing({ ...editing, category: e.target.value })}
                     >
-                      <option value="Hangers">Hangers</option>
-                      <option value="Shoe Racks">Shoe Racks</option>
-                      <option value="Storage Solutions">Storage Solutions</option>
-                      <option value="Custom Solutions">Custom Solutions</option>
+                      {availableCategories.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Catalog Status
+                    <select
+                      value={editing.status || (editing.isActive ? 'active' : 'draft')}
+                      onChange={(e) =>
+                        setEditing({
+                          ...editing,
+                          status: e.target.value,
+                          isActive: e.target.value === 'active',
+                        })
+                      }
+                    >
+                      <option value="active">Active (Visible)</option>
+                      <option value="draft">Draft (Unlisted)</option>
+                      <option value="archived">Archived</option>
                     </select>
                   </label>
                   <label>
@@ -612,6 +647,71 @@ export function AdminProducts() {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* Demonstration Video (URL / MP4) */}
+                <div style={{ margin: '18px 0' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px' }}>
+                    Demonstration Video (MP4 / WebM / URL)
+                  </label>
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <input
+                      placeholder="e.g. /uploads/hanger-demo.mp4 or https://..."
+                      value={editing.video || ''}
+                      onChange={(e) => setEditing({ ...editing, video: e.target.value })}
+                      style={{ margin: 0, flex: 1 }}
+                    />
+                    <label className="mini upload-mini" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                      <Upload size={13} /> {uploading ? 'Uploading…' : 'Upload Video'}
+                      <input
+                        hidden
+                        type="file"
+                        accept="video/*"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          setUploading(true);
+                          try {
+                            const fd = new FormData();
+                            fd.append('files', file);
+                            const token = localStorage.getItem('token');
+                            const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+                            const res = await fetch(`${baseUrl}/uploads`, {
+                              method: 'POST',
+                              headers: token ? { Authorization: `Bearer ${token}` } : {},
+                              body: fd,
+                            });
+                            const data = await res.json();
+                            const vUrl = data.files?.[0] || data.url;
+                            if (vUrl) setEditing((x) => ({ ...x, video: vUrl }));
+                          } catch (err) {
+                            alert(err.message || 'Video upload failed');
+                          } finally {
+                            setUploading(false);
+                          }
+                        }}
+                      />
+                    </label>
+                    {editing.video && (
+                      <button
+                        type="button"
+                        className="mini danger"
+                        onClick={() => setEditing({ ...editing, video: '' })}
+                        title="Remove Video"
+                      >
+                        <X size={13} />
+                      </button>
+                    )}
+                  </div>
+                  {editing.video && (
+                    <div style={{ marginTop: '8px' }}>
+                      <video
+                        src={img(editing.video)}
+                        controls
+                        style={{ maxHeight: '140px', borderRadius: '8px', maxWidth: '100%' }}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Toggles */}

@@ -1072,14 +1072,24 @@
 
 @media (max-width: 768px) {
   .home-compact-product-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     gap: 12px;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
-}
-
-@media (max-width: 480px) {
-  .home-compact-product-grid {
-    grid-template-columns: 1fr;
+  .home-compact-product-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .home-compact-card {
+    flex: 0 0 clamp(200px, 62vw, 240px);
+    scroll-snap-align: start;
+    min-width: 0;
   }
 }
 
@@ -2221,9 +2231,25 @@
 
 @media (max-width: 768px) {
   .home-floating-stack {
-    right: max(14px, env(safe-area-inset-right, 14px));
-    bottom: 18px;
-    gap: 8px;
+    right: max(12px, env(safe-area-inset-right, 12px));
+    gap: 7px;
+    z-index: 95;
+  }
+  .home-float-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .home-float-whatsapp {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .home-float-cart-round {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .home-float-ai {
+    width: 40px !important;
+    height: 40px !important;
   }
   .home-float-ai-pill {
     display: none !important;
@@ -2546,11 +2572,12 @@
 @media (max-width: 992px) {
   .target-hero-inner-container {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 24px;
     padding-top: 10px;
+    align-items: stretch;
   }
   .target-hero-scene-stage {
-    min-height: 380px;
+    min-height: 340px;
   }
   .target-bottom-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2562,46 +2589,329 @@
 
 @media (max-width: 768px) {
   .target-hero-viewport {
-    padding-top: 90px;
     min-height: auto;
+    height: auto;
+    display: block;
+    padding-top: calc(74px + env(safe-area-inset-top, 0px) + 16px);
+    padding-bottom: 24px;
+    position: relative;
+    overflow: hidden;
   }
-  .target-floating-card {
-    display: none;
+  .target-hero-single-bg {
+    background-position: 68% center !important;
   }
-  .target-floating-card.touch-open {
+  .target-hero-inner-container {
     display: flex;
-    left: 0;
-    top: 42px;
-    z-index: 30;
-    width: min(260px, 85vw);
-  }
-  .target-bottom-grid {
-    grid-template-columns: 1fr;
-  }
-  .target-feature-strip-pill {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-radius: 18px;
-    gap: 10px 14px;
-    padding: 12px 16px;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: visible;
-  }
-  .target-hero-buttons-row {
     flex-direction: column;
     align-items: stretch;
+    flex: none;
+    gap: 16px;
+    padding: 0 clamp(16px, 4vw, 22px);
+  }
+  .target-hero-left-content {
+    width: 100%;
+  }
+  .target-hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .target-hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 8.5vw, 42px);
+    line-height: 1.10;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    color: #ffffff;
+  }
+  .target-hero-title .title-line {
+    display: block;
+  }
+  .gold-text-highlight {
+    font-style: italic;
+    color: #e8c070;
+    background: linear-gradient(135deg, #ffd88a 0%, #e8c070 50%, #c9a24b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .target-hero-lead {
+    font-size: 14px;
+    line-height: 1.52;
+    margin: 0 0 18px;
+    max-width: 100%;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .target-hero-buttons-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 14px;
   }
   .target-btn-primary,
   .target-btn-secondary {
     width: 100%;
     justify-content: center;
+    box-sizing: border-box;
+    padding: 13px 20px;
+    border-radius: 9999px;
+  }
+  /* 4-column trust indicator glass bar matching target mockup */
+  .target-feature-strip-pill {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    border-radius: 18px !important;
+    gap: 4px !important;
+    padding: 12px 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    margin-top: 4px !important;
+    background: rgba(6, 18, 14, 0.78) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(232, 192, 112, 0.22) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  }
+  .feature-strip-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 6px !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    font-weight: 600 !important;
+    white-space: normal !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+  .feature-gold-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  /* Photographic scene stage with visible hotspots and callout cards */
+  .target-hero-scene-stage {
+    min-height: clamp(340px, 85vw, 420px);
+    height: auto;
+    width: 100%;
+    position: relative;
+    margin-top: 8px;
+    border-radius: 20px;
+    overflow: visible;
+  }
+  .hotspot-ceiling {
+    top: 6% !important;
+    right: 10px !important;
+    left: auto !important;
+    position: absolute !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 25 !important;
+  }
+  .hotspot-shoe {
+    top: 42% !important;
+    right: 10px !important;
+    left: auto !important;
+    position: absolute !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 25 !important;
+  }
+  .target-floating-card {
+    display: flex !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 185px !important;
+    max-width: 195px !important;
+    padding: 6px 10px 6px 6px !important;
+    gap: 8px !important;
+    background: rgba(6, 18, 14, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(232, 192, 112, 0.35) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6) !important;
+    animation: none !important;
+  }
+  .card-thumb-wrap {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+    background: #0a1612 !important;
+  }
+  .card-thumb-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+  .card-content-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+  }
+  .card-title {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 0 2px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .card-price {
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    color: #e8c070 !important;
+  }
+  .card-action-link {
+    display: none !important;
+  }
+  .target-hotspot-pin {
+    width: 28px !important;
+    height: 28px !important;
+    flex-shrink: 0 !important;
+  }
+  .hotspot-pin-core {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .hotspot-pin-core svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .target-script-tag {
+    top: 68% !important;
+    right: 22px !important;
+    transform: rotate(-3deg) !important;
+  }
+  .script-text {
+    font-size: 21px !important;
+  }
+  /* Bottom glass category bar */
+  .target-bottom-glass-bar-wrapper {
+    margin-top: 14px;
+    padding: 0 clamp(14px, 3.5vw, 20px);
+  }
+  .target-bottom-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding-bottom: 6px;
+    padding-right: 64px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .target-bottom-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .target-bottom-card {
+    flex: 0 0 min(310px, 86vw);
+    scroll-snap-align: start;
+    padding: 12px 14px;
+    min-width: 0;
+    border-radius: 16px;
+    background: rgba(6, 18, 14, 0.88);
+    border: 1px solid rgba(232, 192, 112, 0.32);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bottom-card-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    color: #04120e;
+    flex-shrink: 0;
+  }
+  .bottom-card-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .bottom-card-info {
+    min-width: 0;
+    flex: 1;
+  }
+  .bottom-card-title {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 700;
+    display: block;
+  }
+  .bottom-card-sub {
+    font-size: 11.5px;
+    color: #e8c070;
+    display: block;
+    margin-top: 2px;
+  }
+  .bottom-card-arrow-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(232, 192, 112, 0.25);
+    display: grid;
+    place-items: center;
+    color: #e8c070;
+    margin-left: auto;
+    flex-shrink: 0;
   }
   .title-gold-underline-box {
-    width: 200px;
+    width: 180px;
   }
   .underline-flare-spark {
-    right: 20px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .target-hero-title {
+    font-size: 28px !important;
+  }
+  .target-hero-lead {
+    font-size: 13px !important;
+  }
+  .target-feature-strip-pill {
+    padding: 8px 4px !important;
+    gap: 2px !important;
+  }
+  .feature-strip-item {
+    font-size: 9px !important;
+  }
+  .target-floating-card {
+    width: 155px !important;
+    max-width: 160px !important;
+    padding: 5px 8px 5px 5px !important;
+    gap: 6px !important;
+  }
+  .card-thumb-wrap {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .card-title {
+    font-size: 10px !important;
+  }
+  .card-price {
+    font-size: 11px !important;
+  }
+  .target-bottom-card {
+    flex: 0 0 260px !important;
+    padding: 10px 12px !important;
   }
 }
 

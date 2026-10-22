@@ -39,7 +39,30 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
-  const login = useCallback(async (credentials) => {
+  const login = useCallback(async (credentials, maybeUser) => {
+    // Direct session passing: login(token, user)
+    if (typeof credentials === 'string') {
+      const token = credentials;
+      localStorage.setItem('token', token);
+      if (maybeUser) {
+        setUser(maybeUser);
+      } else {
+        try {
+          const res = await authApi.getMe();
+          if (res?.user) setUser(res.user);
+        } catch (_) {}
+      }
+      return { token, user: maybeUser };
+    }
+
+    // Direct session object: login({ token, user })
+    if (credentials?.token && credentials?.user) {
+      localStorage.setItem('token', credentials.token);
+      setUser(credentials.user);
+      return credentials;
+    }
+
+    // Standard credential submission: login({ email, password })
     const res = await authApi.login(credentials);
     if (res.token) {
       localStorage.setItem('token', res.token);
