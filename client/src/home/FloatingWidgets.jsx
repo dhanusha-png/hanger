@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, MessageCircle, Phone } from 'lucide-react';
+import { Bot, ShoppingCart, Phone } from 'lucide-react';
 import { MiniCartDrawer } from '../components/layout/MiniCartDrawer';
 
 export function FloatingWidgets({
@@ -75,53 +76,56 @@ export function FloatingWidgets({
 
   return (
     <>
-      <aside
-        ref={stackRef}
-        className="home-floating-stack"
-        aria-label="Quick Actions"
-        style={{
-          bottom: `calc(${bottomOffset}px + env(safe-area-inset-bottom, 0px))`
-        }}
-      >
-        {/* 1. Direct WhatsApp Action with pulsing aura */}
-        <a
-          href="https://wa.me/919876543210?text=Hello%20HangerHome%2C%20I%20am%20interested%20in%20your%20products%20and%20installation%20services."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="home-float-btn home-float-whatsapp"
-          aria-label="Chat on WhatsApp (+91 98765 43210)"
-          title="WhatsApp HangerHome"
+      {typeof document !== 'undefined' && createPortal(
+        <aside
+          ref={stackRef}
+          className="home-floating-stack"
+          aria-label="Quick Actions"
+          style={{
+            bottom: `calc(${bottomOffset}px + env(safe-area-inset-bottom, 0px))`
+          }}
         >
-          <Phone size={22} fill="currentColor" strokeWidth={1.5} />
-          <span className="home-float-pulse-aura" aria-hidden="true" />
-        </a>
+          {/* 1. Direct WhatsApp Action with pulsing aura */}
+          <a
+            href="https://wa.me/919876543210?text=Hello%20HangerHome%2C%20I%20am%20interested%20in%20your%20products%20and%20installation%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="home-float-btn home-float-whatsapp"
+            aria-label="Chat on WhatsApp (+91 98765 43210)"
+            title="WhatsApp HangerHome"
+          >
+            <Phone size={22} fill="currentColor" strokeWidth={1.5} />
+            <span className="home-float-pulse-aura" aria-hidden="true" />
+          </a>
 
-        {/* 2. Floating Cart Round Glass Button with gold badge */}
-        <button
-          type="button"
-          className="home-float-btn home-float-cart-round"
-          onClick={handleCartClick}
-          aria-label={`Open shopping cart with ${itemCount} items`}
-          title="View Shopping Cart"
-        >
-          <div className="home-float-cart-icon-wrap">
-            <ShoppingCart size={22} strokeWidth={2} />
-            {itemCount > 0 && <span className="home-float-cart-badge">{itemCount}</span>}
-          </div>
-        </button>
+          {/* 2. Floating Cart Round Glass Button with gold badge */}
+          <button
+            type="button"
+            className="home-float-btn home-float-cart-round"
+            onClick={handleCartClick}
+            aria-label={`Open shopping cart with ${itemCount} items`}
+            title="View Shopping Cart"
+          >
+            <div className="home-float-cart-icon-wrap">
+              <ShoppingCart size={22} strokeWidth={2} />
+              {itemCount > 0 && <span className="home-float-cart-badge">{itemCount}</span>}
+            </div>
+          </button>
 
-        {/* 3. AI Assistant Floating Button */}
-        <button
-          type="button"
-          className={`home-float-btn home-float-ai ${chat ? 'active' : ''}`}
-          onClick={() => setChat && setChat(!chat)}
-          aria-label="Ask HangerHome AI Assistant"
-          title="Ask HangerHome"
-        >
-          <MessageCircle size={22} strokeWidth={2} />
-          {!chat && <span className="home-float-ai-pill">Ask HangerHome</span>}
-        </button>
-      </aside>
+          {/* 3. AI Assistant Floating Button */}
+          <button
+            type="button"
+            className={`home-float-btn home-float-ai ${chat ? 'active' : ''}`}
+            onClick={() => setChat && setChat(!chat)}
+            aria-label="Ask HangerHome AI Assistant"
+            title="Ask HangerHome"
+          >
+            <Bot size={22} strokeWidth={2} />
+            {!chat && <span className="home-float-ai-pill">Ask HangerHome</span>}
+          </button>
+        </aside>,
+        document.body
+      )}
 
       {/* Fallback Drawer if not handled globally */}
       <MiniCartDrawer

@@ -1066,7 +1066,7 @@
   }
 
   .about-hero-content-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     order: 1;
     gap: 18px;
     padding: 0 16px;
@@ -1075,7 +1075,10 @@
   }
 
   .about-hero-left {
+    width: 100%;
+    min-width: 0;
     max-width: 100%;
+    box-sizing: border-box;
     align-items: center !important;
     text-align: center !important;
   }
@@ -1103,6 +1106,7 @@
     align-items: center !important;
     width: 100% !important;
     max-width: 360px !important;
+    box-sizing: border-box !important;
     margin: 6px auto 0 !important;
     gap: 10px !important;
   }
@@ -1110,6 +1114,7 @@
   .about-btn-gold,
   .about-btn-outline {
     width: 100% !important;
+    min-width: 0 !important;
     box-sizing: border-box !important;
     justify-content: center !important;
   }

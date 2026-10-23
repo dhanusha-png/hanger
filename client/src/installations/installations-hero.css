@@ -1724,3 +1724,16 @@
   }
 }
 
+#booking-section .install-cta-glass-card .install-cta-header-block h2 {
+  color: #FFFFFF !important;
+}
+
+#booking-section .install-cta-glass-card .install-cta-header-block p {
+  color: #C5CEC9 !important;
+}
+
+#booking-section .install-cta-glass-card .install-input-group input::placeholder,
+#booking-section .install-cta-glass-card .install-input-group textarea::placeholder {
+  color: #AEBFB8;
+  opacity: 1;
+}

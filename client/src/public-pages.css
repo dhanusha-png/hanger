@@ -1268,7 +1268,7 @@
   position: fixed;
   right: max(22px, env(safe-area-inset-right, 22px));
   bottom: 24px;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -1325,5 +1325,198 @@
   }
   .home-float-ai-pill {
     display: none !important;
+  }
+}
+
+/* Targeted contrast fixes for the affected public-page sections. */
+.home-tonal-odd .home-services-section .home-service-card {
+  background: #FFF9EF !important;
+  border-color: rgba(201, 162, 72, 0.45) !important;
+  box-shadow: 0 16px 44px rgba(18, 60, 50, 0.12), 0 2px 8px rgba(18, 60, 50, 0.06) !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .home-services-section .home-service-card:hover {
+  background: #FFF9EF !important;
+}
+
+.home-tonal-odd .home-services-section h3.home-service-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .home-services-section .home-service-desc {
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .home-services-section .home-service-arrow {
+  color: #9A721C !important;
+}
+
+.home-tonal-odd .home-services-section .home-service-icon-box {
+  background: rgba(201, 162, 72, 0.1) !important;
+  border-color: rgba(201, 162, 72, 0.35) !important;
+  color: #9A721C !important;
+}
+
+.home-tonal-odd .about-offer-section .about-offer-card {
+  background: #FFF9EF !important;
+  border-color: rgba(201, 162, 72, 0.45) !important;
+  box-shadow: 0 16px 44px rgba(18, 60, 50, 0.1), 0 2px 8px rgba(18, 60, 50, 0.05);
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .about-offer-section .about-offer-card h3 {
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .about-offer-section .about-offer-card p {
+  color: #53665D !important;
+}
+
+.home-tonal-odd .about-offer-section .about-offer-card-icon {
+  background: rgba(201, 162, 72, 0.1);
+  border-color: rgba(201, 162, 72, 0.35);
+  color: #9A721C;
+}
+
+.home-tonal-odd .contact-action-card .action-card-inner {
+  background: #FFF9EF !important;
+  border-color: rgba(201, 162, 72, 0.45) !important;
+  box-shadow: 0 16px 44px rgba(18, 60, 50, 0.12), 0 2px 8px rgba(18, 60, 50, 0.06) !important;
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .contact-action-card h3.action-card-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .contact-action-card p.action-card-desc {
+  color: #53665D !important;
+}
+
+.home-tonal-odd .contact-action-card .action-card-icon-ring {
+  background: rgba(201, 162, 72, 0.12);
+  border-color: rgba(201, 162, 72, 0.4);
+  color: #9A721C;
+}
+
+.home-tonal-odd .contact-action-card .action-card-link-btn {
+  background: #123C32;
+  border-color: rgba(201, 162, 72, 0.65);
+  color: #FFF9EF;
+}
+
+.home-tonal-odd .contact-action-card .action-card-link-btn:hover {
+  background: #0F3D2E;
+  border-color: #C9A248;
+  color: #FFFFFF;
+}
+
+.home-tonal-odd .contact-closing-cta-content {
+  background: #FFF9EF;
+  border-color: rgba(201, 162, 72, 0.45);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+  color: #123C32;
+}
+
+.home-tonal-odd .contact-closing-cta-card h2.contact-closing-cta-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-odd .contact-closing-cta-card p.contact-closing-cta-desc {
+  color: #53665D !important;
+}
+
+.home-tonal-odd .contact-cta-badge {
+  color: #80621F;
+}
+
+.home-tonal-odd .contact-cta-badge .sparkle-gold {
+  color: #9A721C;
+}
+
+.home-tonal-odd .home-featured-nav-group {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-tonal-odd .home-featured-tabs {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-tonal-odd .home-featured-tab {
+  flex: 0 0 auto;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-bottom-color: rgba(232, 192, 112, 0.35);
+  border-radius: 8px 8px 3px 3px;
+  background: transparent;
+  color: #F5F0E5;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.home-tonal-odd .home-featured-tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+}
+
+.home-tonal-odd .home-featured-tab.active {
+  border-bottom-color: #E8C070;
+  color: #E8C070;
+  box-shadow: inset 0 -1px 0 rgba(232, 192, 112, 0.75);
+}
+
+.home-tonal-odd .home-featured-tab:focus-visible {
+  outline: 2px solid #E8C070;
+  outline-offset: 2px;
+}
+
+.home-tonal-even .home-installation-section .home-inst-benefit-title {
+  color: #123C32 !important;
+}
+
+.home-tonal-even .home-installation-section .home-inst-benefit-sub {
+  color: #647168 !important;
+}
+
+.home-tonal-even .home-installation-section .home-inst-benefit-icon-box {
+  background: #F5F0E5;
+  border-color: rgba(201, 162, 72, 0.45);
+  color: #9A721C;
+}
+
+@media (max-width: 768px) {
+  .home-tonal-odd .home-featured-nav-group {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .home-tonal-odd .home-featured-tabs {
+    flex: 1 1 auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .home-tonal-odd .home-featured-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-tonal-odd .home-featured-view-all {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 }

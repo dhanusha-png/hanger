@@ -535,3 +535,23 @@
     justify-content: center;
   }
 }
+
+.home-tonal-even .about-who-section .about-who-actions .install-btn-soft {
+  background: #123C32;
+  border-color: rgba(201, 162, 72, 0.55);
+  color: #FFF9EF !important;
+}
+
+.home-tonal-even .about-who-section .about-who-actions .install-btn-soft:hover {
+  background: #1F5A48;
+  border-color: #C9A248;
+  color: #FFFFFF !important;
+}
+
+.about-cta-tonal-wrap .about-cta-banner .about-cta-content h2 {
+  color: #F7F3EC !important;
+}
+
+.about-cta-tonal-wrap .about-cta-banner .about-cta-content p {
+  color: #C5CEC9 !important;
+}
